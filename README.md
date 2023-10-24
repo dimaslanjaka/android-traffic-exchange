@@ -4,7 +4,8 @@ Traffic Exchange App For Android
 ## Features
 
 - [x] unique visitor
-- [x] unique useragent
+- [x] override useragent
 - [x] WebRTC
 - [ ] custom referer
 - [ ] custom header
+- [ ] override proxy
