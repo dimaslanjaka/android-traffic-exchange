@@ -6,6 +6,6 @@ Traffic Exchange App For Android
 - [x] unique visitor
 - [x] override useragent
 - [x] WebRTC
-- [ ] custom referer
-- [ ] custom header
+- [ ] override referer
+- [ ] override custom header
 - [ ] override proxy
