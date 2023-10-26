@@ -24,10 +24,10 @@ const config = {
   },
   module: {
     rules: [
-      // {
-      //   test: /\.(txt|md)$/i,
-      //   use: ['raw-loader', 'front-matter-loader']
-      // },
+      {
+        test: /\.md$/,
+        use: 'raw-loader'
+      },
       { test: /\.bck$/, loader: 'ignore-loader' },
       {
         test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,

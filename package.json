@@ -122,9 +122,11 @@
     "moment-timezone": "^0.5.43",
     "os-browserify": "^0.3.0",
     "path-browserify": "^1.0.1",
+    "raw-loader": "^4.0.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.11.0",
+    "react-markdown": "^9.0.0",
     "react-router-dom": "^6.16.0",
     "rsuite": "^5.40.0",
     "safelinkify": "^1.2.2",
@@ -165,7 +167,7 @@
     "hexo-util": "https://github.com/dimaslanjaka/hexo/raw/8b31a11/releases/hexo-util.tgz",
     "warehouse": "https://github.com/dimaslanjaka/hexo/raw/8b31a11/releases/warehouse.tgz"
   },
-  "packageManager": "yarn@3.6.3",
+  "packageManager": "yarn@4.0.0",
   "hexo": {
     "version": "7.0.0-rc2"
   },

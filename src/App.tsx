@@ -9,18 +9,18 @@ const router = createBrowserRouter([
   {
     lazy: async () => {
       const { default: Component } = await import(
-        /* webpackChunkName: "flowbite-with-sidebar-layout" */ '@components/FlowbiteLayout/index'
+        /* webpackChunkName: "flowbite-with-sidebar-layout" */ './components/FlowbiteLayout/index'
       );
       return { Component };
     },
     children: [
-      // {
-      //   index: true,
-      //   async lazy() {
-      //     const { default: Component } = await import(/* webpackChunkName: "homepage-layout" */ './layout/Home/index');
-      //     return { Component };
-      //   }
-      // },
+      {
+        index: true,
+        async lazy() {
+          const { default: Component } = await import(/* webpackChunkName: "homepage-layout" */ './routes/Homepage');
+          return { Component };
+        }
+      },
       {
         path: '*',
         async lazy() {
@@ -29,11 +29,11 @@ const router = createBrowserRouter([
         }
       }
     ]
-  },
+  }
   // {
   //   lazy: async () => {
   //     const { FlowbiteLayoutWithoutSidebar: Component } = await import(
-  //       /* webpackChunkName: "flowbite-with-sidebar-layout" */ '@components/FlowbiteLayout/index'
+  //       /* webpackChunkName: "flowbite-with-sidebar-layout" */ './components/FlowbiteLayout/index'
   //     );
   //     return { Component };
   //   },
