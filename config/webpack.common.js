@@ -18,9 +18,9 @@ const config = {
   output: {
     path: paths.build,
     filename: '[name].bundle.js',
-    chunkFilename: `runtime/chunk/[name].[chunkhash].js`,
+    chunkFilename: 'runtime/chunk/[name].[chunkhash].js',
     assetModuleFilename: 'runtime/media/[name][hash][ext][query]',
-    publicPath: '/'
+    publicPath: paths.base
   },
   module: {
     rules: [

@@ -12,7 +12,8 @@ const path = require('path');
 module.exports = merge(common, {
   entry: [paths.src + '/index.tsx'],
   output: {
-    filename: 'runtime/main.js'
+    filename: 'runtime/main.js',
+    publicPath: paths.base
   },
   module: {
     rules: [
@@ -32,7 +33,20 @@ module.exports = merge(common, {
       writeToDisk: true
     },
     // bug: webpack static folder must not using unix slash in windows
-    static: [path.resolve(paths.public), path.join(paths.tmp, 'static'), path.join(paths.cwd, 'source')],
+    static: [
+      {
+        directory: path.resolve(paths.public),
+        publicPath: paths.base
+      },
+      {
+        directory: path.join(paths.tmp, 'static'),
+        publicPath: paths.base
+      },
+      {
+        directory: path.join(paths.cwd, 'source'),
+        publicPath: paths.base
+      }
+    ],
     historyApiFallback: true,
     compress: true,
     hot: true,
