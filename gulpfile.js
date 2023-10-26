@@ -19,6 +19,7 @@ require('./gulpfile.server');
 // by add space to ./src/index.tsx
 // gulp.task('notice', noticeWebpack);
 
+// generate route
 gulp.task('route', async () => {
   const routes = [
     {
@@ -123,4 +124,12 @@ gulp.task('route', async () => {
     console.log('dev server static html generated', dest);
   });
   writefile(path.join(__dirname, 'routes.json'), JSON.stringify(mapped));
+});
+
+// copy bundled apk
+gulp.task('copy-release', async () => {
+  if (fs.existsSync(path.join(__dirname, 'release')))
+    await fs.move(path.join(__dirname, 'release'), path.join(paths.public, 'release'), { overwrite: true });
+  if (fs.existsSync(path.join(__dirname, 'images')))
+    await fs.move(path.join(__dirname, 'images'), path.join(paths.public, 'images'), { overwrite: true });
 });

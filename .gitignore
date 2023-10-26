@@ -29,3 +29,4 @@ source/_posts
 .cache
 /release
 /images
+/public/release
