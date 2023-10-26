@@ -51,7 +51,7 @@ const Header: FC<Record<string, never>> = function () {
           </button>
         )}
         <Navbar.Brand href="/">
-          <Image alt="Flowbite logo" height="24" src="/favicon.ico" width="24" />
+          <Image alt="Flowbite logo" height="24" src={projectConfig.paths.base + 'favicon.ico'} width="24" />
           <span className="self-center whitespace-nowrap px-3 text-xl font-semibold dark:text-white">
             {projectConfig.title}
           </span>
