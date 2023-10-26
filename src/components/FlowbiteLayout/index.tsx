@@ -22,12 +22,12 @@ function FlowbiteLayout(props?: { children: JSX.Element | React.ReactNode }) {
         }
         if (!el.hasAttribute('data-fancybox')) el.setAttribute('data-fancybox', 'true');
       });
-      Fancybox.bind(wrapper, '[data-fancybox]', {
+      Fancybox.bind(wrapper, '[data-fancybox=true]', {
         // Your custom options
       });
     }
     return () => {
-      if (wrapper) Fancybox.unbind(wrapper);
+      if (wrapper) Fancybox.unbind(wrapper, '[data-fancybox]');
     };
   });
 

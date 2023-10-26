@@ -18,6 +18,7 @@ export default function BackendHome() {
                 src="https://cdn.buymeacoffee.com/assets/img/home-page-v3/bmc-new-logo.png"
                 alt="Donate"
                 className="text-center mx-auto"
+                data-fancybox="false"
                 width={120}
               />
             </a>
