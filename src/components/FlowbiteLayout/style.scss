@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import './highlight.js.scss';
+
+$gray-50: #f9fafb;
+$gray-300: #d1d5db;
+$gray-500: #6b7280;
+$gray-800: #1f2937;
+
+.post {
+  pre {
+    white-space: pre-wrap; /* css-3 */
+    white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    word-wrap: break-word; /* Internet Explorer 5.5+ */
+  }
+
+  blockquote {
+    background-color: $gray-50;
+    border-left: 10px solid $gray-300;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    quotes: '\201C' '\201D' '\2018' '\2019';
+  }
+
+  blockquote:before {
+    content: open-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+  }
+  blockquote p {
+    display: inline;
+    margin-right: 0.4em;
+  }
+
+  // fixed elements inside paragraph not have space/margin
+  p {
+    *:not(code) {
+      // all elements except inline codeblock
+      margin-left: 0.2em;
+      margin-right: 0.2em;
+    }
+  }
+
+  // inline codeblock - <code/> not <pre><code>
+  :not(pre) > code {
+    padding: 2px 4px;
+    background: rgba(27, 31, 35, 0.05);
+    color: #f47466;
+  }
+}
+
+.dark {
+  .post {
+    blockquote {
+      border-left: 10px solid $gray-500;
+      background-color: $gray-800;
+    }
+  }
+}

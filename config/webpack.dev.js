@@ -1,0 +1,60 @@
+const { merge } = require('webpack-merge');
+const paths = require('./paths');
+const common = require('./webpack.common.js');
+const cli = require('./cli');
+const excludePatterns = require('./webpack.excludes');
+const { modifyConfigJson } = require('./utils');
+const path = require('path');
+
+/**
+ * @type {import('webpack').Configuration}
+ */
+module.exports = merge(common, {
+  entry: [paths.src + '/index.tsx'],
+  output: {
+    filename: 'runtime/main.js'
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(s[a|c]ss)$/,
+        use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
+        exclude: excludePatterns.css
+      }
+    ]
+  },
+  mode: 'development',
+  devtool: 'inline-source-map',
+  devServer: {
+    devMiddleware: {
+      // output dev server to build folder
+      // https://github.com/webpack/webpack-dev-server/issues/1141#issuecomment-1193153563
+      writeToDisk: true
+    },
+    // bug: webpack static folder must not using unix slash in windows
+    static: [path.resolve(paths.public), path.join(paths.tmp, 'static'), path.join(paths.cwd, 'source')],
+    historyApiFallback: true,
+    compress: true,
+    hot: true,
+    // yarn start --port 8888
+    port: cli.port || 4000,
+    // yarn start --host custom.host.name
+    host: cli.host || 'adsense.webmanajemen.com',
+    open: false
+  },
+  watchOptions: {
+    ignored: [
+      '_config.json',
+      'routes.json',
+      '**/tmp/**',
+      '**/src/posts/**',
+      '**/source/_posts/**',
+      '**/post-images/**'
+    ],
+    // delay build task 10s after changes
+    aggregateTimeout: 10000
+  }
+});
+
+// write to ../config.json
+modifyConfigJson({ mode: 'development' });

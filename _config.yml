@@ -1,0 +1,160 @@
+# site title
+title: 'WMI'
+# site long title
+subtitle: 'Website Management Indonesia'
+# site description
+description: Website Management Indonesia is a blog about scripts, tips and tricks, games, software. Covering php, javascript, jquery, mysql, seo, e-commerce and others.
+# default post/page author
+author: 'L3n4r0x'
+# site keywords
+keywords: the legend of neverland, genshin impact, games, how to, tips and tricks, php, javascript, jquery, mysql, seo, e-commerce
+# site timezone for moment-timezone
+timezone: 'Asia/Jakarta'
+# site language
+language:
+  - id # Bahasa Indonesia
+  - en # Default language
+  - zh-TW # Traditional Chinese
+  - zh-CN # Simplified Chinese
+  - zh-HK
+  - th # Thailand
+  - tl # Filipino
+
+## site url
+url: https://www.webmanajemen.com/
+## base url
+## or /subfolder/ | result -> _config_yml.url/subfolder/
+root: /
+## permalink pattern
+## https://hexo.io/docs/permalinks.html
+permalink: :title.html
+pretty_urls:
+  trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
+  trailing_html: true # Set to false to remove trailing '.html' from permalinks
+
+## static-blog-generator: source posts directory
+post_dir: 'src-posts'
+## hexo: build folder directory
+public_dir: 'dist'
+## hexo: source page/asset directory
+source_dir: 'source'
+
+## static-blog-generator: default category when post not have one
+default_category: uncategorized
+## hexo: enable post asset folder
+post_asset_folder: true
+## hexo: internal hexo-renderer-marked options
+marked:
+  prependRoot: true
+  postAsset: true
+
+## hexo: Disable syntax highlighting
+### we have internal syntax highlight.js renderer
+## https://github.com/hexojs/hexo-util
+## https://hexo.io/docs/syntax-highlight.html
+highlight:
+  enable: false
+  line_number: false
+  auto_detect: false
+  tab_replace: '  ' # replace tabs with 2 spaces
+  wrap: false
+  hljs: true # enable prefix hljs class in <code/> tags
+prismjs:
+  enable: false
+  preprocess: true
+  line_number: true
+  tab_replace: ''
+
+## Home page setting
+### path: Root path for your blogs index page. (default = '')
+### per_page: Posts displayed per page. (0 = disable pagination)
+### order_by: Posts order. (Order by date descending by default)
+index_generator:
+  path: ''
+  per_page: 10
+  order_by: -updated # updated | date | -date | -updated
+  pagination_dir: page
+
+## static-blog-generator: options
+generator:
+  cache: false
+  image:
+    type: 'url'
+
+## https://github.com/dimaslanjaka/hexo-shortcodes/blob/pre-release/readme.md#config
+hexo-shortcodes:
+  raw: true # hexo-shortcodes return as markdown instead of html
+
+## exclude patterns
+### excluded from post process logic
+exclude:
+  - '**/.git*'
+  - '**/.git'
+  - '**/.vscode'
+  - '**/.idea'
+  - '**/.env'
+  - '**/License.md'
+  - '**/frontmatter.json'
+  - '**/.frontmatter'
+  - '**/git-hooks'
+  - '**/License'
+  - '**/bin/**'
+  - '**/backend/**'
+  - '**/MIDI.js/**'
+  - '**/{readme,README,changelog,CHANGELOG,license,LICENSE,License}.md'
+  - '**/Test/**'
+  - '**/guzzle/**'
+  - '**/exclude/**'
+  - '**/hexo-post-parser/**'
+  - '**/node_modules/**'
+  - '**/vendor/**'
+  - '**/ads/**'
+  - '**/tmp/**'
+  - '**/hexo-theme-unit-test/**'
+  - '**/*-backup*'
+
+# external links
+external_link:
+  # true: Open ext in new tab, rel nofollow
+  enable: true
+  # apply resolution
+  ## site: apply to the whole site
+  ## post: apply only to post
+  field: site
+  # safelink, to encode all external links with outbound page (good for seo and ads)
+  ## see: https://github.com/dimaslanjaka/safelink
+  safelink:
+    # enable salink redirector
+    enable: true
+    # exclude url to safelinkify
+    exclude:
+      - webmanajemen.com
+      - git.webmanajemen.com
+      - '**/chimeraland/recipes.html'
+      # skip tools
+      - '**/embed.html'
+      - '**/tools.html'
+      - '**/safelink.html'
+      # package registry
+      - '**/node_modules/**'
+      - '**/vendor/**'
+    # safelink url
+    redirect: https://www.webmanajemen.com/page/safelink.html?url=
+    type: base64
+    password: unique-password
+  # exclude host from external link filter
+  exclude:
+    - webmanajemen.com
+    - web-manajemen.blogspot.com
+    - dimaslanjaka.github.io
+
+# next project: hexo-analytics
+analytics:
+  # google tag manager
+  tagmanager: GTM-NJNNXSR
+  # google analytics v4
+  GA4: G-BG75CLNJZ1
+  # google analytics v3
+  GA3: UA-106238155-1
+  # cloudflare web statistics
+  cloudflare: 2157c0f3b9e74a92badffe39156166b9
