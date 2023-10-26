@@ -140,7 +140,7 @@ gulp.task('copy-release', async () => {
   // copy public -> dist
   await new Promise((resolve, reject) => {
     gulp
-      .src('**/*', { cwd: paths.public, dot: true })
+      .src('**/*', { cwd: paths.public, dot: true, ignore: ['.gitignore'] })
       .pipe(gulp.dest(paths.build))
       .on('end', () => {
         resolve(null);
