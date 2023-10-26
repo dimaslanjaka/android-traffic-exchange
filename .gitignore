@@ -27,16 +27,4 @@ source/_posts
 /src/posts
 /src/pages
 .cache
-
-# ignore source posts
-/src-posts/*
-!/src-posts/readme.md
-
-# ignore source folder
-/source/*
-/source/.git
-!/source/favicon.ico
-!/source/favicon.jpg
-!/source/robots.txt
-!/source/ads.txt
-!/source/sellers.json
+/release
