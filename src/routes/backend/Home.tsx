@@ -23,6 +23,14 @@ export default function BackendHome() {
               />
             </a>
           </div>
+
+          <ins
+            className="adsbygoogle"
+            style={{ display: 'block' }}
+            data-ad-format="autorelaxed"
+            data-ad-client="ca-pub-2188063137129806"
+            data-ad-slot="5041245242"
+          ></ins>
         </div>
       </div>
     </div>
