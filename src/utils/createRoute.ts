@@ -8,7 +8,10 @@ import { RouteObject } from 'react-router-dom';
  * @example
  * defined path is 'home' will be returned 'home', 'home.html', 'home/index.html'
  */
-const createRoute = (path: string, element: RouteObject['element'] | RouteObject['lazy']): RouteObject[] => {
+const createRoute = (
+  path: string,
+  element: RouteObject['element'] | RouteObject['lazy'] | React.ReactNode | React.JSX.Element
+): RouteObject[] => {
   if (element instanceof Promise) {
     const lazy = async function lazy() {
       const awaited = await element;
@@ -37,17 +40,17 @@ const createRoute = (path: string, element: RouteObject['element'] | RouteObject
   }
   return [
     {
-      element,
+      element: element as any,
       path
     },
     // create path.html
     {
-      element,
+      element: element as any,
       path: `${path}.html`
     },
     // create path/index.html
     {
-      element,
+      element: element as any,
       path: `${path}/index.html`
     }
   ];
