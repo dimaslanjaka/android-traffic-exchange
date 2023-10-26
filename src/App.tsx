@@ -5,6 +5,7 @@ import callGAnalytics from './components/GAnalytics/utils/callGAnalytics';
 import { TAG_ID } from './components/GAnalytics/utils/userData';
 import { initHljs } from './components/Highlight.js/helper';
 import { projectConfig } from './project';
+import createRoute from './utils/createRoute';
 
 const indexRoute: Parameters<typeof createBrowserRouter>[0] = [
   {
@@ -41,15 +42,7 @@ const router = createBrowserRouter([
       );
       return { Component };
     },
-    children: [
-      {
-        path: 'backend/home',
-        async lazy() {
-          const { default: Component } = await import('./routes/backend/Home');
-          return { Component };
-        }
-      }
-    ].concat(indexRoute as any)
+    children: [...createRoute('backend/home', import('./routes/backend/Home'))].concat(indexRoute as any)
   }
 ]);
 
