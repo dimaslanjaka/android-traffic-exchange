@@ -158,3 +158,11 @@ analytics:
   GA3: UA-106238155-1
   # cloudflare web statistics
   cloudflare: 2157c0f3b9e74a92badffe39156166b9
+
+# top navigation
+nav_top:
+  Home: /
+
+# aside navigation
+nav_aside:
+  Home: /

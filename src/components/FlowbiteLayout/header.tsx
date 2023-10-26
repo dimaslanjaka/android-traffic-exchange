@@ -71,13 +71,15 @@ const Header: FC<Record<string, never>> = function () {
           </button>
         </div>
         <Navbar.Collapse>
-          <Navbar.Link href="/" active>
-            Home
-          </Navbar.Link>
-          <Navbar.Link href="/">About</Navbar.Link>
-          <Navbar.Link href="/">Services</Navbar.Link>
-          <Navbar.Link href="/">Pricing</Navbar.Link>
-          <Navbar.Link href="/">Contact</Navbar.Link>
+          {Object.keys(projectConfig.nav_top).map((name, index) => {
+            const props = {} as Record<string, any>;
+            if (index === 0) props.active = true;
+            return (
+              <Navbar.Link href={projectConfig.nav_top[name]} key={name + index} {...props}>
+                {name}
+              </Navbar.Link>
+            );
+          })}
         </Navbar.Collapse>
       </Navbar>
     </header>
