@@ -4,14 +4,11 @@ require('ts-node').register({
   transpileOnly: true
 });
 
-const yaml = require('yaml');
-const gulp = require('gulp');
-const { obj } = require('through2');
-const { path, fs, writefile } = require('sbg-utility');
-/** @type {typeof import('./_config.json')} */
-const config = yaml.parse(fs.readFileSync(__dirname + '/_config.yml', 'utf-8'));
-const { modifyConfigJson } = require('./config/utils');
-
+// const { obj } = require('through2');
+// const { path, fs } = require('sbg-utility');
+// /** @type {typeof import('./_config.json')} */
+// const config = yaml.parse(fs.readFileSync(__dirname + '/_config.yml', 'utf-8'));
+require('./gulpfile.config');
 // require('./gulpfile.build');
 require('./gulpfile.server');
 // require('./gulpfile.page');
@@ -19,13 +16,3 @@ require('./gulpfile.server');
 // notice webpack file changes
 // by add space to ./src/index.tsx
 // gulp.task('notice', noticeWebpack);
-
-// just testing
-const modifyCfg = () => {
-  // transform _config.yml to _config.json
-  const yml = yaml.parse(fs.readFileSync(path.join(__dirname, '_config.yml'), 'utf-8'));
-  // write to ./config.json
-  return Promise.resolve(modifyConfigJson({ ...yml, mode: 'development' }));
-};
-
-gulp.task('config', modifyCfg);
