@@ -11,7 +11,6 @@ Website Traffic Exchange App For Android
 - [ ] override custom header
 - [ ] override proxy
 - [ ] push url to global exchanger
-- [ ] auto scroll top - bottom ↻
 
 ## Requirements
 - Android 11
