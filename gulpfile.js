@@ -168,7 +168,7 @@ gulp.task('deploy-copy', async () => {
   // clean existing files
   await new Promise((resolve, reject) => {
     gulp
-      .src('**/*.*', { cwd: deploy_git })
+      .src('**/*.*', { cwd: deploy_git, ignore: ['.gitignore'] })
       .pipe(
         obj((file, _, cb) => {
           // delete file
