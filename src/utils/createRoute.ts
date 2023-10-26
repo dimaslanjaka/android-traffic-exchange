@@ -10,8 +10,9 @@ import { RouteObject } from 'react-router-dom';
  */
 const createRoute = (
   path: string,
-  element: RouteObject['element'] | RouteObject['lazy'] | React.ReactNode | React.JSX.Element
+  element: RouteObject['element'] | RouteObject['lazy'] | React.ReactNode | React.JSX.Element | PromiseLike<any>
 ): RouteObject[] => {
+  // console.log('createRoute promise=' + (element instanceof Promise));
   if (element instanceof Promise) {
     const lazy = async function lazy() {
       const awaited = await element;
