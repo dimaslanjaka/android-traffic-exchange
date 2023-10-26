@@ -48,5 +48,11 @@ module.exports = {
   // tw-elements
   // plugins: [require('tw-elements-react/dist/plugin.cjs')]
   // flowbite
-  plugins: [require('@tailwindcss/typography'), require('flowbite/plugin')]
+  // plugins: [require('@tailwindcss/typography'), require('flowbite/plugin')]
+  plugins: [
+    require('flowbite-typography')({
+      className: 'prose'
+    }),
+    require('flowbite/plugin')
+  ]
 };
