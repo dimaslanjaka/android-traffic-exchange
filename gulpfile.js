@@ -110,10 +110,16 @@ gulp.task('route', async () => {
 
   // copy public template to tmp/static folder
   const destBase = path.join(paths.tmp, 'static');
-  const template = path.join(paths.public, 'index.html');
+  const template = fs.readFileSync(path.join(paths.public, 'index.html'), 'utf-8');
   mapped.forEach(item => {
     const dest = path.join(destBase, item.filename);
-    fs.copySync(template, dest, { dereference: true });
+    if (!fs.existsSync(path.dirname(dest))) {
+      fs.mkdirSync(path.dirname(dest), { recursive: true });
+    }
+    writefile(
+      dest,
+      template.replace('</head>', '<script defer src="' + paths.base + 'runtime/main.js"></script></head>')
+    );
     console.log('dev server static html generated', dest);
   });
   writefile(path.join(__dirname, 'routes.json'), JSON.stringify(mapped));
