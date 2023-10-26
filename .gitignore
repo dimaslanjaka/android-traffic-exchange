@@ -30,3 +30,4 @@ source/_posts
 /release
 /images
 /public/release
+.deploy_git

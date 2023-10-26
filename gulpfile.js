@@ -6,14 +6,16 @@ require('ts-node').register({
 
 const gulp = require('gulp');
 const { path, fs, writefile } = require('sbg-utility');
+const { obj } = require('through2');
 const yaml = require('yaml');
 const paths = require('./config/paths');
+const { spawnAsync } = require('git-command-helper');
+const cli = require('./config/cli');
 /** @type {typeof import('./_config.json')} */
 const config = yaml.parse(fs.readFileSync(__dirname + '/_config.yml', 'utf-8'));
 require('./gulpfile.config');
 require('./gulpfile.build');
 require('./gulpfile.server');
-// require('./gulpfile.page');
 
 // notice webpack file changes
 // by add space to ./src/index.tsx
@@ -135,4 +137,77 @@ gulp.task('copy-release', async () => {
   await fs.copy(path.join(__dirname, 'readme.md'), path.join(paths.build, 'readme.md'));
   await fs.copy(path.join(__dirname, 'changelog.md'), path.join(paths.build, 'changelog.md'));
   await fs.copy(path.join(__dirname, 'LICENSE'), path.join(paths.build, 'LICENSE'));
+  // copy public -> dist
+  await new Promise((resolve, reject) => {
+    gulp
+      .src('**/*', { cwd: paths.public, dot: true })
+      .pipe(gulp.dest(paths.build))
+      .on('end', () => {
+        resolve(null);
+      })
+      .on('error', reject);
+  });
 });
+
+const deploy_git = path.join(__dirname, '.deploy_git');
+const repo = 'https://github.com/dimaslanjaka/android-traffic-exchange.git';
+
+gulp.task('deploy-init', async () => {
+  if (!fs.existsSync(deploy_git)) {
+    await spawnAsync('git', ['clone', '--single-branch', '--branch', 'master', repo, '.deploy_git'], {
+      cwd: __dirname,
+      stdio: 'inherit',
+      shell: true
+    });
+  }
+});
+
+gulp.task('deploy-copy', async () => {
+  // reset from origin
+  await spawnAsync('git', ['reset', '--hard', 'origin/master'], { cwd: deploy_git, shell: true, stdio: 'inherit' });
+  // clean existing files
+  await new Promise((resolve, reject) => {
+    gulp
+      .src('**/*.*', { cwd: deploy_git })
+      .pipe(
+        obj((file, _, cb) => {
+          // delete file
+          fs.removeSync(file.path);
+          cb();
+        })
+      )
+      .pipe(gulp.dest(paths.tmp + '/gulp-deploy-copy'))
+      .on('end', () => {
+        resolve(null);
+      })
+      .on('error', reject);
+  });
+  // copy new assets
+  await new Promise((resolve, reject) => {
+    gulp
+      .src('**/*', { cwd: paths.build, dot: true })
+      .pipe(gulp.dest(deploy_git))
+      .on('end', () => {
+        resolve(null);
+      })
+      .on('error', reject);
+  });
+});
+
+// gulp deploy-commit -m "hello world" -m "asu" -m "xx `cc`"
+gulp.task('deploy-commit', async () => {
+  await spawnAsync('git', ['add', '.'], { cwd: deploy_git, shell: true, stdio: 'inherit' });
+  const commit = typeof cli.m === 'string' ? [cli.m] : cli.m;
+  const commitArgs = [];
+  if (Array.isArray(commit)) {
+    commit.forEach(msg => commitArgs.push('-m', `"${msg}"`));
+  }
+  await spawnAsync('git', ['commit'].concat(commitArgs), { cwd: deploy_git, shell: true, stdio: 'inherit' });
+});
+
+gulp.task('deploy-push', async () => {
+  await spawnAsync('git', ['push', '-u', 'origin', 'master'], { cwd: deploy_git, shell: true, stdio: 'inherit' });
+});
+
+// gulp deploy -m "hello world" -m "asu" -m "xx `cc`"
+gulp.task('deploy', gulp.series('copy-release', 'deploy-init', 'deploy-copy', 'deploy-commit', 'deploy-push'));
