@@ -1,0 +1,15 @@
+**/node_modules
+**/.yarn/cache/**
+**/.yarn/unplugged/**
+**/.yarn/*.gz
+**/.yarn/version*
+___*
+.DS_Store
+Thumbs.db
+*.log
+**/*.tsbuildinfo
+site/themes/claudia
+bin/submodule-install
+*bfg*
+.env
+yarn.lock
