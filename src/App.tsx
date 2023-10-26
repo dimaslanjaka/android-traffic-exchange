@@ -4,6 +4,24 @@ import { FlowbiteCss } from './components/FlowbiteLayout/utils';
 import callGAnalytics from './components/GAnalytics/utils/callGAnalytics';
 import { TAG_ID } from './components/GAnalytics/utils/userData';
 import { initHljs } from './components/Highlight.js/helper';
+import { projectConfig } from './project';
+
+const indexRoute: Parameters<typeof createBrowserRouter>[0] = [
+  {
+    path: '*',
+    async lazy() {
+      const { default: Component } = await import(/* webpackChunkName: "404-layout" */ './components/NoMatch');
+      return { Component };
+    }
+  },
+  {
+    index: true,
+    async lazy() {
+      const { default: Component } = await import(/* webpackChunkName: "homepage-layout" */ './routes/Homepage');
+      return { Component };
+    }
+  }
+];
 
 const router = createBrowserRouter([
   {
@@ -13,32 +31,26 @@ const router = createBrowserRouter([
       );
       return { Component };
     },
+    children: indexRoute
+  },
+  {
+    path: projectConfig.paths.base,
+    lazy: async () => {
+      const { FlowbiteLayoutWithoutSidebar: Component } = await import(
+        /* webpackChunkName: "flowbite-with-sidebar-layout" */ './components/FlowbiteLayout/index'
+      );
+      return { Component };
+    },
     children: [
       {
-        index: true,
+        path: 'backend/home',
         async lazy() {
-          const { default: Component } = await import(/* webpackChunkName: "homepage-layout" */ './routes/Homepage');
-          return { Component };
-        }
-      },
-      {
-        path: '*',
-        async lazy() {
-          const { default: Component } = await import(/* webpackChunkName: "404-layout" */ './components/NoMatch');
+          const { default: Component } = await import('./routes/backend/Home');
           return { Component };
         }
       }
-    ]
+    ].concat(indexRoute as any)
   }
-  // {
-  //   lazy: async () => {
-  //     const { FlowbiteLayoutWithoutSidebar: Component } = await import(
-  //       /* webpackChunkName: "flowbite-with-sidebar-layout" */ './components/FlowbiteLayout/index'
-  //     );
-  //     return { Component };
-  //   },
-  //   children: postRoute
-  // }
 ]);
 
 window.adsense_option = Object.assign(window.adsense_option || {}, {
