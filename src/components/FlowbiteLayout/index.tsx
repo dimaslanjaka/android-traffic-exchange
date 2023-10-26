@@ -13,12 +13,14 @@ function FlowbiteLayout(props?: { children: JSX.Element | React.ReactNode }) {
     const wrapper = document.getElementById('router-wrapper');
     if (wrapper) {
       wrapper.querySelectorAll('img').forEach(el => {
-        let caption = '';
-        caption += el.getAttribute('title') || '';
-        if (caption.trim().length > 0) caption += ' - ';
-        caption += el.getAttribute('alt') || '';
-        el.setAttribute('data-caption', caption);
-        el.setAttribute('data-fancybox', 'true');
+        if (!el.hasAttribute('data-caption')) {
+          let caption = '';
+          caption += el.getAttribute('title') || '';
+          if (caption.trim().length > 0) caption += ' - ';
+          caption += el.getAttribute('alt') || '';
+          el.setAttribute('data-caption', caption);
+        }
+        if (!el.hasAttribute('data-fancybox')) el.setAttribute('data-fancybox', 'true');
       });
       Fancybox.bind(wrapper, '[data-fancybox]', {
         // Your custom options
