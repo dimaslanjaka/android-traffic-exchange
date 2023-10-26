@@ -39,7 +39,7 @@ module.exports = {
   /** Project Working Directory */
   cwd: path.resolve(__dirname, '..'),
   /** base path */
-  base: '/',
+  base: '/android-traffic-exchange/',
   /** import alias with relative path */
   aliasRelative,
   /** import alias with absolute path */
