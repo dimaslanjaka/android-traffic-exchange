@@ -9,3 +9,8 @@ Traffic Exchange App For Android
 - [ ] override referer
 - [ ] override custom header
 - [ ] override proxy
+
+## Requirements
+- Android 11
+- Internet Connection
+- Google Account
