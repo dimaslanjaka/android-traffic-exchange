@@ -9,3 +9,6 @@
 - fixed point not decreased each url rotated
 - fixed exchange task handler
 - add loading animation
+
+## 1.0.3 - 10/27/2023
+- added spoof referrer
