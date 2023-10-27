@@ -18,15 +18,15 @@ Website Traffic Exchange App For Android
 - Internet Connection
 - Google Account
 
-## Preview
-
-<!-- ![](./images/Screenshot_2023-10-26-08-56-48-99_7f9c0e40e1157fc4be382fed75dcb9a6.jpg)
-![](./images/Screenshot_2023-10-26-08-56-58-82_7f9c0e40e1157fc4be382fed75dcb9a6.jpg)
-![](./images/Screenshot_2023-10-26-08-57-06-96_7f9c0e40e1157fc4be382fed75dcb9a6.jpg) -->
+## Preview 
 
 |      |        |      |
 | :--- | :----: | ---: |
 | ![Homepage](./images/Screenshot_2023-10-26-08-56-48-99_7f9c0e40e1157fc4be382fed75dcb9a6.jpg "Homepage")      | ![Point Earning](./images/Screenshot_2023-10-26-08-56-58-82_7f9c0e40e1157fc4be382fed75dcb9a6.jpg "Point Earning")       | ![Local Exchanger](./images/Screenshot_2023-10-26-08-57-06-96_7f9c0e40e1157fc4be382fed75dcb9a6.jpg "Local Exchanger")   |
+
+## Download
+
+check folder release
 
 ## Develop Requirements
 - JDK-17
