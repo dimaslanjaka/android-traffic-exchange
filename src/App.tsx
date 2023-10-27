@@ -42,7 +42,12 @@ const router = createBrowserRouter([
       );
       return { Component };
     },
-    children: [...createRoute('backend/home', import('./routes/backend/Home'))].concat(indexRoute as any)
+    children: [
+      ...createRoute('backend/home', import('./routes/backend/Home')),
+      ...createRoute('backend/referer', import('./routes/backend/Referer')),
+      ...createRoute('backend', import('./routes/backend/index')),
+      ...createRoute('backend/index', import('./routes/backend/index'))
+    ].concat(indexRoute as any)
   }
 ]);
 
