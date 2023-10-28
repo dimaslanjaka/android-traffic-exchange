@@ -195,6 +195,8 @@ gulp.task('deploy-init', async () => {
 gulp.task('deploy-copy', async () => {
   // reset from origin
   await spawnAsync('git', ['reset', '--hard', 'origin/master'], { cwd: deploy_git, shell: true, stdio: 'inherit' });
+  // pull latest changes from origin
+  await spawnAsync('git', ['pull'], { cwd: deploy_git, shell: true, stdio: 'inherit' });
   // clean existing files
   await new Promise((resolve, reject) => {
     gulp

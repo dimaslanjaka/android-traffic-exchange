@@ -7,7 +7,7 @@ Website Traffic Exchange App For Android
 - [x] override useragent
 - [x] WebRTC
 - [x] local exchanger
-- [ ] override referer
+- [x] override referer
 - [ ] override custom header
 - [ ] override proxy
 - [ ] push url to global exchanger
