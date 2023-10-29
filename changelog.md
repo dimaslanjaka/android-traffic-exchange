@@ -1,3 +1,6 @@
+## 1.0.5 - 10/29/2023
+- Update global useragent when IP changed
+
 ## 1.0.4 - 10/29/2023
 - fixed overriding referer
 - fixed force closed when "reload time" in exchanger is empty
