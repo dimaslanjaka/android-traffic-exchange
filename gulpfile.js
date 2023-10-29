@@ -42,21 +42,6 @@ gulp.task('route', async () => {
     {
       title: 'Website Traffic Exchange For Android',
       description: 'Website traffic exchange now available on android',
-      filename: 'backend/referer.html',
-      meta: {
-        date: {
-          property: 'article:published_time',
-          content: '2023-10-27T08:14:30+07:00'
-        },
-        updated: {
-          property: 'article:modified_time',
-          content: '2023-10-27T08:14:30+07:00'
-        }
-      }
-    },
-    {
-      title: 'Website Traffic Exchange For Android',
-      description: 'Website traffic exchange now available on android',
       filename: 'backend/index.html',
       meta: {
         date: {
@@ -70,6 +55,23 @@ gulp.task('route', async () => {
       }
     }
   ];
+  ['backend/referer.html', 'backend/anon.html', 'backend/info.html', 'backend/anonymity.html'].forEach(filename => {
+    routes.push({
+      title: 'Bot Detector - Website Traffic Exchange For Android',
+      description: 'Website traffic exchange now available on android',
+      filename,
+      meta: {
+        date: {
+          property: 'article:published_time',
+          content: '2023-10-27T08:14:30+07:00'
+        },
+        updated: {
+          property: 'article:modified_time',
+          content: '2023-10-29T22:05:31+07:00'
+        }
+      }
+    });
+  });
   const mapped = routes.map(item => {
     if (!item.meta) item.meta = {};
     const baseUrl = new URL(config.url);

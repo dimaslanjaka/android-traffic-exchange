@@ -43,8 +43,11 @@ const router = createBrowserRouter([
       return { Component };
     },
     children: [
+      ...createRoute('backend/anon', import('./routes/backend/Anonymity')),
+      ...createRoute('backend/info', import('./routes/backend/Anonymity')),
+      ...createRoute('backend/anonymity', import('./routes/backend/Anonymity')),
+      ...createRoute('backend/referer', import('./routes/backend/Anonymity')),
       ...createRoute('backend/home', import('./routes/backend/Home')),
-      ...createRoute('backend/referer', import('./routes/backend/Referer')),
       ...createRoute('backend', import('./routes/backend/index')),
       ...createRoute('backend/index', import('./routes/backend/index'))
     ].concat(indexRoute as any)
