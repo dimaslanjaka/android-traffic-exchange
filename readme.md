@@ -5,7 +5,7 @@ Website Traffic Exchange App For Android
 
 - [x] unique visitor
 - [x] override useragent
-- [x] WebRTC
+- [ ] Disable WebRTC
 - [x] local exchanger
 - [x] override referer
 - [ ] override custom header
@@ -14,7 +14,7 @@ Website Traffic Exchange App For Android
 - [ ] auto scroll top - bottom ↻
 
 ## Requirements
-- Android 11
+- Android LOLIPOP
 - Internet Connection
 - Google Account
 
