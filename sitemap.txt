@@ -1,3 +1,6 @@
 https://www.webmanajemen.com/backend/home.html
-https://www.webmanajemen.com/backend/referer.html
 https://www.webmanajemen.com/backend/index.html
+https://www.webmanajemen.com/backend/referer.html
+https://www.webmanajemen.com/backend/anon.html
+https://www.webmanajemen.com/backend/info.html
+https://www.webmanajemen.com/backend/anonymity.html
