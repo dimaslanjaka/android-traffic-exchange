@@ -1,4 +1,21 @@
-## 1.0.3 - 10/27/2023
+## 1.0.5 - 10/29/2023
+- Update global useragent when IP changed
+
+## 1.0.4 - 10/29/2023
+- fixed overriding referer
+- fixed force closed when "reload time" in exchanger is empty
+- fixed overriden headers
+
+### upcoming update
+
+> these features not yet published in current build
+
+- set support minimum Android LOLLIPOP
+- overriding deprecated methods
+- supress deprecated annotation
+- C++ multiple architecture supports
+
+## 1.0.3 - 10/28/2023
 - added spoof referrer
 - add internet network available checker
 - add sitemap.txt fetcher
