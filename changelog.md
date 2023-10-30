@@ -1,10 +1,8 @@
-## 1.0.5 - 10/29/2023
-- Update global useragent when IP changed
-
-## 1.0.4 - 10/29/2023
-- fixed overriding referer
-- fixed force closed when "reload time" in exchanger is empty
-- fixed overriden headers
+## 1.0.7 - 10/30/2023
+- drop deprecated **on back button pressed** API
+  > go back from webview flawesly
+- fetch current ip asynchronously
+  > increase startup load speed
 
 ### upcoming update
 
@@ -14,6 +12,19 @@
 - overriding deprecated methods
 - supress deprecated annotation
 - C++ multiple architecture supports
+
+## 1.0.6 - 10/30/2023
+- fixed earning point system
+- temporarily using default android webview instead of proxy client
+  > some web resources cannot be loaded
+
+## 1.0.5 - 10/29/2023
+- Update global useragent when IP changed
+
+## 1.0.4 - 10/29/2023
+- fixed overriding referer
+- fixed force closed when "reload time" in exchanger is empty
+- fixed overriden headers
 
 ## 1.0.3 - 10/28/2023
 - added spoof referrer
