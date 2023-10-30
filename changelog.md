@@ -1,3 +1,9 @@
+## 1.0.7 - 10/30/2023
+- drop deprecated **on back button pressed** API
+  > go back from webview flawesly
+- fetch current ip asynchronously
+  > increase startup load speed
+
 ### upcoming update
 
 > these features not yet published in current build
