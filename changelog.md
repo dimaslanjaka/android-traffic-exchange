@@ -8,7 +8,6 @@
 - [ ] C++ multiple architecture supports
 
 ## 1.0.8 - 11/02/2023
-## 1.0.8 - 11/01/2023
 - add auto useragent by ip
   > useragent will changed every app restart based on **last ip** and **current ip**
 - set minimum android requirement LOLLIPOP with Android SDK API 21
