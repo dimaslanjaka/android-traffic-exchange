@@ -1,17 +1,23 @@
+### upcoming update
+
+> these **unchecked** features not yet published in current build
+
+- [x] set support minimum Android LOLLIPOP
+- [x] overriding deprecated methods
+- [x] supress deprecated annotation
+- [ ] C++ multiple architecture supports
+
+## 1.0.8 - 11/01/2023
+- add auto useragent by ip
+  > useragent will changed every app restart based on **last ip** and **current ip**
+- set minimum android requirement LOLLIPOP with Android SDK API 21
+- fixed exchange **point reduced** when back button pressed
+
 ## 1.0.7 - 10/30/2023
 - drop deprecated **on back button pressed** API
   > go back from webview flawesly
 - fetch current ip asynchronously
   > increase startup load speed
-
-### upcoming update
-
-> these features not yet published in current build
-
-- set support minimum Android LOLLIPOP
-- overriding deprecated methods
-- supress deprecated annotation
-- C++ multiple architecture supports
 
 ## 1.0.6 - 10/30/2023
 - fixed earning point system
