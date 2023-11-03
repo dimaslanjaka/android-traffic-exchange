@@ -7,12 +7,18 @@
 - [x] supress deprecated annotation
 - [ ] C++ multiple architecture supports
 
+## 1.0.9
+- fixed app not started when user not logged in
+- fixed global config callback not called
+- chore(login): back to main activity on back button pressed
+
 ## 1.0.8 - 11/02/2023
-## 1.0.8 - 11/01/2023
 - add auto useragent by ip
   > useragent will changed every app restart based on **last ip** and **current ip**
 - set minimum android requirement LOLLIPOP with Android SDK API 21
 - fixed exchange **point reduced** when back button pressed
+- add splash activity
+  > check user ip, global agent change by ip
 
 ## 1.0.7 - 10/30/2023
 - drop deprecated **on back button pressed** API
