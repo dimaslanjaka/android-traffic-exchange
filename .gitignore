@@ -27,7 +27,7 @@ source/_posts
 /src/posts
 /src/pages
 .cache
-/release
+# /release
 /images
 /public/release
 .deploy_git
