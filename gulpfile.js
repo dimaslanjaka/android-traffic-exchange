@@ -246,8 +246,11 @@ gulp.task('deploy-commit', async () => {
     commitArgs.push('-m', `"release version: ${info.elements[0].versionName}"`);
     console.log(commitArgs);
   }
-  if (commitArgs.length > 0)
+  if (commitArgs.length > 0) {
     await spawnAsync('git', ['commit'].concat(commitArgs), { cwd: deploy_git, shell: true, stdio: 'inherit' });
+  } else {
+    console.error(src, 'not found');
+  }
 });
 
 gulp.task('deploy-push', async () => {
