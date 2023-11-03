@@ -245,11 +245,13 @@ gulp.task('deploy-commit', async () => {
     const info = require('./release/aarch64/release/output-metadata.json');
     commitArgs.push('-m', `"release version: ${info.elements[0].versionName}"`);
     console.log(commitArgs);
+  } else {
+    console.error(src, 'not found');
   }
   if (commitArgs.length > 0) {
     await spawnAsync('git', ['commit'].concat(commitArgs), { cwd: deploy_git, shell: true, stdio: 'inherit' });
   } else {
-    console.error(src, 'not found');
+    console.error('supplied git commit arguments is empty');
   }
 });
 
