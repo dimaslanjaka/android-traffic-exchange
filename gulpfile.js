@@ -236,7 +236,16 @@ gulp.task('deploy-commit', async () => {
   if (Array.isArray(commit)) {
     commit.forEach(msg => commitArgs.push('-m', `"${msg}"`));
   }
-  await spawnAsync('git', ['commit'].concat(commitArgs), { cwd: deploy_git, shell: true, stdio: 'inherit' });
+  // aarch64
+  // output-metadata.json
+  const src = path.join(__dirname, 'release/aarch64/release/output-metadata.json');
+  const dest = path.join(__dirname, 'release/output-metadata.json');
+  await fs.copy(src, dest, { overwrite: true, dereference: true });
+  const info = require('./release/aarch64/release/output-metadata.json');
+  commitArgs.push('-m', `"release version: ${info.elements[0].versionName}"`);
+  console.log(commitArgs);
+  if (commitArgs.length > 0)
+    await spawnAsync('git', ['commit'].concat(commitArgs), { cwd: deploy_git, shell: true, stdio: 'inherit' });
 });
 
 gulp.task('deploy-push', async () => {
