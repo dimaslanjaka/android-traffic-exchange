@@ -162,10 +162,22 @@ gulp.task('route', async () => {
 
 // copy bundled apk
 gulp.task('copy-release', async () => {
-  if (fs.existsSync(path.join(__dirname, 'release')))
-    await fs.move(path.join(__dirname, 'release'), path.join(paths.public, 'release'), { overwrite: true });
-  if (fs.existsSync(path.join(__dirname, 'images')))
+  if (fs.existsSync(path.join(__dirname, 'release'))) {
+    await fs.copy(path.join(__dirname, 'release'), path.join(paths.public, 'release'), { overwrite: true });
+    // await fs.rm(path.join(__dirname, 'release'), { recursive: true });
+  }
+
+  // aarch64
+  // output-metadata.json
+  const src = path.join(paths.public, 'release/aarch64/release/output-metadata.json');
+  const dest = path.join(paths.public, 'release/output-metadata.json');
+  if (fs.existsSync(src)) {
+    await fs.copy(src, dest, { overwrite: true, dereference: true });
+  }
+
+  if (fs.existsSync(path.join(__dirname, 'images'))) {
     await fs.move(path.join(__dirname, 'images'), path.join(paths.public, 'images'), { overwrite: true });
+  }
   await fs.copy(path.join(__dirname, 'readme.md'), path.join(paths.build, 'readme.md'));
   await fs.copy(path.join(__dirname, 'changelog.md'), path.join(paths.build, 'changelog.md'));
   await fs.copy(path.join(__dirname, 'LICENSE'), path.join(paths.build, 'LICENSE'));
@@ -238,16 +250,10 @@ gulp.task('deploy-commit', async () => {
   }
   // aarch64
   // output-metadata.json
-  const src = path.join(__dirname, 'release/aarch64/release/output-metadata.json');
-  const dest = path.join(__dirname, 'release/output-metadata.json');
-  if (fs.existsSync(src)) {
-    await fs.copy(src, dest, { overwrite: true, dereference: true });
-    const info = require('./release/aarch64/release/output-metadata.json');
-    commitArgs.push('-m', `"release version: ${info.elements[0].versionName}"`);
-    console.log(commitArgs);
-  } else {
-    console.error(src, 'not found');
-  }
+  const info = require('./public/release/output-metadata.json');
+  commitArgs.push('-m', `"release version: ${info.elements[0].versionName}"`);
+  console.log(commitArgs);
+
   if (commitArgs.length > 0) {
     await spawnAsync('git', ['commit'].concat(commitArgs), { cwd: deploy_git, shell: true, stdio: 'inherit' });
   } else {
