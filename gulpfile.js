@@ -163,7 +163,7 @@ gulp.task('route', async () => {
 // copy bundled apk
 gulp.task('copy-release', async () => {
   if (fs.existsSync(path.join(__dirname, 'release'))) {
-    await fs.copy(path.join(__dirname, 'release'), path.join(paths.public, 'release'), { overwrite: true });
+    await fs.move(path.join(__dirname, 'release'), path.join(paths.public, 'release'), { overwrite: true });
     // await fs.rm(path.join(__dirname, 'release'), { recursive: true });
   }
 
