@@ -5,7 +5,7 @@
     "kind": "Directory"
   },
   "applicationId": "com.dimaslanjaka.blog",
-  "variantName": "release",
+  "variantName": "aarch64Release",
   "elements": [
     {
       "type": "SINGLE",
@@ -13,7 +13,7 @@
       "attributes": [],
       "versionCode": 1,
       "versionName": "1.0.8",
-      "outputFile": "app-release.apk"
+      "outputFile": "app-aarch64-release.apk"
     }
   ],
   "elementType": "File"
