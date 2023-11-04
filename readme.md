@@ -26,8 +26,10 @@ Website Traffic Exchange App For Android
 
 ## Download
 
-- [release](./release/app-release.apk)
-- [changelog](./changelog.md)
+| App Name | Description |
+| :--- | :--- |
+| [Installer Manager](https://github.com/dimaslanjaka/android-traffic-exchange/raw/master/release/manager-release.apk) | Installer manager app based on device architecture |
+| [Android Traffic Exchanger](https://github.com/dimaslanjaka/android-traffic-exchange/raw/master/release/manager-release.apk) | Exchange url with others to visit your website |
 
 ## Develop Requirements
 - JDK-17
