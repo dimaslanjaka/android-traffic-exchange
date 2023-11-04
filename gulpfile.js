@@ -265,5 +265,14 @@ gulp.task('deploy-push', async () => {
   await spawnAsync('git', ['push', '-u', 'origin', 'master'], { cwd: deploy_git, shell: true, stdio: 'inherit' });
 });
 
+gulp.task('init-lfs', async () => {
+  await spawnAsync('git', ['lfs', 'install'], { cwd: deploy_git, shell: true, stdio: 'inherit' });
+  // track apk files
+  await spawnAsync('git', ['lfs', 'track', '*.apk'], { cwd: deploy_git, shell: true, stdio: 'inherit' });
+});
+
 // gulp deploy -m "hello world" -m "asu" -m "xx `cc`"
-gulp.task('deploy', gulp.series('copy-release', 'deploy-init', 'deploy-copy', 'deploy-commit', 'deploy-push'));
+gulp.task(
+  'deploy',
+  gulp.series('copy-release', 'init-lfs', 'deploy-init', 'deploy-copy', 'deploy-commit', 'deploy-push')
+);
