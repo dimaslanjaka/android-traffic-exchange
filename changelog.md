@@ -1,16 +1,12 @@
-### upcoming update
-
-> these **unchecked** features not yet published in current build
-
-- [x] set support minimum Android LOLLIPOP
-- [x] overriding deprecated methods
-- [x] supress deprecated annotation
-- [ ] C++ multiple architecture supports
-
-## 1.0.9
+## 1.1.0 - 11/04/2023
 - fixed app not started when user not logged in
 - fixed global config callback not called
 - chore(login): back to main activity on back button pressed
+- [**release app manager**](https://github.com/dimaslanjaka/android-traffic-exchange/raw/master/release/manager-release.apk)
+- [x] set support minimum Android LOLLIPOP
+- [x] overriding deprecated methods
+- [x] supress deprecated annotation
+- [x] C++ multiple architecture supports
 
 ## 1.0.8 - 11/02/2023
 - add auto useragent by ip

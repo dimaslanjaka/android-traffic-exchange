@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkhexo_webpack=self.webpackChunkhexo_webpack||[]).push([[436],{7434:function(e,t,n){n.d(t,{default:function(){return c}});var a=n(7294);function c(){return a.createElement("div",{className:"text-center"},a.createElement("h2",null,"Nothing to see here!"),a.createElement("p",null,a.createElement("a",{href:"/page"},"Go to the home page")))}}}]);
