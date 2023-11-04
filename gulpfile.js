@@ -178,6 +178,7 @@ gulp.task('copy-release', async () => {
   if (fs.existsSync(path.join(__dirname, 'images'))) {
     await fs.move(path.join(__dirname, 'images'), path.join(paths.public, 'images'), { overwrite: true });
   }
+  await fs.copy(path.join(__dirname, '.gitattributes'), path.join(paths.build, '.gitattributes'));
   await fs.copy(path.join(__dirname, 'readme.md'), path.join(paths.build, 'readme.md'));
   await fs.copy(path.join(__dirname, 'changelog.md'), path.join(paths.build, 'changelog.md'));
   await fs.copy(path.join(__dirname, 'LICENSE'), path.join(paths.build, 'LICENSE'));
