@@ -140,12 +140,6 @@ jobs:
     name: deploy to github pages
     runs-on: windows-latest
     steps:
-      - name: setup github
-        run: |
-          git config --global user.name 'dimaslanjaka'
-          git config --global user.email 'dimaslanjaka@gmail.com'
-          git config core.eol lf
-          git config core.autocrlf input
       - run: rm -rf release-repo
         shell: bash
       - name: Checkout pages compiler
