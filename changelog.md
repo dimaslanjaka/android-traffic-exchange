@@ -1,3 +1,6 @@
+## 1.1.1 - unpublished yet
+- exchanger: add option **scroll to top** automatically
+
 ## 1.1.0 - 11/04/2023
 - fixed app not started when user not logged in
 - fixed global config callback not called
