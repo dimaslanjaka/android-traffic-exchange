@@ -1,5 +1,7 @@
 ## 1.1.1 - unpublished yet
 - exchanger: add option **scroll to top** automatically
+- exchanger: fixed app unable start
+- exchanger: fixed force close on exchanger activity
 
 ## 1.1.0 - 11/04/2023
 - fixed app not started when user not logged in
