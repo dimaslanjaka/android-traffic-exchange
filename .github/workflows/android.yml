@@ -196,6 +196,7 @@ jobs:
             ./tmp
             ./dist
             ./node_modules
+            ./.yarn/caches
           key: node-${{ runner.os }}
           restore-keys: node-${{ runner.os }}
       # - name: cache release folder
