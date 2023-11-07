@@ -39,3 +39,12 @@ Website Traffic Exchange App For Android
 - launcher icon generator https://icon.kitchen/i/H4sIAAAAAAAAA12OsQ7CMAxE%2F%2BXmfkF3Ria6IQYncdKoCYG4AaGq%2F06MGBCLJT%2Ff%2BW7Dg1JjwbjBUV2mmTNj9JSEB%2FgwvW59RcwUGAqOJMvP%2FeA927XbIbZUlZh%2FjwmnmT5E7i1WmxSumuO%2Bj%2FYBubiWtMYZdHW1RNdFsUifTza47G%2FfraR1qQAAAA%3D%3D
 - to replace previous icon https://developer.android.com/codelabs/basic-android-kotlin-compose-training-change-app-icon#4
 - loading animation https://github.com/MohamedAbulgasem/LoadingOverlay
+
+## Tricks
+
+- logcat error filter
+
+```bash
+package:com.dimaslanjaka.blog -tag:parcel level:error level:warn -message:GuiExtAuxCheckAuxPath -message:.so
+package:com.dimaslanjaka.blog -tag:chromium -tag:gpuaux -tag:parcel -tag:chatty level:error -message:libcolor
+```
