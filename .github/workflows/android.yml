@@ -64,11 +64,6 @@ jobs:
             ./build
           key: gradle-build-${{ runner.os }}
           restore-keys: gradle-build-${{ runner.os }}
-      - name: Enforce cache update
-        shell: bash
-        run: |
-          STATE_CACHE_KEY="gradle-build-${{ runner.os }}"
-          echo "STATE_CACHE_KEY=${STATE_CACHE_KEY}" >> $GITHUB_ENV
       - name: cache gradle wrapper folders
         uses: actions/cache@v3
         with:
@@ -140,6 +135,11 @@ jobs:
           taskkill /f /im javaw.exe
           taskkill /f /im java.exe
         continue-on-error: true
+      - name: Enforce cache update
+        shell: bash
+        run: |
+          STATE_CACHE_KEY="gradle-build-${{ runner.os }}"
+          echo "STATE_CACHE_KEY=${STATE_CACHE_KEY}" >> $GITHUB_ENV
   deploy:
     needs: build
     name: deploy to github pages
