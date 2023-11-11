@@ -2,6 +2,8 @@
 - exchanger: add option **scroll to top** automatically
 - exchanger: fixed app unable start
 - exchanger: fixed force close on exchanger activity
+- clear global cookies when ip changed
+  > useful for unique visits
 
 ## 1.1.0 - 11/04/2023
 - fixed app not started when user not logged in
