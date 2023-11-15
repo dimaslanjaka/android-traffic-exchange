@@ -62,19 +62,17 @@ jobs:
             ./manager/build
             ./library/build
             ./build
-          key: gradle-build-${{ runner.os }}
-          restore-keys: gradle-build-${{ runner.os }}
-      - name: cache gradle wrapper folders
-        uses: actions/cache@v3
-        with:
-          path: |
             ~/.gradle/caches
             ~/.gradle/wrapper
             $HOME/.m2/repository
             ~/.m2/repository
             ./.gradle
-          key: gradle-${{ runner.os }}
-          restore-keys: gradle-${{ runner.os }}
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle') }}
+          restore-keys: |
+            gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle') }}
+            gradle-${{ runner.os }}-
+            gradle-${{ runner.os }}
+            gradle-
 #       - name: "bash: dump paths"
 #         run: |
 #           echo $ANDROID_SDK_ROOT
@@ -138,7 +136,7 @@ jobs:
       - name: Enforce cache update
         shell: bash
         run: |
-          STATE_CACHE_KEY="gradle-build-${{ runner.os }}"
+          STATE_CACHE_KEY="gradle-build-${{ runner.os }}-${{ hashFiles('**/*.gradle', '**/*.properties', '**/*.xml', '**/*.java', '**/*.kt') }}"
           echo "STATE_CACHE_KEY=${STATE_CACHE_KEY}" >> $GITHUB_ENV
   deploy:
     needs: build
