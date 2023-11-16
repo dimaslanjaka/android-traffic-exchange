@@ -1,5 +1,9 @@
 <!-- 5 6 -->
 
+## 1.1.2 - pending but applied to current build
+- add about activity
+  > print global configs
+
 ## 1.1.1 - 15/11/2023
 - exchanger: add option **scroll to top** automatically
 - exchanger: fixed app unable start
