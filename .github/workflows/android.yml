@@ -47,13 +47,6 @@ jobs:
       #     cache-overwrite-existing: true
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
-      - name: cache release folder
-        uses: actions/cache@v3
-        with:
-          path: |
-            ./release
-          key: gradle-release-apk
-          restore-keys: gradle-release-apk
       - name: cache build folders
         uses: actions/cache@v3
         with:
@@ -73,6 +66,15 @@ jobs:
             gradle-${{ runner.os }}-
             gradle-${{ runner.os }}
             gradle-
+      - name: cache release folder
+        uses: actions/cache@v3
+        with:
+          path: |
+            ./release
+          key: gradle-release-apk-${{ hashFiles('**/*.apk') }}
+          restore-keys: |
+            gradle-release-apk-${{ hashFiles('**/*.apk') }}
+            gradle-release-apk
 #       - name: "bash: dump paths"
 #         run: |
 #           echo $ANDROID_SDK_ROOT
@@ -192,29 +194,6 @@ jobs:
       #     echo ${{ steps.set-env.outputs.GRADLE_USER_HOME }}
       #     echo $USER_HOME
         shell: bash
-      - uses: actions/cache@v3
-        with:
-          path: |
-            ./.cache
-            ./tmp
-            ./dist
-            ./node_modules
-            ./.yarn/caches
-          key: node-${{ runner.os }}
-          restore-keys: node-${{ runner.os }}
-      # - name: cache release folder
-      #   uses: actions/cache@v3
-      #   with:
-      #     path: |
-      #       ./release
-      #     key: gradle-release-apk
-      #     restore-keys: |
-      #       gradle-release-apk
-      #       gradle-release-
-      #       gradle-
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
       - uses: actions/download-artifact@v3
         id: download
         with:
@@ -223,6 +202,21 @@ jobs:
           #   release/
           #   changelog.md
           #   readme.md
+      - uses: actions/cache@v3
+        with:
+          path: |
+            ./.cache
+            ./tmp
+            ./dist
+            ./node_modules
+            ./.yarn/caches
+          key: node-${{ runner.os }}-${{ hashFiles('**/*.apk') }}
+          restore-keys: |
+            node-${{ runner.os }}-${{ hashFiles('**/*.apk') }}
+            node-${{ runner.os }}
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
       - name: Display structure
         run: |
           chmod 777 release
