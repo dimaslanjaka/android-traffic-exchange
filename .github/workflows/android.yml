@@ -106,16 +106,18 @@ jobs:
         shell: bash
       - name: Generate Dictionary
         run: bash ./gradlew genDict --gradle-user-home .gradle
-      - name: build Aarch64
-        run: bash ./gradlew assembleAarch64Release --gradle-user-home .gradle
-      - name: build ARM
-        run: bash ./gradlew assembleArmRelease --gradle-user-home .gradle
-      - name: build X86
-        run: bash ./gradlew assembleX86Release --gradle-user-home .gradle
-      - name: build X86_64
-        run: bash ./gradlew assembleX86_64Release --gradle-user-home .gradle
-      - name: build manager
-        run: "bash ./gradlew :manager:assembleRelease --gradle-user-home .gradle"
+      - name: Generate APK
+        run: bash ./gradlew assembleRelease --gradle-user-home .gradle
+#       - name: build Aarch64
+#         run: bash ./gradlew assembleAarch64Release --gradle-user-home .gradle
+#       - name: build ARM
+#         run: bash ./gradlew assembleArmRelease --gradle-user-home .gradle
+#       - name: build X86
+#         run: bash ./gradlew assembleX86Release --gradle-user-home .gradle
+#       - name: build X86_64
+#         run: bash ./gradlew assembleX86_64Release --gradle-user-home .gradle
+#       - name: build manager
+#         run: "bash ./gradlew :manager:assembleRelease --gradle-user-home .gradle"
       # - name: Build universal release APK
       #   run: bash ./gradlew assembleRelease --gradle-user-home .gradle
       - name: Upload APK
