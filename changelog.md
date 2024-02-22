@@ -1,12 +1,8 @@
 <!-- 5 6 -->
 
-## 1.2.0 - 22/11/2023
+## 1.1.2 - pending but applied to current build
 - add about activity
   > print global configs
-- compile universal apk
-  > bundle all architecture into single apk (size might increased)
-  >
-  > prevent force closed when installing apk with wrong architecture for device
 
 ## 1.1.1 - 15/11/2023
 - exchanger: add option **scroll to top** automatically
