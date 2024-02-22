@@ -6,7 +6,8 @@ concurrency:
 
 on:
   push:
-    branches: ["compiler"]
+    branches: ["compiler", "master"]
+    paths: [".github"]
   workflow_dispatch:
     inputs:
       withDeploy:
@@ -26,6 +27,9 @@ jobs:
   build:
     name: build apk
     runs-on: ubuntu-latest
+    env:
+      # The name of the main module repository
+      main_project_module: app
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -41,4 +45,11 @@ jobs:
           distribution: oracle
       - name: Change wrapper permissions
         run: chmod +x ./gradlew
+      - name: Generate dictionaries
+        run: ./gradlew genDict
       - run: ./gradlew assemble
+      - name: Upload APK Release
+        uses: actions/upload-artifact@v3
+        with:
+          name: APK(s) release generated
+          path: ${{ env.main_project_module }}/build/outputs/apk/release/

@@ -47,6 +47,13 @@ jobs:
       #     cache-overwrite-existing: true
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
+      - name: cache release folder
+        uses: actions/cache@v3
+        with:
+          path: |
+            ./release
+          key: gradle-release-apk
+          restore-keys: gradle-release-apk
       - name: cache build folders
         uses: actions/cache@v3
         with:
@@ -55,26 +62,19 @@ jobs:
             ./manager/build
             ./library/build
             ./build
+          key: gradle-build-${{ runner.os }}
+          restore-keys: gradle-build-${{ runner.os }}
+      - name: cache gradle wrapper folders
+        uses: actions/cache@v3
+        with:
+          path: |
             ~/.gradle/caches
             ~/.gradle/wrapper
             $HOME/.m2/repository
             ~/.m2/repository
             ./.gradle
-          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle') }}
-          restore-keys: |
-            gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle') }}
-            gradle-${{ runner.os }}-
-            gradle-${{ runner.os }}
-            gradle-
-      - name: cache release folder
-        uses: actions/cache@v3
-        with:
-          path: |
-            ./release
-          key: gradle-release-apk-${{ hashFiles('**/*.apk') }}
-          restore-keys: |
-            gradle-release-apk-${{ hashFiles('**/*.apk') }}
-            gradle-release-apk
+          key: gradle-${{ runner.os }}
+          restore-keys: gradle-${{ runner.os }}
 #       - name: "bash: dump paths"
 #         run: |
 #           echo $ANDROID_SDK_ROOT
@@ -106,18 +106,16 @@ jobs:
         shell: bash
       - name: Generate Dictionary
         run: bash ./gradlew genDict --gradle-user-home .gradle
-      - name: Generate APK
-        run: bash ./gradlew assembleRelease --gradle-user-home .gradle
-#       - name: build Aarch64
-#         run: bash ./gradlew assembleAarch64Release --gradle-user-home .gradle
-#       - name: build ARM
-#         run: bash ./gradlew assembleArmRelease --gradle-user-home .gradle
-#       - name: build X86
-#         run: bash ./gradlew assembleX86Release --gradle-user-home .gradle
-#       - name: build X86_64
-#         run: bash ./gradlew assembleX86_64Release --gradle-user-home .gradle
-#       - name: build manager
-#         run: "bash ./gradlew :manager:assembleRelease --gradle-user-home .gradle"
+      - name: build Aarch64
+        run: bash ./gradlew assembleAarch64Release --gradle-user-home .gradle
+      - name: build ARM
+        run: bash ./gradlew assembleArmRelease --gradle-user-home .gradle
+      - name: build X86
+        run: bash ./gradlew assembleX86Release --gradle-user-home .gradle
+      - name: build X86_64
+        run: bash ./gradlew assembleX86_64Release --gradle-user-home .gradle
+      - name: build manager
+        run: "bash ./gradlew :manager:assembleRelease --gradle-user-home .gradle"
       # - name: Build universal release APK
       #   run: bash ./gradlew assembleRelease --gradle-user-home .gradle
       - name: Upload APK
@@ -137,11 +135,6 @@ jobs:
           taskkill /f /im javaw.exe
           taskkill /f /im java.exe
         continue-on-error: true
-      - name: Enforce cache update
-        shell: bash
-        run: |
-          STATE_CACHE_KEY="gradle-build-${{ runner.os }}-${{ hashFiles('**/*.gradle', '**/*.properties', '**/*.xml', '**/*.java', '**/*.kt') }}"
-          echo "STATE_CACHE_KEY=${STATE_CACHE_KEY}" >> $GITHUB_ENV
   deploy:
     needs: build
     name: deploy to github pages
@@ -196,14 +189,6 @@ jobs:
       #     echo ${{ steps.set-env.outputs.GRADLE_USER_HOME }}
       #     echo $USER_HOME
         shell: bash
-      - uses: actions/download-artifact@v3
-        id: download
-        with:
-          name: apk
-          # path: |
-          #   release/
-          #   changelog.md
-          #   readme.md
       - uses: actions/cache@v3
         with:
           path: |
@@ -212,13 +197,29 @@ jobs:
             ./dist
             ./node_modules
             ./.yarn/caches
-          key: node-${{ runner.os }}-${{ hashFiles('**/*.apk') }}
-          restore-keys: |
-            node-${{ runner.os }}-${{ hashFiles('**/*.apk') }}
-            node-${{ runner.os }}
+          key: node-${{ runner.os }}
+          restore-keys: node-${{ runner.os }}
+      # - name: cache release folder
+      #   uses: actions/cache@v3
+      #   with:
+      #     path: |
+      #       ./release
+      #     key: gradle-release-apk
+      #     restore-keys: |
+      #       gradle-release-apk
+      #       gradle-release-
+      #       gradle-
       - uses: actions/setup-node@v3
         with:
           node-version: 18
+      - uses: actions/download-artifact@v3
+        id: download
+        with:
+          name: apk
+          # path: |
+          #   release/
+          #   changelog.md
+          #   readme.md
       - name: Display structure
         run: |
           chmod 777 release
