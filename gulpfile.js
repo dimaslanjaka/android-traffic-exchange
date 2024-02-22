@@ -272,10 +272,23 @@ gulp.task('init-lfs', async () => {
   await spawnAsync('git', ['lfs', 'track', '*.apk'], { cwd: deploy_git, shell: true, stdio: 'inherit' });
 });
 
-gulp.task('copy-ci', () => {
+gulp.task('copy-ci', done => {
   gulp
     .src('**/*.yml', { cwd: __dirname + '/.github/workflows' })
-    .pipe(gulp.dest(__dirname + '/.deploy_git/.github/workflows'));
+    .pipe(gulp.dest(__dirname + '/.deploy_git/.github/workflows'))
+    .on('end', async () => {
+      try {
+        await spawnAsync('git', ['add', '.'], { cwd: __dirname + '/.deploy_git/.github/workflows' });
+        await spawnAsync('git', ['commit', '-m', 'update CI from compiler'], {
+          cwd: __dirname + '/.deploy_git/.github/workflows'
+        });
+        await spawnAsync('git', ['push'], { cwd: __dirname + '/.deploy_git/.github/workflows' });
+      } catch (_) {
+        //
+      } finally {
+        done();
+      }
+    });
 });
 
 // gulp deploy -m "hello world" -m "asu" -m "xx `cc`"
