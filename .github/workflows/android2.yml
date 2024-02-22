@@ -1,0 +1,44 @@
+name: Android CI 2
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches: ["compiler"]
+  workflow_dispatch:
+    inputs:
+      withDeploy:
+        type: choice
+        default: no
+        description: with deploy
+        required: false
+        options:
+          - yes
+          - no
+  workflow_call:
+     secrets:
+       ACCESS_TOKEN:
+         required: true
+
+jobs:
+  build:
+    name: build apk
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          repository: dimaslanjaka/dev
+          ref: android-traffic
+          token: ${{ secrets.ACCESS_TOKEN }}
+          lfs: 'true'
+      - name: Setup JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: 19
+          distribution: oracle
+      - name: Change wrapper permissions
+        run: chmod +x ./gradlew
+      - run: ./gradlew assemble
