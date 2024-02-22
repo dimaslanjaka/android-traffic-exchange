@@ -46,8 +46,17 @@ jobs:
       - name: Change wrapper permissions
         run: chmod +x ./gradlew
       - name: Generate dictionaries
-        run: ./gradlew genDict
-      - run: ./gradlew assemble
+        run: ./gradlew genDict --gradle-user-home .gradle
+      - name: build Aarch64
+        run: bash ./gradlew assembleAarch64Release --gradle-user-home .gradle
+      - name: build ARM
+        run: bash ./gradlew assembleArmRelease --gradle-user-home .gradle
+      - name: build X86
+        run: bash ./gradlew assembleX86Release --gradle-user-home .gradle
+      - name: build X86_64
+        run: bash ./gradlew assembleX86_64Release --gradle-user-home .gradle
+      - name: build manager
+        run: "bash ./gradlew :manager:assembleRelease --gradle-user-home .gradle"
       - name: Upload APK Release
         uses: actions/upload-artifact@v3
         with:
