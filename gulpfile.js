@@ -279,12 +279,12 @@ gulp.task('copy-ci', done => {
     .on('end', async () => {
       try {
         await spawnAsync('git', ['add', '.'], { cwd: __dirname + '/.deploy_git/.github/workflows' });
-        await spawnAsync('git', ['commit', '-m', 'update CI from compiler'], {
+        await spawnAsync('git', ['commit', '-m', '"update CI from compiler"'], {
           cwd: __dirname + '/.deploy_git/.github/workflows'
         });
         await spawnAsync('git', ['push'], { cwd: __dirname + '/.deploy_git/.github/workflows' });
-      } catch (_) {
-        //
+      } catch (e) {
+        console.error(e.stdout);
       } finally {
         done();
       }
