@@ -272,6 +272,12 @@ gulp.task('init-lfs', async () => {
   await spawnAsync('git', ['lfs', 'track', '*.apk'], { cwd: deploy_git, shell: true, stdio: 'inherit' });
 });
 
+gulp.task('copy-ci', () => {
+  gulp
+    .src('**/*.yml', { cwd: __dirname + '/.github/workflows' })
+    .pipe(gulp.dest(__dirname + '/.deploy_git/.github/workflows'));
+});
+
 // gulp deploy -m "hello world" -m "asu" -m "xx `cc`"
 gulp.task(
   'deploy',
