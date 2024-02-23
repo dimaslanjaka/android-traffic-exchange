@@ -1,7 +1,7 @@
-name: Android CI
+name: Release
 
 concurrency:
-  group: ${{ github.workflow }}
+  group: release-${{ github.workflow }}
   cancel-in-progress: true
 
 on:
