@@ -180,7 +180,7 @@ jobs:
       #     echo ${{ steps.set-env.outputs.GRADLE_USER_HOME }}
       #     echo $USER_HOME
         shell: bash
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
           path: |
             ./.cache
@@ -191,7 +191,7 @@ jobs:
           key: node-${{ runner.os }}
           restore-keys: node-${{ runner.os }}
       # - name: cache release folder
-      #   uses: actions/cache@v3
+      #   uses: actions/cache@v4
       #   with:
       #     path: |
       #       ./release
