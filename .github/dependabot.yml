@@ -15,6 +15,7 @@ updates:
     - dependency-name: "deepmerge-ts"
     - dependency-name: "jsdom"
     - dependency-name: "husky"
+    - dependency-name: "flowbite-react"
 - package-ecosystem: github-actions
   target-branch: compiler
   directory: "/"

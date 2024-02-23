@@ -15,7 +15,7 @@
     "php": "php -S 127.0.0.1:4000 -t dist",
     "start": "cross-env-shell NODE_ENV=development webpackAnalyze=server webpack-dev-server --progress --no-open --mode development --config config/webpack.dev.js \"$@\"",
     "update": "yarn run update:ncu",
-    "update:ncu": "npx npm-check-updates --enginesNode -u -x chalk,jsdom,deepmerge-ts,husky",
+    "update:ncu": "npx npm-check-updates --enginesNode -u -x chalk,jsdom,deepmerge-ts,husky,flowbite-react",
     "x": "node config/cli \"$@\"",
     "dev": "webpack-dev-server --progress --no-open --mode development --config config/webpack.dev-prod.js \"$@\"",
     "dev:php": "php -S 127.0.0.1:8888"
@@ -115,7 +115,7 @@
     "constants-browserify": "^1.0.0",
     "crypto-browserify": "^3.12.0",
     "flowbite": "^2.3.0",
-    "flowbite-react": "^0.7.2",
+    "flowbite-react": "^0.5.0",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.4",
     "moment": "^2.30.1",
