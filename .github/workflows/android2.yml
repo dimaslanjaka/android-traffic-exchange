@@ -43,6 +43,17 @@ jobs:
         with:
           java-version: 19
           distribution: oracle
+            - name: cache gradle wrapper folders
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            $HOME/.m2/repository
+            ~/.m2/repository
+            ./.gradle
+          key: gradle-${{ runner.os }}
+          restore-keys: gradle-${{ runner.os }}
       - name: Change wrapper permissions
         run: chmod +x ./gradlew
       - name: Generate dictionaries
