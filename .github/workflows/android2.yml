@@ -33,6 +33,9 @@ jobs:
       # The name of the main module repository
       main_project_module: app
     steps:
+      - name: dump inputs
+        run: |
+          echo "choice ${{ inputs.withDeploy }}"
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -122,9 +125,7 @@ jobs:
         continue-on-error: true
         run: |
            killall -9 java
-      - name: dump inputs
-        run: |
-          echo "choice ${{ inputs.withDeploy }}"
+
   deploy:
     if: false
     needs: build
