@@ -109,7 +109,7 @@ jobs:
           path: manager/build/outputs/apk/release/manager-release.apk
           name: manager-android.zip
       - name: Upload github pages artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: github-pages
           path: |
