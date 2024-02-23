@@ -12,12 +12,12 @@ on:
     inputs:
       withDeploy:
         type: choice
-        default: no
+        default: 'false'
         description: with deploy
         required: false
         options:
-          - yes
-          - no
+          - true
+          - false
   workflow_call:
      secrets:
        ACCESS_TOKEN:
@@ -35,6 +35,7 @@ jobs:
     steps:
       - name: dump inputs
         run: |
+          echo "choice ${{ inputs.withDeploy }}"
           echo "choice ${{ inputs.withDeploy }}"
       - name: Checkout
         uses: actions/checkout@v4
