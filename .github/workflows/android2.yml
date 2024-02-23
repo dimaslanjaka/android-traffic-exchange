@@ -52,8 +52,10 @@ jobs:
             $HOME/.m2/repository
             ~/.m2/repository
             ./.gradle
-          key: gradle-${{ runner.os }}
-          restore-keys: gradle-${{ runner.os }}
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle') }}
+          restore-keys: |
+            gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle') }}
+            gradle-${{ runner.os }}
       - name: Change wrapper permissions
         run: chmod +x ./gradlew
       - name: Generate dictionaries
