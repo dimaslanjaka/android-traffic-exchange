@@ -69,7 +69,9 @@ jobs:
       - name: build manager
         run: "bash ./gradlew :manager:assembleRelease --gradle-user-home .gradle"
       - name: upload apk
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: Exchanger apk
-          path: ${{ env.main_project_module }}/build/outputs/apk/release/
+          name: APK(s) release generated
+          path: |
+            app/build/outputs/apk/release/
+            manager/build/outputs/apk/release/
