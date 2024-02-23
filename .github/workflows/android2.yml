@@ -14,7 +14,7 @@ on:
         type: choice
         default: 'false'
         description: with deploy
-        required: false
+        required: true
         options:
           - 'true'
           - 'false'
