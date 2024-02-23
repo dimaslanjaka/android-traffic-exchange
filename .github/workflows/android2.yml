@@ -22,6 +22,7 @@ on:
      secrets:
        ACCESS_TOKEN:
          required: true
+  schedule:
   # https://crontab.guru/#0_0_*/5_*_*
     - cron: '0 0 */5 * *'
 jobs:
