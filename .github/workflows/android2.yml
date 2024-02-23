@@ -7,7 +7,7 @@ concurrency:
 on:
   push:
     branches: ["compiler"]
-    paths: ["**/.github/**"]
+    paths: ["**/.github/**", "changelog.md"]
   workflow_dispatch:
     inputs:
       withDeploy:
