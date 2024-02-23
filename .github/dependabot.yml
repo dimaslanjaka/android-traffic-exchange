@@ -7,7 +7,7 @@ version: 2
 updates:
 - package-ecosystem: npm
   directory: "/"
-  target-branch: hexo-backend
+  target-branch: compiler
   schedule:
     interval: monthly
   ignore:
@@ -19,6 +19,7 @@ updates:
       - dependency-name: "jsdom"
         version: ["22.x"]
 - package-ecosystem: github-actions
+  target-branch: compiler
   directory: "/"
   schedule:
     interval: monthly
