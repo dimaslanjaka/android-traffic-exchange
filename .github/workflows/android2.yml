@@ -43,7 +43,7 @@ jobs:
         with:
           java-version: 19
           distribution: oracle
-      - name: cache gradle wrapper folders
+      - name: Setup cache gradle wrapper
         uses: actions/cache@v4
         with:
           path: |
@@ -59,17 +59,17 @@ jobs:
       - name: Change wrapper permissions
         run: chmod +x ./gradlew
       - name: Generate dictionaries
-        run: ./gradlew genDict --gradle-user-home .gradle
+        run: ./gradlew genDict --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m"
       - name: build Aarch64
-        run: bash ./gradlew assembleAarch64Release --gradle-user-home .gradle
+        run: bash ./gradlew assembleAarch64Release --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m"
       - name: build ARM
-        run: bash ./gradlew assembleArmRelease --gradle-user-home .gradle
+        run: bash ./gradlew assembleArmRelease --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m"
       - name: build X86
-        run: bash ./gradlew assembleX86Release --gradle-user-home .gradle
+        run: bash ./gradlew assembleX86Release --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m"
       - name: build X86_64
-        run: bash ./gradlew assembleX86_64Release --gradle-user-home .gradle
+        run: bash ./gradlew assembleX86_64Release --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m"
       - name: build manager
-        run: "bash ./gradlew :manager:assembleRelease --gradle-user-home .gradle"
+        run: "bash ./gradlew :manager:assembleRelease --gradle-user-home .gradle" -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m"
       - name: aarch64
         uses: actions/upload-artifact@v4
         with:
