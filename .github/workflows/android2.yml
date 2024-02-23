@@ -36,8 +36,8 @@ jobs:
       - name: dump inputs with deployment
         run: |
           echo "value ${{ inputs.withDeploy }}"
-          echo "is false ${{ inputs.debug_mode == 'false' }}"
-          echo "is true ${{ inputs.debug_mode == 'true' }}"
+          echo "is false ${{ inputs.withDeploy == 'false' }}"
+          echo "is true ${{ inputs.withDeploy == 'true' }}"
       - name: Checkout
         uses: actions/checkout@v4
         with:
