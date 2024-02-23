@@ -43,7 +43,7 @@ jobs:
         with:
           java-version: 19
           distribution: oracle
-            - name: cache gradle wrapper folders
+      - name: cache gradle wrapper folders
         uses: actions/cache@v3
         with:
           path: |
@@ -68,8 +68,8 @@ jobs:
         run: bash ./gradlew assembleX86_64Release --gradle-user-home .gradle
       - name: build manager
         run: "bash ./gradlew :manager:assembleRelease --gradle-user-home .gradle"
-      - name: Upload APK Release
+      - name: upload apk
         uses: actions/upload-artifact@v3
         with:
-          name: APK(s) release generated
+          name: Exchanger apk
           path: ${{ env.main_project_module }}/build/outputs/apk/release/
