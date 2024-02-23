@@ -39,12 +39,12 @@ jobs:
           token: ${{ secrets.ACCESS_TOKEN }}
           lfs: 'true'
       - name: Setup JDK
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: 19
           distribution: oracle
       - name: cache gradle wrapper folders
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             ~/.gradle/caches
