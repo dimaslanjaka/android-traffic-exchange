@@ -22,7 +22,9 @@ on:
      secrets:
        ACCESS_TOKEN:
          required: true
-
+  schedule:
+  # https://crontab.guru/#0_0_*/5_*_*
+    - cron: '0 0 */5 * *'
 jobs:
   build:
     name: build apk
@@ -39,26 +41,59 @@ jobs:
           token: ${{ secrets.ACCESS_TOKEN }}
           lfs: 'true'
       - name: Setup JDK
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: 19
           distribution: oracle
+      - name: Setup cache gradle wrapper
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            $HOME/.m2/repository
+            ~/.m2/repository
+            ./.gradle
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle') }}
+          restore-keys: |
+            gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle') }}
+            gradle-${{ runner.os }}
       - name: Change wrapper permissions
         run: chmod +x ./gradlew
       - name: Generate dictionaries
-        run: ./gradlew genDict --gradle-user-home .gradle
+        run: ./gradlew genDict --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m"
       - name: build Aarch64
-        run: bash ./gradlew assembleAarch64Release --gradle-user-home .gradle
+        run: bash ./gradlew assembleAarch64Release --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m"
       - name: build ARM
-        run: bash ./gradlew assembleArmRelease --gradle-user-home .gradle
+        run: bash ./gradlew assembleArmRelease --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m"
       - name: build X86
-        run: bash ./gradlew assembleX86Release --gradle-user-home .gradle
+        run: bash ./gradlew assembleX86Release --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m"
       - name: build X86_64
-        run: bash ./gradlew assembleX86_64Release --gradle-user-home .gradle
+        run: bash ./gradlew assembleX86_64Release --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m"
       - name: build manager
-        run: "bash ./gradlew :manager:assembleRelease --gradle-user-home .gradle"
-      - name: Upload APK Release
-        uses: actions/upload-artifact@v3
+        run: bash ./gradlew :manager:assembleRelease --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m"
+      - name: aarch64
+        uses: actions/upload-artifact@v4
         with:
-          name: APK(s) release generated
-          path: ${{ env.main_project_module }}/build/outputs/apk/release/
+          path: app/build/outputs/apk/aarch64/release/exchanger-release.apk
+          name: exchanger-android-aarch64.zip
+      - name: x86_64
+        uses: actions/upload-artifact@v4
+        with:
+          path: app/build/outputs/apk/x86_64/release/exchanger-release.apk
+          name: exchanger-android-x86_64.zip
+      - name: x86
+        uses: actions/upload-artifact@v4
+        with:
+          path: app/build/outputs/apk/x86/release/exchanger-release.apk
+          name: exchanger-android-x86.zip
+      - name: arm
+        uses: actions/upload-artifact@v4
+        with:
+          path: app/build/outputs/apk/arm/release/exchanger-release.apk
+          name: exchanger-android-arm.zip
+      - name: manager
+        uses: actions/upload-artifact@v4
+        with:
+          path: manager/build/outputs/apk/release/manager-release.apk
+          name: manager-android.zip
