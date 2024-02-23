@@ -1,7 +1,7 @@
 name: Pre-release
 
 concurrency:
-  group: ${{ github.workflow }}
+  group: pre-release-${{ github.workflow }}
   cancel-in-progress: true
 
 on:
