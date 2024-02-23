@@ -114,6 +114,7 @@ jobs:
           path: manager/build/outputs/apk/release/manager-release.apk
           name: manager-android.zip
       - name: Upload github pages artifact
+        if: ${{ inputs.withDeploy == 'true' }}
         uses: actions/upload-artifact@v4
         with:
           name: github-pages
