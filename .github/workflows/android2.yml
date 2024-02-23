@@ -68,10 +68,16 @@ jobs:
         run: bash ./gradlew assembleX86_64Release --gradle-user-home .gradle
       - name: build manager
         run: "bash ./gradlew :manager:assembleRelease --gradle-user-home .gradle"
+      - name: aarch64
+        with:
+          path: app/build/outputs/apk/aarch64/release/exchanger-release.apk
       - name: upload apk
         uses: actions/upload-artifact@v4
         with:
           name: APK(s) release generated
           path: |
-            app/build/outputs/apk/release/
+            app/build/outputs/apk/aarch64/release/
+            app/build/outputs/apk/arm/release/
+            app/build/outputs/apk/x86/release/
+            app/build/outputs/apk/x86_64/release/
             manager/build/outputs/apk/release/
