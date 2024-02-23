@@ -1,6 +1,15 @@
-<!-- 5 6 -->
+<!-- 5 6 ^ % -->
 
-## 1.1.2 - pending but applied to current build
+## 1.1.3
+- first deployment firefox browser engine
+  > Might some function not working, let me know
+- Implement swipe scroll to firefox (Scroll like humans)
+- Minimum version for **android 7.0 (Nougat)**
+- Temporarily disable chrome exchanger (due to vulnerability issues)
+
+## 1.1.2
+- fixed force close by JSON serialize/deserializer
+- fixed force close by missconfigure data model
 - add about activity
   > print global configs
 
