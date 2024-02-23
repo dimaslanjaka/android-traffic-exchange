@@ -129,7 +129,7 @@ jobs:
            killall -9 java
 
   deploy:
-    if: false
+    if: ${{ inputs.withDeploy == 'true' }}
     needs: build
     name: deploy to github pages
     runs-on: windows-latest
