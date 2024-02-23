@@ -33,10 +33,11 @@ jobs:
       # The name of the main module repository
       main_project_module: app
     steps:
-      - name: dump inputs
+      - name: dump inputs with deployment
         run: |
-          echo "choice ${{ inputs.withDeploy }}"
-          echo "choice ${{ inputs.withDeploy }}"
+          echo "value ${{ inputs.withDeploy }}"
+          echo "is false ${{ inputs.debug_mode == 'false' }}"
+          echo "is true ${{ inputs.debug_mode == 'true' }}"
       - name: Checkout
         uses: actions/checkout@v4
         with:
