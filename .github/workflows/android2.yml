@@ -70,7 +70,7 @@ jobs:
       - name: build X86_64
         run: bash ./gradlew assembleX86_64Release --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m"
       - name: build manager
-        run: "bash ./gradlew :manager:assembleRelease --gradle-user-home .gradle" -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m"
+        run: bash ./gradlew :manager:assembleRelease --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m"
       - name: aarch64
         uses: actions/upload-artifact@v4
         with:
