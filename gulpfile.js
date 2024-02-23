@@ -273,16 +273,20 @@ gulp.task('init-lfs', async () => {
 });
 
 gulp.task('copy-ci', done => {
+  // delete entire destination
+  fs.rmSync(__dirname + '/.deploy_git/.github', { recursive: true, force: true });
+  // copy CI from compiler branch
   gulp
-    .src('**/*.yml', { cwd: __dirname + '/.github/workflows' })
-    .pipe(gulp.dest(__dirname + '/.deploy_git/.github/workflows'))
+    .src('**/*.yml', { cwd: __dirname + '/.github' })
+    .pipe(gulp.dest(__dirname + '/.deploy_git/.github'))
     .on('end', async () => {
+      // commit to master branch
       try {
-        await spawnAsync('git', ['add', '.'], { cwd: __dirname + '/.deploy_git/.github/workflows' });
+        await spawnAsync('git', ['add', '.'], { cwd: __dirname + '/.deploy_git/.github' });
         await spawnAsync('git', ['commit', '-m', '"update CI from compiler"'], {
-          cwd: __dirname + '/.deploy_git/.github/workflows'
+          cwd: __dirname + '/.deploy_git/.github'
         });
-        await spawnAsync('git', ['push'], { cwd: __dirname + '/.deploy_git/.github/workflows' });
+        await spawnAsync('git', ['push'], { cwd: __dirname + '/.deploy_git/.github' });
       } catch (e) {
         console.error(e.stdout);
       } finally {
