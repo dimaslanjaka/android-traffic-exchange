@@ -11,13 +11,10 @@ updates:
   schedule:
     interval: monthly
   ignore:
-      - dependency-name: "chalk"
-        # ignore all updates for version 4 and 5
-        versions: ["4.x", "5.x"]
-      - dependency-name: "deepmerge-ts"
-        versions: ["5.x"]
-      - dependency-name: "jsdom"
-        version: ["22.x"]
+    - dependency-name: "chalk"
+    - dependency-name: "deepmerge-ts"
+    - dependency-name: "jsdom"
+    - dependency-name: "husky"
 - package-ecosystem: github-actions
   target-branch: compiler
   directory: "/"
