@@ -47,14 +47,14 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
       - name: cache release folder
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             ./release
           key: gradle-release-apk
           restore-keys: gradle-release-apk
       - name: cache build folders
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             ./app/build
@@ -64,7 +64,7 @@ jobs:
           key: gradle-build-${{ runner.os }}
           restore-keys: gradle-build-${{ runner.os }}
       - name: cache gradle wrapper folders
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             ~/.gradle/caches
@@ -188,7 +188,7 @@ jobs:
       #     echo ${{ steps.set-env.outputs.GRADLE_USER_HOME }}
       #     echo $USER_HOME
         shell: bash
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
           path: |
             ./.cache
@@ -199,7 +199,7 @@ jobs:
           key: node-${{ runner.os }}
           restore-keys: node-${{ runner.os }}
       # - name: cache release folder
-      #   uses: actions/cache@v3
+      #   uses: actions/cache@v4
       #   with:
       #     path: |
       #       ./release
