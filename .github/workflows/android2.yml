@@ -74,13 +74,24 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           path: app/build/outputs/apk/aarch64/release/exchanger-release.apk
-      - name: upload apk
+          name: exchanger-android-aarch64.zip
+      - name: x86_64
         uses: actions/upload-artifact@v4
         with:
-          name: APK(s) release generated
-          path: |
-            app/build/outputs/apk/aarch64/release/
-            app/build/outputs/apk/arm/release/
-            app/build/outputs/apk/x86/release/
-            app/build/outputs/apk/x86_64/release/
-            manager/build/outputs/apk/release/
+          path: app/build/outputs/apk/x86_64/release/exchanger-release.apk
+          name: exchanger-android-x86_64.zip
+      - name: x86
+        uses: actions/upload-artifact@v4
+        with:
+          path: app/build/outputs/apk/x86/release/exchanger-release.apk
+          name: exchanger-android-x86.zip
+      - name: arm
+        uses: actions/upload-artifact@v4
+        with:
+          path: app/build/outputs/apk/arm/release/exchanger-release.apk
+          name: exchanger-android-arm.zip
+      - name: manager
+        uses: actions/upload-artifact@v4
+        with:
+          path: manager/build/outputs/apk/release/manager-release.apk
+          name: manager-android.zip
