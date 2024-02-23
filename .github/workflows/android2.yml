@@ -16,8 +16,8 @@ on:
         description: with deploy
         required: false
         options:
-          - true
-          - false
+          - 'true'
+          - 'false'
   workflow_call:
      secrets:
        ACCESS_TOKEN:
