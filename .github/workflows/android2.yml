@@ -77,17 +77,17 @@ jobs:
       - name: Change wrapper permissions
         run: chmod +x ./gradlew
       - name: Generate dictionaries
-        run: ./gradlew genDict --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m -XX:MaxMetaspaceSize=256m -XX:+UseParallelGC -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=build/heap" -Porg.gradle.parallel=true
+        run: ./gradlew genDict --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m" -Porg.gradle.parallel=true
       - name: build Aarch64
-        run: bash ./gradlew assembleAarch64Release --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m -XX:MaxMetaspaceSize=256m -XX:+UseParallelGC -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=build/heap" -Porg.gradle.parallel=true
+        run: bash ./gradlew assembleAarch64Release --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m" -Porg.gradle.parallel=true
       - name: build ARM
-        run: bash ./gradlew assembleArmRelease --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m -XX:MaxMetaspaceSize=256m -XX:+UseParallelGC -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=build/heap" -Porg.gradle.parallel=true
+        run: bash ./gradlew assembleArmRelease --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m" -Porg.gradle.parallel=true
       - name: build X86
-        run: bash ./gradlew assembleX86Release --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m -XX:MaxMetaspaceSize=256m -XX:+UseParallelGC -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=build/heap" -Porg.gradle.parallel=true
+        run: bash ./gradlew assembleX86Release --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m" -Porg.gradle.parallel=true
       - name: build X86_64
-        run: bash ./gradlew assembleX86_64Release --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m -XX:MaxMetaspaceSize=256m -XX:+UseParallelGC -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=build/heap" -Porg.gradle.parallel=true
+        run: bash ./gradlew assembleX86_64Release --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m" -Porg.gradle.parallel=true
       - name: build manager
-        run: bash ./gradlew :manager:assembleRelease --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m -XX:MaxMetaspaceSize=256m -XX:+UseParallelGC -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=build/heap" -Porg.gradle.parallel=true
+        run: bash ./gradlew :manager:assembleRelease --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m" -Porg.gradle.parallel=true
       - name: aarch64
         uses: actions/upload-artifact@v4
         with:
