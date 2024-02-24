@@ -59,21 +59,14 @@ jobs:
             $HOME/.m2/repository
             ~/.m2/repository
             ./.gradle
-          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle', '**/builddict.txt') }}
-          restore-keys: |
-            gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle', '**/builddict.txt') }}
-            gradle-${{ runner.os }}
-      - name: Setup build cache
-        uses: actions/cache@v4
-        with:
-          path: |
             app/build
             manager/build
             library/build
-          key: gradle-${{ runner.os }}-build-${{ hashFiles('**/*.gradle', '**/builddict.txt') }}
+            library-jvm/build
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle', '**/builddict.txt', '**/*.toml') }}
           restore-keys: |
-            gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle', '**/builddict.txt') }}
-            gradle-${{ runner.os }}-build
+            gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle', '**/builddict.txt', '**/*.toml') }}
+            gradle-${{ runner.os }}
       - name: Change wrapper permissions
         run: chmod +x ./gradlew
       - name: Generate dictionaries
