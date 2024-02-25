@@ -5,7 +5,8 @@
   > Might some function not working, let me know
 - Implement swipe scroll to firefox (Scroll like humans)
 - Minimum version for **android 7.0 (Nougat)**
-- Homepage now scrollable for small screen density
+- **Homepage** now scrollable for small screen density
+- Increase performance on **Homepage** layout
 <!-- - Temporarily disable chrome exchanger (due to vulnerability issues) -->
 
 ## 1.1.2

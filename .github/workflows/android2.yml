@@ -69,8 +69,11 @@ jobs:
             gradle-${{ runner.os }}
       - name: Change wrapper permissions
         run: chmod +x ./gradlew
-      - name: Generate dictionaries
-        run: ./gradlew genDict --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m" -Porg.gradle.parallel=true
+      - name: Generate dictionaries and libraries
+        run: |
+          ./gradlew genDict --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m" -Porg.gradle.parallel=true
+          ./gradlew library-jvm:jar --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m" -Porg.gradle.parallel=true
+          ./gradlew library:assembleRelease --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m" -Porg.gradle.parallel=true
       - name: build Aarch64
         run: bash ./gradlew assembleAarch64Release --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m" -Porg.gradle.parallel=true
       - name: build ARM
