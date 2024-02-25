@@ -12,7 +12,7 @@ export default function BackendHome() {
             Place your ads here by calling us at <a href="https://wa.link/5z3yji">+6285655667573</a>
           </p>
 
-          <div className="hero container max-w-screen-lg mx-auto">
+          <div className="hero container max-w-screen-lg mx-auto bg-white dark:bg-white">
             <a href="https://saweria.co/dimaslanjaka" className="mx-auto text-center">
               <Image
                 src="https://cdn.buymeacoffee.com/assets/img/home-page-v3/bmc-new-logo.png"
