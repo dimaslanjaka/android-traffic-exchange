@@ -93,8 +93,6 @@ jobs:
         run: ./gradlew library-jvm:jar --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m" -Porg.gradle.parallel=true
       - name: build android library
         run: ./gradlew library:assembleRelease --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m" -Porg.gradle.parallel=true
-      - run: killall -9 java
-        name: kill java
       - name: build exchanger
         run: bash ./gradlew app:assembleRelease --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m" -Porg.gradle.parallel=true
       - name: build manager
