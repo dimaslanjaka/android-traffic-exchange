@@ -97,26 +97,31 @@ jobs:
         run: bash ./gradlew app:assembleRelease --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m" -Porg.gradle.parallel=true
       - name: build manager
         run: bash ./gradlew :manager:assembleRelease --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m" -Porg.gradle.parallel=true
-      - name: aarch64
+#       - name: aarch64
+#         uses: actions/upload-artifact@v4
+#         with:
+#           path: app/build/outputs/apk/aarch64/release/exchanger-release.apk
+#           name: exchanger-android-aarch64.zip
+#       - name: x86_64
+#         uses: actions/upload-artifact@v4
+#         with:
+#           path: app/build/outputs/apk/x86_64/release/exchanger-release.apk
+#           name: exchanger-android-x86_64.zip
+#       - name: x86
+#         uses: actions/upload-artifact@v4
+#         with:
+#           path: app/build/outputs/apk/x86/release/exchanger-release.apk
+#           name: exchanger-android-x86.zip
+#       - name: arm
+#         uses: actions/upload-artifact@v4
+#         with:
+#           path: app/build/outputs/apk/arm/release/exchanger-release.apk
+#           name: exchanger-android-arm.zip
+      - name: exchanger
         uses: actions/upload-artifact@v4
         with:
-          path: app/build/outputs/apk/aarch64/release/exchanger-release.apk
-          name: exchanger-android-aarch64.zip
-      - name: x86_64
-        uses: actions/upload-artifact@v4
-        with:
-          path: app/build/outputs/apk/x86_64/release/exchanger-release.apk
-          name: exchanger-android-x86_64.zip
-      - name: x86
-        uses: actions/upload-artifact@v4
-        with:
-          path: app/build/outputs/apk/x86/release/exchanger-release.apk
-          name: exchanger-android-x86.zip
-      - name: arm
-        uses: actions/upload-artifact@v4
-        with:
-          path: app/build/outputs/apk/arm/release/exchanger-release.apk
-          name: exchanger-android-arm.zip
+          path: app/build/outputs/apk/release/exchanger-release.apk
+          name: exchanger-android.zip
       - name: manager
         uses: actions/upload-artifact@v4
         with:
