@@ -95,14 +95,8 @@ jobs:
         run: ./gradlew library:assembleRelease --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m" -Porg.gradle.parallel=true
       - run: killall -9 java
         name: kill java
-      - name: build Aarch64
-        run: bash ./gradlew assembleAarch64Release --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m" -Porg.gradle.parallel=true
-      - name: build ARM
-        run: bash ./gradlew assembleArmRelease --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m" -Porg.gradle.parallel=true
-      - name: build X86
-        run: bash ./gradlew assembleX86Release --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m" -Porg.gradle.parallel=true
-      - name: build X86_64
-        run: bash ./gradlew assembleX86_64Release --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m" -Porg.gradle.parallel=true
+      - name: build exchanger
+        run: bash ./gradlew app:assembleRelease --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m" -Porg.gradle.parallel=true
       - name: build manager
         run: bash ./gradlew :manager:assembleRelease --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m" -Porg.gradle.parallel=true
       - name: aarch64
