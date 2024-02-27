@@ -169,11 +169,11 @@ gulp.task('copy-release', async () => {
 
   // aarch64
   // output-metadata.json
-  const src = path.join(paths.public, 'release/aarch64/release/output-metadata.json');
-  const dest = path.join(paths.public, 'release/output-metadata.json');
-  if (fs.existsSync(src)) {
-    await fs.copy(src, dest, { overwrite: true, dereference: true });
-  }
+  // const src = path.join(paths.public, 'release/aarch64/release/output-metadata.json');
+  // const dest = path.join(paths.public, 'release/output-metadata.json');
+  // if (fs.existsSync(src)) {
+  //   await fs.copy(src, dest, { overwrite: true, dereference: true });
+  // }
 
   if (fs.existsSync(path.join(__dirname, 'images'))) {
     await fs.move(path.join(__dirname, 'images'), path.join(paths.public, 'images'), { overwrite: true });
@@ -181,6 +181,7 @@ gulp.task('copy-release', async () => {
   await fs.copy(path.join(__dirname, '.gitattributes'), path.join(paths.build, '.gitattributes'));
   await fs.copy(path.join(__dirname, 'readme.md'), path.join(paths.build, 'readme.md'));
   await fs.copy(path.join(__dirname, 'changelog.md'), path.join(paths.build, 'changelog.md'));
+  await fs.copy(path.join(__dirname, 'changelog-commit.md'), path.join(paths.build, 'changelog-commit.md'));
   await fs.copy(path.join(__dirname, 'LICENSE'), path.join(paths.build, 'LICENSE'));
   // copy public -> dist
   await new Promise((resolve, reject) => {
