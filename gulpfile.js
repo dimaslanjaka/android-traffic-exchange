@@ -264,6 +264,11 @@ gulp.task('deploy-commit', async () => {
 });
 
 gulp.task('deploy-push', async () => {
+  await spawnAsync('git', ['lfs', 'push', '--all', 'origin', 'master'], {
+    cwd: deploy_git,
+    shell: true,
+    stdio: 'inherit'
+  });
   await spawnAsync('git', ['push', '-u', 'origin', 'master'], { cwd: deploy_git, shell: true, stdio: 'inherit' });
 });
 
