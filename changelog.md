@@ -5,7 +5,9 @@
   > Might some function not working, let me know
 - Implement swipe scroll to firefox (Scroll like humans)
 - Minimum version for **android 7.0 (Nougat)**
-- Temporarily disable chrome exchanger (due to vulnerability issues)
+- **Homepage** now scrollable for small screen density
+- Increase performance on **Homepage** layout
+<!-- - Temporarily disable chrome exchanger (due to vulnerability issues) -->
 
 ## 1.1.2
 - fixed force close by JSON serialize/deserializer

@@ -1,5 +1,7 @@
-# android-traffic-exchange
+# Android Traffic Exchanger
 Website Traffic Exchange App For Android
+
+Drive traffic to your website everytime everywhene just using android.
 
 ## Features
 
