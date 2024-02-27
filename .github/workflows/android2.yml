@@ -88,35 +88,35 @@ jobs:
       - name: Change wrapper permissions
         run: chmod +x ./gradlew
       - name: build dictionaries
-        run: ./gradlew genDict --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m" -Porg.gradle.parallel=true
+        run: ./gradlew genDict --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m" --parallel --max-workers=12
       - name: build jvm library
-        run: ./gradlew library-jvm:jar --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m" -Porg.gradle.parallel=true
+        run: ./gradlew library-jvm:jar --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m" --parallel --max-workers=12
       - name: build android library
-        run: ./gradlew library:assembleRelease --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m" -Porg.gradle.parallel=true
+        run: ./gradlew library:assembleRelease --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m" --parallel --max-workers=12
       - name: build exchanger
-        run: bash ./gradlew app:assembleRelease --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m" -Porg.gradle.parallel=true
+        run: bash ./gradlew app:assembleRelease --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m" --parallel --max-workers=12
       - name: build manager
-        run: bash ./gradlew :manager:assembleRelease --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m" -Porg.gradle.parallel=true
-#       - name: aarch64
-#         uses: actions/upload-artifact@v4
-#         with:
-#           path: app/build/outputs/apk/aarch64/release/exchanger-release.apk
-#           name: exchanger-android-aarch64.zip
-#       - name: x86_64
-#         uses: actions/upload-artifact@v4
-#         with:
-#           path: app/build/outputs/apk/x86_64/release/exchanger-release.apk
-#           name: exchanger-android-x86_64.zip
-#       - name: x86
-#         uses: actions/upload-artifact@v4
-#         with:
-#           path: app/build/outputs/apk/x86/release/exchanger-release.apk
-#           name: exchanger-android-x86.zip
-#       - name: arm
-#         uses: actions/upload-artifact@v4
-#         with:
-#           path: app/build/outputs/apk/arm/release/exchanger-release.apk
-#           name: exchanger-android-arm.zip
+        run: bash ./gradlew :manager:assembleRelease --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m" --parallel --max-workers=12
+      - name: upload aarch64
+        uses: actions/upload-artifact@v4
+        with:
+          path: app/build/outputs/apk/aarch64/release/exchanger-release.apk
+          name: exchanger-android-aarch64.zip
+      - name: upload x86_64
+        uses: actions/upload-artifact@v4
+        with:
+          path: app/build/outputs/apk/x86_64/release/exchanger-release.apk
+          name: exchanger-android-x86_64.zip
+      - name: upload x86
+        uses: actions/upload-artifact@v4
+        with:
+          path: app/build/outputs/apk/x86/release/exchanger-release.apk
+          name: exchanger-android-x86.zip
+      - name: upload ARM
+        uses: actions/upload-artifact@v4
+        with:
+          path: app/build/outputs/apk/arm/release/exchanger-release.apk
+          name: exchanger-android-arm.zip
       - name: exchanger
         uses: actions/upload-artifact@v4
         with:
