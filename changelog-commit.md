@@ -1,3 +1,19 @@
+**2024-03-02 00:56:43**
+
+- 943df2bd refactor: change logcat output file
+
+**2024-03-02 00:55:03**
+
+- d9371f97 chore: optimize imports
+
+**2024-03-02 00:53:55**
+
+- dcae3002 refactor: print logcat file path
+
+**2024-03-02 00:27:05**
+
+- 394c2e31 chore: change DL exchanger update url
+
 **2024-03-01 22:51:46**
 
 - f64592bb refactor: temporarily disable kotlin kapt, coroutines to reduce build time
