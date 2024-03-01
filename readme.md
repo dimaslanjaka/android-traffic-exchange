@@ -34,7 +34,7 @@ Drive traffic to your website everytime everywhene just using android.
 | [Android Traffic Exchanger](https://github.com/dimaslanjaka/android-traffic-exchange/raw/master/release/manager-release.apk) | Exchange url with others to visit your website |
 
 ## Develop Requirements
-- JDK-17
+- JDK-19
 
 ## Develop Tools
 - release https://github.com/dimaslanjaka/android-traffic-exchange/tree/master
@@ -49,4 +49,14 @@ Drive traffic to your website everytime everywhene just using android.
 ```bash
 package:com.dimaslanjaka.blog -tag:parcel level:error level:warn -message:GuiExtAuxCheckAuxPath -message:.so
 package:com.dimaslanjaka.blog -tag:chromium -tag:gpuaux -tag:parcel -tag:chatty level:error -message:libcolor
+```
+
+- git push large file
+
+```bash
+git config --global http.postBuffer 1048576000
+git config --global lfs.dialtimeout 60
+git config --global lfs.transfer.maxretries 5
+git config --global lfs.concurrenttransfers 1
+git config --global lfs.activitytimeout 600
 ```
