@@ -1,3 +1,7 @@
+**2024-03-02 01:57:39**
+
+- b103d8a8 refactor: update to jdk-21
+
 **2024-03-02 00:56:43**
 
 - 943df2bd refactor: change logcat output file
