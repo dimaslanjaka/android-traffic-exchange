@@ -16,7 +16,7 @@ Drive traffic to your website everytime everywhene just using android.
 - [x] auto scroll top - bottom ↻
 
 ## Requirements
-- Android LOLIPOP
+- Android 8.0 (Oreo): API level 26
 - Internet Connection
 - Google Account
 

@@ -1,3 +1,55 @@
+**2024-03-01 22:51:46**
+
+- f64592bb refactor: temporarily disable kotlin kapt, coroutines to reduce build time
+
+**2024-03-01 22:49:07**
+
+- 416f4c13 refactor: rename local webserver index file
+
+**2024-03-01 22:26:03**
+
+- 9691951e feat: add button icons to homepage
+
+**2024-03-01 21:52:02**
+
+- 3001481d chore: reuse old update url
+
+**2024-03-01 21:51:28**
+
+- b94308c7 fix: app loads too long
+
+**2024-03-01 21:51:12**
+
+- 88d48ce7 refactor: copy apks handled by git hook
+
+**2024-03-01 20:59:44**
+
+- 4c0e5514 refactor: copy assets and changelog builder handled by git hooks
+
+**2024-03-01 20:58:51**
+
+- 4a77523e feat: icon utility from url
+
+**2024-03-01 20:58:01**
+
+- 54186d69 feat: changelog icon
+
+**2024-03-01 15:12:24**
+
+- 1c3be572 refactor: skip override cache config on clean task
+
+**2024-03-01 15:03:07**
+
+- 04ac14b7 refactor: only apply overriden cache config for release variant
+
+**2024-03-01 14:54:47**
+
+- 92feb7af refactor: override exisiting tasks cache config
+
+**2024-03-01 11:47:57**
+
+- 4ce73f55 refactor: override test disabler to sub projects
+
 **2024-03-01 10:26:04**
 
 - 822f2af4 chore(earn): optimize performance

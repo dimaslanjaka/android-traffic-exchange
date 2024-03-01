@@ -1,12 +1,9 @@
 <!-- 5 6 ^ % -->
 
-**Android Traffic Exchange v2.0.0**
+**Android Traffic Exchange Changelog**
 
-> MAJOR SERVER CHANGED
->
-> for version **v1.1.2** user,
-> use this link to download the update
-> [https://drive.google.com/drive/folders/1vMQ_EPEYRHNH83VGV41DTSyyMRZJri8R?usp=sharing](https://drive.google.com/drive/folders/1vMQ_EPEYRHNH83VGV41DTSyyMRZJri8R?usp=sharing)
+> When the updater not work, you can download manager-release.apk
+> at [https://github.com/dimaslanjaka/android-traffic-exchange/tree/master/release](https://github.com/dimaslanjaka/android-traffic-exchange/tree/master/release)
 >
 > previous update url will be deleted
 >
