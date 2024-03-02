@@ -1,3 +1,31 @@
+**2024-03-02 23:25:08**
+
+- 120b7e73 feat: url pathname getter
+
+**2024-03-02 23:23:50**
+
+- 3e63de2c chore: rename C++ project each module
+
+**2024-03-02 22:26:58**
+
+- b59f0f13 chore: use fingerprint from native
+
+**2024-03-02 21:43:10**
+
+- 828fc8dc fix: Build Type contains custom BuildConfig fields
+
+**2024-03-02 21:17:49**
+
+- 7c2843c6 chore: temporarily remove conflict dependencies
+
+**2024-03-02 20:42:00**
+
+- bedcdf1a feat: initialize Proxy Tunnel
+
+**2024-03-02 20:24:04**
+
+- 7c90c9b0 fix: http network helpers
+
 **2024-03-02 19:30:42**
 
 - f5ed5669 refactor: suppress xlint
