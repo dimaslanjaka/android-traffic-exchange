@@ -1,3 +1,11 @@
+**2024-03-02 15:03:47**
+
+- 2b45c3ea chore: bypass SSL/TLS pinning while checking url
+
+**2024-03-02 14:36:12**
+
+- dd011faf chore: drop squareup picasso has impact to high memory usages, we drop it
+
 **2024-03-02 14:22:05**
 
 - a0964892 chore: move class and declare kotlin extension helper
