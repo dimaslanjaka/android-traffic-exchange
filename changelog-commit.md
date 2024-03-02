@@ -1,3 +1,7 @@
+**2024-03-02 15:06:36**
+
+- fe0c8713 chore: bypass SSL/TLS pinning while checking url
+
 **2024-03-02 15:03:47**
 
 - 2b45c3ea chore: bypass SSL/TLS pinning while checking url
