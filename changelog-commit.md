@@ -1,6 +1,26 @@
-**2024-03-02 01:57:39**
+**2024-03-02 14:22:05**
 
-- b103d8a8 refactor: update to jdk-21
+- a0964892 chore: move class and declare kotlin extension helper
+
+**2024-03-02 14:19:42**
+
+- f7e880b8 fix: admob sdk missing metadata information
+
+**2024-03-02 14:09:07**
+
+- 3c99e08d chore: update SDK for JDK-21 gradle-8.5-rc-3 AGP 8.3.0
+
+**2024-03-02 14:05:57**
+
+- f25e85c9 chore: update obfuscation rules
+
+**2024-03-02 02:48:01**
+
+- 84ad928c chore(main): change changelog branch
+
+**2024-03-02 01:59:03**
+
+- fa25e943 refactor: update to jdk-21
 
 **2024-03-02 00:56:43**
 
