@@ -32,6 +32,12 @@ Drive traffic to your website everytime everywhene just using android.
 | :--- | :--- |
 | [Installer Manager](https://github.com/dimaslanjaka/android-traffic-exchange/raw/master/release/manager-release.apk) | Installer manager app based on device architecture |
 | [Android Traffic Exchanger](https://github.com/dimaslanjaka/android-traffic-exchange/raw/master/release/manager-release.apk) | Exchange url with others to visit your website |
+| [Directory Release Version](https://github.com/dimaslanjaka/android-traffic-exchange/tree/master/release) | Stable release |
+| [Directory Snapshot Version](https://drive.google.com/drive/u/2/folders/1vMQ_EPEYRHNH83VGV41DTSyyMRZJri8R) | Beta release |
+
+## Join Community
+
+- [WhatsApp Group](https://github.com/dimaslanjaka/android-traffic-exchange/tree/master/release)
 
 ## Develop Requirements
 - JDK-21

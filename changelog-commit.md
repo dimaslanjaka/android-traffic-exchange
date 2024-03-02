@@ -1,3 +1,15 @@
+**2024-03-02 19:30:42**
+
+- f5ed5669 refactor: suppress xlint
+
+**2024-03-02 19:29:53**
+
+- 49d6a7dc feat: initialize AI
+
+**2024-03-02 15:26:27**
+
+- b46cca5d chore(firefox): use global user agent by ip as initial value
+
 **2024-03-02 15:06:36**
 
 - fe0c8713 chore: bypass SSL/TLS pinning while checking url
