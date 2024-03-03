@@ -180,7 +180,7 @@ gulp.task('copy-release', async () => {
               if (file.isDirectory()) return cb();
               // only copy files under 100MB
               const sizeInMb = Math.round(file.stat.size / 1048576);
-              if (sizeInMb < 100 && sizeInMb > 0) {
+              if (sizeInMb < 100 && file.stat.size > 0) {
                 return cb(null, file);
               } else {
                 console.log('not copying', file.basename, 'size', sizeInMb);
