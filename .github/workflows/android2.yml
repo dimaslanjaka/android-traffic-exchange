@@ -84,9 +84,11 @@ jobs:
           done
           echo "Done"
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
       - name: Change wrapper permissions
         run: chmod +x ./gradlew
+      - name: clean previous build
+        run: ./gradlew clean
       - name: build dictionaries
         run: ./gradlew genDict --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m" --parallel --max-workers=12
       - name: build jvm library
