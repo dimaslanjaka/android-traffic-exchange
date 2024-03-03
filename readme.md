@@ -16,7 +16,7 @@ Drive traffic to your website everytime everywhene just using android.
 - [x] auto scroll top - bottom ↻
 
 ## Requirements
-- Android LOLIPOP
+- Android 8.0 (Oreo): API level 26
 - Internet Connection
 - Google Account
 
@@ -32,9 +32,15 @@ Drive traffic to your website everytime everywhene just using android.
 | :--- | :--- |
 | [Installer Manager](https://github.com/dimaslanjaka/android-traffic-exchange/raw/master/release/manager-release.apk) | Installer manager app based on device architecture |
 | [Android Traffic Exchanger](https://github.com/dimaslanjaka/android-traffic-exchange/raw/master/release/manager-release.apk) | Exchange url with others to visit your website |
+| [Directory Release Version](https://github.com/dimaslanjaka/android-traffic-exchange/tree/master/release) | Stable release |
+| [Directory Snapshot Version](https://drive.google.com/drive/u/2/folders/1vMQ_EPEYRHNH83VGV41DTSyyMRZJri8R) | Beta release |
+
+## Join Community
+
+- [WhatsApp Group](https://github.com/dimaslanjaka/android-traffic-exchange/tree/master/release)
 
 ## Develop Requirements
-- JDK-17
+- JDK-21
 
 ## Develop Tools
 - release https://github.com/dimaslanjaka/android-traffic-exchange/tree/master
@@ -49,4 +55,14 @@ Drive traffic to your website everytime everywhene just using android.
 ```bash
 package:com.dimaslanjaka.blog -tag:parcel level:error level:warn -message:GuiExtAuxCheckAuxPath -message:.so
 package:com.dimaslanjaka.blog -tag:chromium -tag:gpuaux -tag:parcel -tag:chatty level:error -message:libcolor
+```
+
+- git push large file
+
+```bash
+git config --global http.postBuffer 1048576000
+git config --global lfs.dialtimeout 60
+git config --global lfs.transfer.maxretries 5
+git config --global lfs.concurrenttransfers 1
+git config --global lfs.activitytimeout 600
 ```

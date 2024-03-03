@@ -1,13 +1,37 @@
 <!-- 5 6 ^ % -->
 
-## 1.1.3
+**Android Traffic Exchange Changelog**
+
+> When the updater not work, you can download manager-release.apk
+> at [https://github.com/dimaslanjaka/android-traffic-exchange/tree/master/release](https://github.com/dimaslanjaka/android-traffic-exchange/tree/master/release)
+>
+> previous update url will be deleted
+>
+> previous update popup will be invalidated
+
+## 2.1.1
+- Bypass SSL/TLS verification (SSL pinning) through proxied network
+- Firefox scroll when page fully loaded
+- Fix C++ point system
+
+## 2.1.0
+- Set timezone automatically when installed as system app
+- TLS certificate overtired
+  > let our browser connection using their own certificate
+<!-- - Discourage from app insight. -->
+<!--   Anonymizing exchanger package name from other apps inspection -->
+<!--   > preventing other vendor finds out our app from get banned -->
+
+## 2.0.0
 - first deployment firefox browser engine
   > Might some function not working, let me know
 - Implement swipe scroll to firefox (Scroll like humans)
-- Minimum version for **android 7.0 (Nougat)**
+- Minimum version for **Android 8.0 (Oreo): API level 26**
 - **Homepage** now scrollable for small screen density
 - Increase performance on **Homepage** layout
-<!-- - Temporarily disable chrome exchanger (due to vulnerability issues) -->
+- Bundle all architecture to single apk
+  > preventing crash while opening customized firefox browser
+  > on non-suitable processor architecture
 
 ## 1.1.2
 - fixed force close by JSON serialize/deserializer
