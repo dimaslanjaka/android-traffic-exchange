@@ -160,20 +160,42 @@ gulp.task('route', async () => {
   writefile(path.join(__dirname, 'routes.json'), JSON.stringify(mapped));
 });
 
-// copy bundled apk
+// copy releases to dist
 gulp.task('copy-release', async () => {
+  // copy apks
   if (fs.existsSync(path.join(__dirname, 'release'))) {
-    await fs.move(path.join(__dirname, 'release'), path.join(paths.public, 'release'), { overwrite: true });
-    // await fs.rm(path.join(__dirname, 'release'), { recursive: true });
+    const dest = path.join(paths.public, 'release');
+    await new Promise((resolve, reject) => {
+      gulp
+        .src('**/*', { cwd: path.join(__dirname, 'release'), dot: true })
+        .pipe(
+          obj(
+            /**
+             *
+             * @param {import('vinyl').BufferFile} file
+             * @param {*} _
+             * @param {} cb
+             */
+            (file, _, cb) => {
+              if (file.isDirectory()) return cb();
+              // only copy files under 100MB
+              const sizeInMb = Math.round(file.stat.size / 1048576);
+              if (sizeInMb < 100 && sizeInMb > 0) {
+                return cb(null, file);
+              } else {
+                console.log('not copying', file.basename, 'size', sizeInMb);
+              }
+              cb();
+            }
+          )
+        )
+        .pipe(gulp.dest(dest))
+        .on('end', () => {
+          resolve(null);
+        })
+        .on('error', reject);
+    });
   }
-
-  // aarch64
-  // output-metadata.json
-  // const src = path.join(paths.public, 'release/aarch64/release/output-metadata.json');
-  // const dest = path.join(paths.public, 'release/output-metadata.json');
-  // if (fs.existsSync(src)) {
-  //   await fs.copy(src, dest, { overwrite: true, dereference: true });
-  // }
 
   if (fs.existsSync(path.join(__dirname, 'images'))) {
     await fs.move(path.join(__dirname, 'images'), path.join(paths.public, 'images'), { overwrite: true });
@@ -208,6 +230,7 @@ gulp.task('deploy-init', async () => {
   }
 });
 
+// copy dist to .deploy_git
 gulp.task('deploy-copy', async () => {
   // reset from origin
   await spawnAsync('git', ['reset', '--hard', 'origin/master'], { cwd: deploy_git, shell: true, stdio: 'inherit' });
