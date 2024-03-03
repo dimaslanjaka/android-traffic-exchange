@@ -1,3 +1,15 @@
+**2024-03-03 21:04:54**
+
+- b4c75837 backup android studio setting
+
+**2024-03-03 20:52:32**
+
+- c87d53a6 fix: rename apk for universal architecture
+
+**2024-03-03 20:20:27**
+
+- ae96bd45 add whatsapp group
+
 **2024-03-03 19:05:22**
 
 - f05bc472 change apk filename output
