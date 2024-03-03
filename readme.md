@@ -37,7 +37,7 @@ Drive traffic to your website everytime everywhene just using android.
 
 ## Join Community
 
-- [WhatsApp Group](https://github.com/dimaslanjaka/android-traffic-exchange/tree/master/release)
+- [WhatsApp Group](https://chat.whatsapp.com/EDLvTPfuNdE3LbXsbKDx79)
 
 ## Develop Requirements
 - JDK-21
