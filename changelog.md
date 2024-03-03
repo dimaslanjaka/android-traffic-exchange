@@ -10,7 +10,9 @@
 > previous update popup will be invalidated
 
 ## 2.1.1
-- bypass SSL/TLS verification (SSL pinning) through proxied network
+- Bypass SSL/TLS verification (SSL pinning) through proxied network
+- Firefox scroll when page fully loaded
+- Fix C++ point system
 
 ## 2.1.0
 - Set timezone automatically when installed as system app

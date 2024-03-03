@@ -1,3 +1,27 @@
+**2024-03-03 19:05:22**
+
+- f05bc472 change apk filename output
+
+**2024-03-03 19:04:58**
+
+- eb93d0fb supress javadoc warning lint
+
+**2024-03-03 18:31:28**
+
+- 9b5a1085 chore: split fetch global url to their own file
+
+**2024-03-03 17:48:21**
+
+- 3ff4991b fix: C++ point system
+
+**2024-03-03 17:45:01**
+
+- 9a04c3c7 chore: firefox scroll when page fully loaded
+
+**2024-03-02 23:26:08**
+
+- da569f03 fix: firefox runtime broker
+
 **2024-03-02 23:25:08**
 
 - 120b7e73 feat: url pathname getter
