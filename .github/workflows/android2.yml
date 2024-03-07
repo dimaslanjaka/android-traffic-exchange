@@ -99,26 +99,26 @@ jobs:
         run: bash ./gradlew app:assembleRelease --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m" --parallel --max-workers=12
       - name: build manager
         run: bash ./gradlew :manager:assembleRelease --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m" --parallel --max-workers=12
-      - name: upload aarch64
+      - name: upload exchanger-x86.apk
         uses: actions/upload-artifact@v4
         with:
-          path: app/build/outputs/apk/aarch64/release/exchanger-release.apk
-          name: exchanger-android-aarch64.zip
-      - name: upload x86_64
+          path: app/build/outputs/apk/exchanger-x86.apk
+          name: exchanger-x86.zip
+      - name: upload exchanger-x86_64.apk
         uses: actions/upload-artifact@v4
         with:
-          path: app/build/outputs/apk/x86_64/release/exchanger-release.apk
-          name: exchanger-android-x86_64.zip
-      - name: upload x86
+          path: app/build/outputs/apk/exchanger-x86_64.apk
+          name: exchanger-x86_64.zip
+      - name: upload exchanger-armeabi-v7a.apk
         uses: actions/upload-artifact@v4
         with:
-          path: app/build/outputs/apk/x86/release/exchanger-release.apk
-          name: exchanger-android-x86.zip
-      - name: upload ARM
+          path: app/build/outputs/apk/exchanger-armeabi-v7a.apk
+          name: exchanger-armeabi-v7a.zip
+      - name: upload exchanger-arm64-v8a.apk
         uses: actions/upload-artifact@v4
         with:
-          path: app/build/outputs/apk/arm/release/exchanger-release.apk
-          name: exchanger-android-arm.zip
+          path: app/build/outputs/apk/exchanger-arm64-v8a.apk
+          name: exchanger-arm64-v8a.zip
       - name: exchanger
         uses: actions/upload-artifact@v4
         with:
