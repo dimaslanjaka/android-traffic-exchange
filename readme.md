@@ -3,6 +3,8 @@ Website Traffic Exchange App For Android
 
 Drive traffic to your website everytime everywhene just using android.
 
+![GitHub repo size](https://img.shields.io/github/repo-size/dimaslanjaka/android-traffic-exchange?style=flat-square)
+
 ## Features
 
 - [x] unique visitor
@@ -16,7 +18,8 @@ Drive traffic to your website everytime everywhene just using android.
 - [x] auto scroll top - bottom ↻
 
 ## Requirements
-- Android 8.0 (Oreo): API level 26
+- experimental for Android Lolipop
+- stable for Android 8.0 (Oreo): API level 26
 - Internet Connection
 - Google Account
 

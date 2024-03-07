@@ -1,17 +1,38 @@
 <!-- 5 6 ^ % -->
 
-**Android Traffic Exchange Changelog**
+<!-- **Android Traffic Exchange Changelog** -->
 
-> When the updater not work, you can download manager-release.apk
-> at [https://github.com/dimaslanjaka/android-traffic-exchange/tree/master/release](https://github.com/dimaslanjaka/android-traffic-exchange/tree/master/release)
+> When the updater not work, you can download **manager.apk**
+> at [GitHub Repository](https://github.com/dimaslanjaka/android-traffic-exchange/tree/master/release)
 >
-> previous update url will be deleted
->
-> previous update popup will be invalidated
+> when you got crash, try clear data first and re-open **DL Exchanger**
+
+## 2.1.4
+- Fix point reset unexpectedly
+- Update exchanger chromium UI
+- Improving UI performance by implementing background thread
+- Change encryption method database
+- Improving encoding charset JNI
+- Rollback to minimum **Android Lolipop**
+- Improving stability for old android version
+- Improving permission manager
+  > request full storage access permission to store data, cookie, cache
+
+## 2.1.3
+- Fix ANR window timeout
+- Fix ANR backported hangs
+- Fix ARM backported lifecycle
+- Required **Full Storage Permission** to run
+
+## 2.1.2
+- Drop built-in **Update Manager**
+  > use **DL Manager** to update **DL Exchanger**
+- Fix force closed by null pointer certificate
+- Fix database reference not loaded when user not logged in
 
 ## 2.1.1
 - Bypass SSL/TLS verification (SSL pinning) through proxied network
-- Firefox scroll when page fully loaded
+- <input type="checkbox" checked> Firefox scroll when page fully loaded
 - Fix C++ point system
 
 ## 2.1.0
