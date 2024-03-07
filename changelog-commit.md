@@ -1,3 +1,87 @@
+**2024-03-07 08:06:24**
+
+- 80e62822 update changelogs
+
+**2024-03-07 08:04:20**
+
+- 57952d8b update DL Exchanger UI
+
+**2024-03-07 08:03:23**
+
+- cd71269b update function helpers
+
+**2024-03-07 08:02:36**
+
+- f3e4ab55 improve timezone detector
+
+**2024-03-07 08:01:26**
+
+- d06c0a85 request full storage access permission to store data, cookie, cache
+
+**2024-03-07 08:00:27**
+
+- d85c198b update manager UI
+
+**2024-03-07 07:59:50**
+
+- fc94d028 move data model to jvm desugaring module improve stability for old android version
+
+**2024-03-07 07:58:27**
+
+- 95516e73 replace base encryption for old android stability
+
+**2024-03-07 07:55:47**
+
+- 0397ec75 replace `java.net.URL` for old android compatibility
+
+**2024-03-07 07:52:32**
+
+- d53bedc2 chore: improve stability for old android version rollback to minimum android lolipop
+
+**2024-03-07 07:49:58**
+
+- 4379854d convert main core application using java improve stability for old android version
+
+**2024-03-04 01:11:25**
+
+- 1933ffb8 enforce EOL to LF
+
+**2024-03-04 01:09:08**
+
+- 4ffb8696 feat: split manager apk
+
+**2024-03-04 01:08:24**
+
+- 1738feac add git attribute
+
+**2024-03-04 01:07:39**
+
+- d5d7061c batch: add confirm to uninstall
+
+**2024-03-04 00:57:38**
+
+- 0046618c drop weak reference core context
+
+**2024-03-04 00:22:26**
+
+- 0b5c3d75 clean install before test release flavour
+
+**2024-03-04 00:21:13**
+
+- dea5c2b8 chore: merge database reference into constructor fix: database reference not loaded when user not logged in
+
+**2024-03-04 00:09:27**
+
+- 88a98e65 fix: null pointer certificate force close
+
+**2024-03-03 23:52:07**
+
+- 2c3789d1 suppress certificate error
+
+**2024-03-03 23:36:28**
+
+- 7e9cd9a2 prepare v2.1.2 disable local cache
+
 **2024-03-03 21:04:54**
 
 - b4c75837 backup android studio setting
