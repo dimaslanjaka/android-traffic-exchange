@@ -122,12 +122,12 @@ jobs:
       - name: exchanger
         uses: actions/upload-artifact@v4
         with:
-          path: app/build/outputs/apk/release/exchanger-release.apk
-          name: exchanger-android.zip
-      - name: manager
+          path: app/build/outputs/apk/release/exchanger-universal.apk
+          name: exchanger-universal.zip
+      - name: upload manager
         uses: actions/upload-artifact@v4
         with:
-          path: manager/build/outputs/apk/release/manager-release.apk
+          path: manager/build/outputs/apk/release/manager.apk
           name: manager-android.zip
       - name: Upload github pages artifact
         if: ${{ inputs.withDeploy == 'true' }}
