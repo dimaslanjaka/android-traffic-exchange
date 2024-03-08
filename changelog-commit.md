@@ -1,3 +1,73 @@
+**2024-03-08 16:29:31**
+
+- 113a8eef feat: add `how to download` note
+
+**2024-03-08 15:11:33**
+
+- 83d8e6df chore: implement update checker cache strategy
+
+**2024-03-08 15:03:16**
+
+- 1f51382c chore: temporarily fix firefox point not sync
+
+**2024-03-08 15:00:54**
+
+- a5c4f2b9 moved permission manager into core activity
+
+**2024-03-08 14:55:43**
+
+- 90ac9b35 chore: reintegrate with pre-compiled openssl
+
+**2024-03-08 10:32:42**
+
+- b44d1ac6 fix: firefox exchange not sync the point
+
+**2024-03-08 06:04:10**
+
+- 1d4851cc fix: conflict dependency
+
+**2024-03-08 06:03:46**
+
+- a84f9712 feat: disabler image button
+
+**2024-03-08 06:01:44**
+
+- 142b321a install apk after downloaded
+
+**2024-03-08 04:31:45**
+
+- 13f6949c feat: snapshot release downloader
+
+**2024-03-07 18:41:29**
+
+- 39d989ee chore: round double value
+
+**2024-03-07 18:38:32**
+
+- 0586bd98 chore: improve performance
+
+**2024-03-07 18:37:53**
+
+- 064c3b79 chore: update preparation activity UI
+
+  improve performance stability
+
+**2024-03-07 15:23:27**
+
+- dd42f997 update indonesia translation
+
+**2024-03-07 15:18:39**
+
+- db9bac0d chore: improve performance stability
+
+**2024-03-07 15:14:29**
+
+- f11ea87c feat: indonesia translation
+
+**2024-03-07 15:01:53**
+
+- 8e4bab9e fix: firefox not saving data
+
 **2024-03-07 08:06:24**
 
 - 80e62822 update changelogs

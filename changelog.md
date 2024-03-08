@@ -6,8 +6,11 @@
 > at [GitHub Repository](https://github.com/dimaslanjaka/android-traffic-exchange/tree/master/release)
 >
 > when you got crash, try clear data first and re-open **DL Exchanger**
+>
+> Untested **Android 13**
 
 ## 2.1.4
+- Fix firefox url settings data not saved
 - Fix point reset unexpectedly
 - Update exchanger chromium UI
 - Improving UI performance by implementing background thread
@@ -17,6 +20,8 @@
 - Improving stability for old android version
 - Improving permission manager
   > request full storage access permission to store data, cookie, cache
+- Update UI **Manager**
+- Add snapshot release downloader to **Manager**
 
 ## 2.1.3
 - Fix ANR window timeout

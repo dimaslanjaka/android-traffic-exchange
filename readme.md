@@ -31,6 +31,8 @@ Drive traffic to your website everytime everywhene just using android.
 
 ## Download
 
+> [Download manager.apk](https://github.com/dimaslanjaka/android-traffic-exchange/raw/master/release/manager-release.apk) to detect your android CPU architecture, then download the **DL Traffic** in manager directly and install it.
+
 | App Name | Description |
 | :--- | :--- |
 | [Installer Manager](https://github.com/dimaslanjaka/android-traffic-exchange/raw/master/release/manager-release.apk) | Installer manager app based on device architecture |
@@ -68,4 +70,13 @@ git config --global lfs.dialtimeout 60
 git config --global lfs.transfer.maxretries 5
 git config --global lfs.concurrenttransfers 1
 git config --global lfs.activitytimeout 600
+```
+
+- git remove folder from history
+
+```bash
+git-filter-repo --path node_modules --invert-paths --refs BRANCH_NAME
+git remote add origin https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPOSITORY_NAME
+git fetch --all --prune
+git push --force-with-lease -u origin BRANCH_NAME
 ```
