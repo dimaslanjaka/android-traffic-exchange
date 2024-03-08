@@ -8,7 +8,6 @@
 *.sh        text eol=lf
 *.ts        text eol=lf
 *.js        text eol=lf
-
 # Ensure those won't be messed up with
 *.gif       binary diff
 *.ttf       binary diff
@@ -19,8 +18,7 @@
 *.jpg       binary diff
 *.ico       binary diff
 *.pdf       binary diff
-*.apk       binary diff
-
+*.apk filter=lfs diff=lfs merge=lfs -text
 # Ignore some meta files when creating an archive of this repository
 /.github            export-ignore
 /.editorconfig      export-ignore
@@ -30,12 +28,10 @@
 /phpunit.xml.dist   export-ignore
 /tests              export-ignore
 /docs               export-ignore
-
 # Avoid merge conflicts in CHANGELOG
 # https://about.gitlab.com/2015/02/10/gitlab-reduced-merge-conflicts-by-90-percent-with-changelog-placeholders/
 /CHANGELOG.md		merge=union
 /changelog.md		merge=union
-
 # turn off delta attributes for large files
 # fix large files
 # https://stackoverflow.com/a/3096675
