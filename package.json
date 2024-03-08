@@ -169,7 +169,7 @@
     "hexo-util": "https://github.com/dimaslanjaka/hexo/raw/6fdd635/releases/hexo-util.tgz",
     "warehouse": "https://github.com/dimaslanjaka/hexo/raw/6fdd635/releases/warehouse.tgz"
   },
-  "packageManager": "yarn@4.0.0",
+  "packageManager": "yarn@4.1.1",
   "hexo": {
     "version": "7.0.0-rc2"
   },
