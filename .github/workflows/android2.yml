@@ -87,8 +87,8 @@ jobs:
           GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
       - name: Change wrapper permissions
         run: chmod +x ./gradlew
-      - name: clean previous build
-        run: ./gradlew clean
+#      - name: clean previous build
+#        run: ./gradlew clean
       - name: build dictionaries
         run: ./gradlew genDict --gradle-user-home .gradle -Dorg.gradle.jvmargs="-Xmx2000m -Xms300m" --parallel --max-workers=12
       - name: build jvm library
@@ -129,6 +129,11 @@ jobs:
         with:
           path: manager/build/outputs/apk/release/manager.apk
           name: manager-android.zip
+      - name: Copy to github pages release folder
+        #if: ${{ inputs.withDeploy == 'true' }}
+        run: |
+          echo "copying releases to release-repo/release"
+          bash -e git-hooks/post-commit
       - name: Upload github pages artifact
         if: ${{ inputs.withDeploy == 'true' }}
         uses: actions/upload-artifact@v4
@@ -137,6 +142,7 @@ jobs:
           path: |
             release/
             changelog.md
+            changelog-commit.md
             readme.md
         env:
           ACTIONS_STEP_DEBUG: true
