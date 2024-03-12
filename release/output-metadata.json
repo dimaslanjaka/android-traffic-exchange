@@ -12,7 +12,7 @@
       "filters": [],
       "attributes": [],
       "versionCode": 1,
-      "versionName": "0.1.1",
+      "versionName": "2.1.1",
       "outputFile": "exchanger-universal.apk"
     },
     {
@@ -25,7 +25,7 @@
       ],
       "attributes": [],
       "versionCode": 1,
-      "versionName": "2.1.4",
+      "versionName": "2.1.7",
       "outputFile": "exchanger-x86_64.apk"
     },
     {
