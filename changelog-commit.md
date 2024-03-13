@@ -1,3 +1,35 @@
+**2024-03-13 20:15:38**
+
+- 9434209e update gradle tasks
+
+**2024-03-13 20:12:23**
+
+- 946d2b35 broken DLTraffic
+
+**2024-03-13 20:07:11**
+
+- 9ec3f806 update core libraries
+
+**2024-03-13 20:04:50**
+
+- 74b8aca8 create shared theme
+
+**2024-03-13 19:58:25**
+
+- b005e01b release lite mode
+
+**2024-03-11 11:42:03**
+
+- 65e87797 rename module dltraffic - prepare split the browser
+
+**2024-03-08 18:33:07**
+
+- 6dbdf482 drop loading animator
+
+**2024-03-08 18:32:00**
+
+- 3206325f drop old update
+
 **2024-03-08 16:29:31**
 
 - 113a8eef feat: add `how to download` note
