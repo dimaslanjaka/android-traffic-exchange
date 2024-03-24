@@ -32,6 +32,10 @@ Drive traffic to your website everytime everywhene just using android.
 ## Download
 
 > [Download manager.apk](https://github.com/dimaslanjaka/android-traffic-exchange/raw/master/release/manager-release.apk) to detect your android CPU architecture, then download the **DL Traffic** in manager directly and install it.
+>
+> Because of github has limit file size, we decided to upload all apps into separated folder.
+>
+> You can join [Our WhatsApp Group](https://chat.whatsapp.com/EDLvTPfuNdE3LbXsbKDx79) to get update information
 
 | App Name | Description |
 | :--- | :--- |

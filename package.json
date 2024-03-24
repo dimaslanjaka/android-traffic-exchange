@@ -5,7 +5,8 @@
   "main": "gulpfile.js",
   "private": true,
   "scripts": {
-    "prepare": "touch routes.json && husky install",
+    "prepare": "echo [] > routes.json && husky install",
+    "postinstall": "gulp route",
     "build": "rm -rf dist && run-s \"build:**\" && gulp build",
     "build:webpack": "webpack --progress --mode production --config config/webpack.prod.js",
     "watch:build": "webpack --progress --mode production --config config/webpack.prod-watch.js && gulp build",

@@ -9,7 +9,7 @@ const path = require('path');
 /**
  * @type {import('webpack').Configuration}
  */
-module.exports = merge(common, {
+const config = merge(common, {
   entry: [paths.src + '/index.tsx'],
   output: {
     filename: 'runtime/main.js',
@@ -72,3 +72,8 @@ module.exports = merge(common, {
 
 // write to ../config.json
 modifyConfigJson({ mode: 'development' });
+if (require.main === module) {
+  console.log(config);
+}
+
+module.exports = config;
