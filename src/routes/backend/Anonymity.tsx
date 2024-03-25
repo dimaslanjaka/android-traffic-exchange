@@ -241,12 +241,9 @@ interface GeoIpResult {
 
 async function getGeoIp(ip?: string | AbortController, abortController?: AbortController) {
   const controller = ip instanceof AbortController ? ip : abortController;
-  const response = await axiosWithCache.withoutCredentials(
-    'http://ip-api.com/json/' + (typeof ip === 'string' ? ip : ''),
-    {
-      signal: controller?.signal
-    }
-  );
+  const response = await axiosWithCache.withoutCredentials('//ip-api.com/json/' + (typeof ip === 'string' ? ip : ''), {
+    signal: controller?.signal
+  });
   // console.log('geo ip', JSON.stringify(data));
   return (response?.data || {}) as GeoIpResult;
 }
