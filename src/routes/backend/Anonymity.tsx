@@ -29,7 +29,7 @@ export default function Anonymity() {
         //
       });
     isSelenium()
-      .then(r => setSelenium(r.selenium))
+      .then(setSelenium)
       .catch(() => {
         //
       });
@@ -99,51 +99,50 @@ export default function Anonymity() {
           </a>
         </div>
         {['backend/referer.html', 'backend/anon.html', 'backend/info.html', 'backend/anonymity.html', 'backend'].map(
-          route => {
+          (route, i) => {
             return (
-              <div key={route}>
-                <a href={projectConfig.paths.base + route}>{route}</a>
+              <div key={'js-referer' + route + i}>
+                <a href={projectConfig.paths.base + route}>Info {i + 1}</a>
               </div>
             );
           }
         )}
       </div>
 
-      <div className="flex flex-col md:flex-row justify-between p-2 mb-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-        <div className="mb-2">
-          <table>
-            <tbody>
-              <tr>
-                <td>JS Referer</td>
-                <td>{document.referrer}</td>
-              </tr>
-              <tr>
-                <td>Selenium</td>
-                <td>{String(selenium)}</td>
-              </tr>
-              <tr>
-                <td>Headless</td>
-                <td>{String(headless)}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+      <div className="mb-2">
+        <table>
+          <tbody key="browser-info">
+            <tr>
+              <td>JS Referer</td>
+              <td>{document.referrer}</td>
+            </tr>
+            <tr>
+              <td>Selenium</td>
+              <td>{String(selenium)}</td>
+            </tr>
+            <tr>
+              <td>Headless</td>
+              <td>{String(headless)}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
+      <div className="flex flex-col md:flex-row justify-between p-2 mb-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
         <div className="mb-2">
           <h2>IP Information</h2>
           <table>
-            <tbody>
+            <tbody key="ip-info">
               {ip &&
-                Object.keys(ip).map(ipItem => {
+                Object.keys(ip).map((ipItem, i) => {
                   if (ip[ipItem]) {
                     return (
-                      <tr key={ipItem}>
+                      <tr key={'ip-info' + ipItem + i}>
                         <td>{ipItem}</td>
                         <td>{ip[ipItem]}</td>
                       </tr>
                     );
                   }
-                  return <></>;
                 })}
             </tbody>
           </table>
@@ -152,18 +151,17 @@ export default function Anonymity() {
         <div className="mb-2">
           <h2>Geo Location</h2>
           <table>
-            <tbody>
+            <tbody key="ip-geolocation">
               {ipInfo &&
                 Object.keys(ipInfo).map(ipItem => {
                   if (ipInfo[ipItem]) {
                     return (
-                      <tr key={ipItem}>
+                      <tr key={'ip-geolocation' + ipItem}>
                         <td>{ipItem}</td>
                         <td>{ipInfo[ipItem]}</td>
                       </tr>
                     );
                   }
-                  return <></>;
                 })}
             </tbody>
           </table>

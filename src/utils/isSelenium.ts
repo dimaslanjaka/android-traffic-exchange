@@ -2,7 +2,7 @@
  * detect selenium
  * @returns
  */
-export default function isSelenium(): Promise<{ selenium: boolean }> {
+export default function isSelenium(): Promise<boolean> {
   return new Promise(resolve => {
     const documentDetectionKeys = [
       '__webdriver_evaluate',
@@ -28,18 +28,18 @@ export default function isSelenium(): Promise<{ selenium: boolean }> {
     for (const windowDetectionKey in windowDetectionKeys) {
       const windowDetectionKeyValue = windowDetectionKeys[windowDetectionKey];
       if (window[windowDetectionKeyValue] || windowDetectionKeyValue in window) {
-        return resolve({ selenium: true });
+        return resolve(true);
       }
     }
     for (const documentDetectionKey in documentDetectionKeys) {
       const documentDetectionKeyValue = documentDetectionKeys[documentDetectionKey];
       if (window['document'][documentDetectionKeyValue] || documentDetectionKeyValue in document) {
-        return resolve({ selenium: true });
+        return resolve(true);
       }
     }
     for (const documentKey in window['document']) {
       if (documentKey.match(/\$[a-z]dc_/) && window['document'][documentKey]['cache_']) {
-        return resolve({ selenium: true });
+        return resolve(true);
       }
     }
     if (
@@ -47,27 +47,31 @@ export default function isSelenium(): Promise<{ selenium: boolean }> {
       window['external'].toString() &&
       window['external'].toString()['indexOf']('Sequentum') !== -1
     )
-      return resolve({ selenium: true });
-    if (window['document']['documentElement']['getAttribute']('selenium')) return resolve({ selenium: true });
-    if (window['document']['documentElement']['getAttribute']('webdriver')) return resolve({ selenium: true });
-    if (window['document']['documentElement']['getAttribute']('driver')) return resolve({ selenium: true });
+      return resolve(true);
+    if (window['document']['documentElement']['getAttribute']('selenium')) return resolve(true);
+    if (window['document']['documentElement']['getAttribute']('webdriver')) return resolve(true);
+    if (window['document']['documentElement']['getAttribute']('driver')) return resolve(true);
     if (window.document.documentElement.getAttribute('webdriver')) {
-      return resolve({ selenium: true });
+      console.log('webdrive in window.document.documentElement');
+      return resolve(true);
     }
     if ('callPhantom' in window || '_phantom' in window) {
       if (window.callPhantom || window._phantom) {
-        return resolve({ selenium: true });
+        console.log('phantom or callPhantom in window');
+        return resolve(true);
       }
     }
     if ('webdriver' in navigator) {
       if (navigator.webdriver == true) {
-        return resolve({ selenium: true });
+        console.log('webdriver in navigator');
+        return resolve(true);
       }
     }
     if ('userAgentData' in navigator) {
       const udata = JSON.stringify(navigator.userAgentData);
-      return resolve({ selenium: udata.includes('Not=A?Brand') });
+      console.log('userAgentData in navigator');
+      return resolve(udata.includes('Not=A?Brand'));
     }
-    return resolve({ selenium: false });
+    return resolve(false);
   });
 }

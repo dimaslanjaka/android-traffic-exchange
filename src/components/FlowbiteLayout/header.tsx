@@ -75,7 +75,7 @@ const Header: FC<Record<string, never>> = function () {
             const props = {} as Record<string, any>;
             if (index === 0) props.active = true;
             return (
-              <Navbar.Link href={projectConfig.nav_top[name]} key={name + index} {...props}>
+              <Navbar.Link href={projectConfig.nav_top[name]} key={'nav-' + name + index} {...props}>
                 {name}
               </Navbar.Link>
             );
