@@ -110,6 +110,7 @@
   },
   "dependencies": {
     "@fancyapps/ui": "^5.0.35",
+    "@fingerprintjs/fingerprintjs": "^4.2.2",
     "axios": "^1.6.8",
     "axios-cache-interceptor": "^1.5.1",
     "bluebird": "^3.7.2",

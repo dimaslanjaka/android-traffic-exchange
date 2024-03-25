@@ -5,12 +5,14 @@ import './anonymity.scss';
 import getIp, { IpResult } from '../../utils/getIp';
 import isSelenium from '../../utils/isSelenium';
 import isHeadless from '@root/src/utils/isHeadless';
+import FingerprintJS from '@fingerprintjs/fingerprintjs';
 
 export default function Anonymity() {
   const [ip, setIp] = React.useState<IpResult>();
   const [ipInfo, setIpInfo] = React.useState<GeoIpResult>();
   const [selenium, setSelenium] = React.useState<boolean>();
   const [headless, setHeadless] = React.useState<boolean>();
+  const [fpHash, setFpHash] = React.useState('');
 
   React.useEffect(() => {
     const ac = new AbortController();
@@ -34,6 +36,18 @@ export default function Anonymity() {
         //
       });
     isHeadless().then(setHeadless);
+
+    const setFp = async () => {
+      const fp = await FingerprintJS.load();
+
+      const { visitorId } = await fp.get();
+
+      setFpHash(visitorId);
+    };
+
+    setFp().catch(() => {
+      //
+    });
 
     fetch(urlOf('//httpbin.org/headers'), {
       method: 'GET',
@@ -123,6 +137,10 @@ export default function Anonymity() {
             <tr>
               <td>Headless</td>
               <td>{String(headless)}</td>
+            </tr>
+            <tr>
+              <td>Fingerprint</td>
+              <td>{fpHash}</td>
             </tr>
           </tbody>
         </table>
