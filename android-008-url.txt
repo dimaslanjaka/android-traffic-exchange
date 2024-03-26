@@ -2,3 +2,8 @@ https://github.com/dimaslanjaka/android-traffic-exchange/tree/master
 https://github.com/dimaslanjaka
 https://github.com/dimaslanjaka/hexo-seo
 https://github.com/dimaslanjaka/hexo-shortcodes
+https://www.webmanajemen.com/2024/03/android-activity-lifecycle.html
+https://www.webmanajemen.com/2024/03/turn-git-log-history-to-markdown.html
+https://www.webmanajemen.com/2024/03/android-studio-enable-automatic-memory-heap-resizing.html
+https://www.webmanajemen.com/2024/02/is-defining-screen-density-on-gradlebuild-can-reduce-build-time.html
+https://www.webmanajemen.com/2024/02/how-to-use-kotlin-bom.html
