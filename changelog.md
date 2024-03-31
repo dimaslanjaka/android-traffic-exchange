@@ -7,7 +7,28 @@
 >
 > when you got crash, try clear data first and re-open **DL Exchanger**
 >
-> Untested **Android 13**
+> Untested **Android 14**
+
+## 3.0.0
+
+Major changes
+- Login system
+- Point system **removed**
+- Subscription system
+
+> avoid thread IO suspension in Main thread, were migrated into lightweight database system
+
+Patch changes
+- Exchange visit for free user only triggered every 5th url rotation
+  > Graph
+  > earn view -> your view -> your view -> your view -> your view -> your view -> earn view -> your view -> and more
+
+New app beta test
+- Multi socks proxy VPN
+
+New app launch
+- DL Traffic Lite (chromium browser only)
+  - fix scroll active even deactivated from settings
 
 ## 2.1.4
 - Fix firefox url settings data not saved
@@ -22,6 +43,9 @@
   > request full storage access permission to store data, cookie, cache
 - Update UI **Manager**
 - Add snapshot release downloader to **Manager**
+
+New app beta test
+- DL Traffic Lite (chromium browser only)
 
 ## 2.1.3
 - Fix ANR window timeout

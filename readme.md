@@ -1,7 +1,7 @@
 # Android Traffic Exchanger
 Website Traffic Exchange App For Android
 
-Drive traffic to your website everytime everywhene just using android.
+Drive traffic to your website everytime everywhere just using android.
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/dimaslanjaka/android-traffic-exchange?style=flat-square)
 

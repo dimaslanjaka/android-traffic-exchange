@@ -1,3 +1,31 @@
+**2024-03-31 00:35:52**
+
+- f86aea5a8 fix: typo on readme
+
+**2024-03-31 00:11:01**
+
+- 590cad0b4 fix: auto scroll off sync
+
+**2024-03-28 15:03:48**
+
+- d404dbfb8 prepare backup
+
+**2024-03-27 22:01:16**
+
+- c1ec72437 chore: shutdown point system in dltrafficlite
+
+**2024-03-26 19:01:51**
+
+- 70d70b1dd refactor: add dictionary cleaner
+
+**2024-03-25 13:55:04**
+
+- 4b11a776c chore: optimize background task
+
+**2024-03-25 13:18:37**
+
+- cd5f92ef6 fixed room authentication
+
 **2024-03-24 21:03:00**
 
 - 5cd4ec1bd initialize LICENSE
