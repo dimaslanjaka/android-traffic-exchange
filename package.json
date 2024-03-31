@@ -15,6 +15,7 @@
     "deploy": "gulp deploy \"$@\"",
     "php": "php -S 127.0.0.1:4000 -t dist",
     "start": "cross-env-shell NODE_ENV=development webpackAnalyze=server webpack-dev-server --progress --no-open --mode development --config config/webpack.dev.js \"$@\"",
+    "startx": "webpack --progress --mode production --config config/webpack.dev.js",
     "update": "yarn run update:ncu",
     "update:ncu": "npx npm-check-updates --enginesNode -u -x chalk,jsdom,deepmerge-ts,husky,flowbite-react",
     "x": "node config/cli \"$@\"",
@@ -175,11 +176,5 @@
   "packageManager": "yarn@4.1.1",
   "hexo": {
     "version": "7.0.0-rc2"
-  },
-  "workspaces": [
-    "src-posts",
-    "packages/hpp",
-    "packages/hr",
-    "packages/hs"
-  ]
+  }
 }
