@@ -5,93 +5,17 @@
     "kind": "Directory"
   },
   "applicationId": "com.dimaslanjaka.blog",
-  "variantName": "release",
+  "variantName": "debug",
   "elements": [
     {
-      "type": "UNIVERSAL",
+      "type": "SINGLE",
       "filters": [],
       "attributes": [],
       "versionCode": 1,
-      "versionName": "2.1.4",
+      "versionName": "3.0.0",
       "outputFile": "exchanger-universal.apk"
-    },
-    {
-      "type": "ONE_OF_MANY",
-      "filters": [
-        {
-          "filterType": "ABI",
-          "value": "x86_64"
-        }
-      ],
-      "attributes": [],
-      "versionCode": 1,
-      "versionName": "2.1.7",
-      "outputFile": "exchanger-x86_64.apk"
-    },
-    {
-      "type": "ONE_OF_MANY",
-      "filters": [
-        {
-          "filterType": "ABI",
-          "value": "x86"
-        }
-      ],
-      "attributes": [],
-      "versionCode": 1,
-      "versionName": "2.1.4",
-      "outputFile": "exchanger-x86.apk"
-    },
-    {
-      "type": "ONE_OF_MANY",
-      "filters": [
-        {
-          "filterType": "ABI",
-          "value": "arm64-v8a"
-        }
-      ],
-      "attributes": [],
-      "versionCode": 1,
-      "versionName": "2.1.4",
-      "outputFile": "exchanger-arm64-v8a.apk"
-    },
-    {
-      "type": "ONE_OF_MANY",
-      "filters": [
-        {
-          "filterType": "ABI",
-          "value": "armeabi-v7a"
-        }
-      ],
-      "attributes": [],
-      "versionCode": 1,
-      "versionName": "2.1.4",
-      "outputFile": "exchanger-armeabi-v7a.apk"
     }
   ],
   "elementType": "File",
-  "baselineProfiles": [
-    {
-      "minApi": 28,
-      "maxApi": 30,
-      "baselineProfiles": [
-        "baselineProfiles/1/exchanger-universal.dm",
-        "baselineProfiles/1/exchanger-x86_64.dm",
-        "baselineProfiles/1/exchanger-x86.dm",
-        "baselineProfiles/1/exchanger-arm64-v8a.dm",
-        "baselineProfiles/1/exchanger-armeabi-v7a.dm"
-      ]
-    },
-    {
-      "minApi": 31,
-      "maxApi": 2147483647,
-      "baselineProfiles": [
-        "baselineProfiles/0/exchanger-universal.dm",
-        "baselineProfiles/0/exchanger-x86_64.dm",
-        "baselineProfiles/0/exchanger-x86.dm",
-        "baselineProfiles/0/exchanger-arm64-v8a.dm",
-        "baselineProfiles/0/exchanger-armeabi-v7a.dm"
-      ]
-    }
-  ],
   "minSdkVersionForDexing": 21
 }
