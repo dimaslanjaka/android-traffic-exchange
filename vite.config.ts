@@ -1,10 +1,14 @@
 import react from '@vitejs/plugin-react';
+import dotenv from 'dotenv';
 import { createRequire } from 'node:module';
 import path from 'upath';
-import { defineConfig } from 'vite';
+import { UserConfig, defineConfig } from 'vite';
+
+dotenv.config({ override: true });
 
 const require = createRequire(import.meta.url);
-const config = {
+
+const config: UserConfig = {
   plugins: [react()],
   server: {
     port: 4000
