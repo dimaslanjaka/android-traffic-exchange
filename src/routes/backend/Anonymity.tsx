@@ -13,6 +13,8 @@ export default function Anonymity() {
   const [selenium, setSelenium] = React.useState<boolean>();
   const [headless, setHeadless] = React.useState<boolean>();
   const [fpHash, setFpHash] = React.useState('');
+  const [cookieId, setCookieId] = React.useState('');
+  // const [storageId, setStorageId] = React.useState('');
 
   React.useEffect(() => {
     const ac = new AbortController();
@@ -60,21 +62,23 @@ export default function Anonymity() {
         document.querySelector('#headers').textContent = str;
       });
     // cookie fetcher
-    const ck = 'cookieKey';
+    const cookieKeyStr = 'cookieKey';
     //eraseCookie(ck);
-    if (!getCookie(ck)) {
+    if (!getCookie(cookieKeyStr)) {
       setCookie(
-        ck,
+        cookieKeyStr,
         Math.random()
           .toString(36)
           .substring(2, 4 + 2),
         1
       );
     }
+    // set local cookie id
+    setCookieId(getCookie(cookieKeyStr));
     fetch(
       urlOf('//httpbin.org/cookies/set?') +
         new URLSearchParams({
-          cookieKey: getCookie(ck) || 'hello world'
+          cookieKey: getCookie(cookieKeyStr) || 'hello world'
         }),
       {
         method: 'GET',
@@ -97,6 +101,10 @@ export default function Anonymity() {
           .then(res => res.json())
           .then(data => {
             const str = JSON.stringify(data, null, 2);
+            if (data && data.cookies && data.cookies.cookieKey) {
+              // set httpbin cookie id result
+              setCookieId(data.cookies.cookieKey);
+            }
             document.querySelector('#cookiesHttpbin').textContent = str;
           });
       });
@@ -137,6 +145,10 @@ export default function Anonymity() {
             <tr>
               <td>Headless</td>
               <td>{String(headless)}</td>
+            </tr>
+            <tr>
+              <td>Cookie ID</td>
+              <td>{cookieId}</td>
             </tr>
             <tr>
               <td>Fingerprint</td>

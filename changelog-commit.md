@@ -1,3 +1,11 @@
+**2024-04-02 22:35:31**
+
+- a37df1adb chore: change text input layout style on night theme
+
+**2024-04-02 18:40:10**
+
+- 587810c15 feat: dlvpn new icon
+
 **2024-03-31 00:35:52**
 
 - f86aea5a8 fix: typo on readme

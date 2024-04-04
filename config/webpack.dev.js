@@ -18,7 +18,33 @@ const config = merge(common, {
   module: {
     rules: [
       {
-        test: /\.(s[a|c]ss)$/,
+        test: /\.css$/i,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: { importLoaders: 1 }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [
+                  [
+                    '@csstools/postcss-is-pseudo-class',
+                    {
+                      // Options
+                    }
+                  ]
+                ]
+              }
+            }
+          }
+        ]
+      },
+      {
+        //test: /\.(s[a|c]ss)$/,
+        test: /.(sass|scss)$/,
         use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
         exclude: excludePatterns.css
       }
