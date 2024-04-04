@@ -93,7 +93,7 @@
     "prettier": "^3.2.5",
     "process": "^0.11.10",
     "puppeteer": "^22.6.0",
-    "purgecss": "^5.0.0",
+    "purgecss": "^6.0.0",
     "sass-loader": "^13.3.3",
     "sbg-utility": "^1.1.6",
     "static-blog-generator": "^3.0.1",
