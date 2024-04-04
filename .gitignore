@@ -24,6 +24,7 @@ package-lock.json
 source/_posts
 /routes.json
 /_config.json
+/_env.json
 /src/posts
 /src/pages
 .cache

@@ -52,7 +52,7 @@ export const fetchWithCache = async (url: string, options: FetchCacheOptions = {
   let expiry = 5 * 60; // 5 min default
   if (typeof options === 'number') {
     expiry = options;
-    options = undefined as any;
+    options = {};
   } else if (typeof options === 'object') {
     // I hope you didn't set it to 0 seconds
     expiry = options.seconds || expiry;
@@ -60,20 +60,23 @@ export const fetchWithCache = async (url: string, options: FetchCacheOptions = {
   // Use the URL as the cache key to sessionStorage
   const cacheKey = url;
   const cached = localStorage.getItem(cacheKey);
-  const whenCached = parseInt(localStorage.getItem(cacheKey + ':ts') || '0');
-  if (cached !== null && whenCached !== null) {
-    // it was in sessionStorage! Yay!
-    // Even though 'whenCached' is a string, this operation
-    // works because the minus sign converts the
-    // string to an integer and it will work.
-    const age = (Date.now() - whenCached) / 1000;
-    if (age < expiry) {
-      const response = new Response(new Blob([cached]));
-      return Promise.resolve(response);
-    } else {
-      // We need to clean up this old key
-      localStorage.removeItem(cacheKey);
-      localStorage.removeItem(cacheKey + ':ts');
+  const item = localStorage.getItem(cacheKey + ':ts');
+  if (item) {
+    const whenCached = parseInt(item);
+    if (cached !== null && whenCached !== null) {
+      // it was in sessionStorage! Yay!
+      // Even though 'whenCached' is a string, this operation
+      // works because the minus sign converts the
+      // string to an integer and it will work.
+      const age = (Date.now() - whenCached) / 1000;
+      if (age < expiry) {
+        const response = new Response(new Blob([cached]));
+        return Promise.resolve(response);
+      } else {
+        // We need to clean up this old key
+        localStorage.removeItem(cacheKey);
+        localStorage.removeItem(cacheKey + ':ts');
+      }
     }
   }
 

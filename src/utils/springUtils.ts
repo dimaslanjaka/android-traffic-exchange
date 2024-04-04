@@ -1,3 +1,4 @@
+import rconfig from '@root/_config.json';
 import env from '@root/_env.json';
 import axios from 'axios';
 import { UserInfo } from '../types/UserInfo';
@@ -19,9 +20,13 @@ export default class springUtils {
    * @returns URL instance without pathname
    */
   public static getOrigin() {
-    if (typeof this.origin === 'undefined') this.origin = new URL(env.BASE_API);
-    this.origin.pathname = '/';
-    return this.origin;
+    if (typeof this.origin === 'undefined') {
+      const BASE_API = (env as any)['BASE_API'];
+      this.origin = new URL(BASE_API || rconfig.url);
+      this.origin.pathname = '/';
+      return this.origin;
+    }
+    return null;
   }
   /**
    * get url of backend
@@ -41,13 +46,17 @@ export default class springUtils {
         url: this.getUrl('/me').toString(),
         withCredentials: true,
         method: 'GET'
-      }).then(res => {
-        if (res.data.error) {
-          location.pathname = '/login';
-        } else {
-          this.userInfo = res.data;
-        }
-      });
+      })
+        .then(res => {
+          if (res.data.error) {
+            location.pathname = '/login';
+          } else {
+            this.userInfo = res.data;
+          }
+        })
+        .catch(e => {
+          console.error(e.message);
+        });
     return this.userInfo;
   }
 }

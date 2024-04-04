@@ -1,5 +1,3 @@
-import { emptyInterface } from '../types/emptyInterface';
-
 /**
  * Create detailed cookie
  * @param name
@@ -80,17 +78,17 @@ export function setCookieMins(
   });
 }
 
-export function getCookie<T>(name: string, defaultValue?: T) {
-  if (!defaultValue) defaultValue = null as T;
+export function getCookie(name: string) {
   const nameEQ = name + '=';
   const ca = document.cookie.split(';');
   for (let i = 0; i < ca.length; i++) {
     let c = ca[i];
-    if (!c) continue;
-    while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    if (typeof c != 'undefined') {
+      while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
   }
-  return defaultValue;
+  return null;
 }
 
 // export const createCookieExpires = ({ mins = 0, hours = 0, week = 0, month = 0 }) => {
@@ -116,10 +114,13 @@ export function getCookies(
 ): Record<string, any> {
   const { sort = false, skipKey = [] } = options;
   const pairs = document.cookie.split(';');
-  const cookies = {} as emptyInterface;
+  const cookies = {} as Record<string, any>;
   for (let i = 0; i < pairs.length; i++) {
-    const pair = (pairs[i] || '').split('=');
-    cookies[(pair[0] + '').trim()] = unescape(pair.slice(1).join('='));
+    const pair = pairs[i];
+    if (typeof pair != 'undefined') {
+      const split = pair.split('=');
+      cookies[(split[0] + '').trim()] = unescape(split.slice(1).join('='));
+    }
   }
 
   // delete keys from result
@@ -131,7 +132,7 @@ export function getCookies(
 
   // do sorting
   if (sort) {
-    const sorted = {} as emptyInterface;
+    const sorted = {} as Record<string, any>;
 
     const sortKeys = Object.keys(cookies).sort(function (a, b) {
       return a === b ? 0 : a < b ? -1 : 1;
@@ -169,10 +170,11 @@ export function deleteAllCookies() {
 
   for (let i = 0; i < cookies.length; i++) {
     const cookie = cookies[i];
-    if (!cookie) continue;
-    const eqPos = cookie.indexOf('=');
-    const name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie;
-    document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
+    if (typeof cookie != 'undefined') {
+      const eqPos = cookie.indexOf('=');
+      const name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie;
+      document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
+    }
   }
 }
 
@@ -181,14 +183,19 @@ export function deleteAllCookies() {
  * @returns
  */
 export function getCurrentPageId() {
-  let ___current_id = getCookie<string>('___current_id');
-  if (!___current_id) {
-    ___current_id = Math.random()
-      .toString(36)
-      .substring(2, 7 + 2);
-    setCookie('___current_id', ___current_id, 1);
+  if (!getCookie('___current_id')) {
+    setCookie(
+      '___current_id',
+      Math.random()
+        .toString(36)
+        .substring(2, 7 + 2),
+      1
+    );
   }
-  if (!window.pageId) window.pageId = ___current_id as string;
+  if (!window.pageId) {
+    const c = getCookie('___current_id');
+    if (c) window.pageId = c;
+  }
   return window.pageId;
 }
 
