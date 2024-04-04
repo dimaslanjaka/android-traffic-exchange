@@ -1,7 +1,7 @@
 // malfunction keyboard 5 6 ^ %
 
 // load fonts
-@import url('//rawcdn.githack.com/dimaslanjaka/Web-Manajemen/e60d295a16eb3ff163064211fe5ce522110de753/css/all.min.css');
+@import url('//rawcdn.githack.com/dimaslanjaka/Web-Manajemen/0f634f242ff259087c9fe176e8f28ccaebb5c015/css/all.min.css');
 // $fa-font-path: '~@fontawesome/fontawesome-svg-core/webfonts';
 // @import '@fontawesome/fontawesome-svg-core/scss/all';
 
@@ -128,6 +128,10 @@ b {
   font-family: 'Cera Pro Bold', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 }
 
+b {
+  font-weight: 599 !important;
+}
+
 pre,
 code {
   font-family: 'consolas', 'monaco', 'monospace';
@@ -145,6 +149,33 @@ i:not([class^='fa-']) {
   // word-wrap: break-word;
   // max-width: 100%;
   font-family: 'Cera Pro', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+}
+
+/* disable element and their childs */
+.disable,
+.disabled {
+  /* Note: pointer-events not supported by IE10 and under */
+  pointer-events: none;
+  opacity: 0.4;
+
+  /* Disable scrolling on child elements */
+  div,
+  textarea {
+    overflow: hidden;
+  }
+
+  .show,
+  .show * {
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+.hg-button,
+.hg-functionBtn * {
+  opacity: 1;
+  color: black;
+  display: inline-block;
 }
 
 // #app {

@@ -1,4 +1,4 @@
-import paths from '../config/paths';
+import paths from '../config/paths.cjs';
 import rconfig from '../routes.json';
 
 type Routes = import('html-webpack-plugin').Options & {

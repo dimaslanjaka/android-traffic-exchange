@@ -1,0 +1,18 @@
+#homepage {
+  .post-item {
+    // word-wrap: anywhere;
+    // overflow-wrap: anywhere;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+
+    img {
+      height: 100%;
+    }
+  }
+}
+
+html,
+body {
+  height: 100vh;
+}

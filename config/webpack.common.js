@@ -1,4 +1,4 @@
-const paths = require('./paths');
+const paths = require('./paths.cjs');
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const excludePatterns = require('./webpack.excludes');
@@ -73,7 +73,8 @@ const config = {
       os: require.resolve('os-browserify'),
       buffer: require.resolve('buffer/'),
       constants: require.resolve('constants-browserify'),
-      stream: require.resolve('stream-browserify')
+      stream: require.resolve('stream-browserify'),
+      'process/browser': require.resolve('process/browser')
     },
     alias: paths.aliasAbsolute
   },

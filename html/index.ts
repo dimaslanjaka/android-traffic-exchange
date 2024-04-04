@@ -1,6 +1,6 @@
 import('./generate').then(loaded => {
   // populate routes.json
-  loaded.generateRouteHtml();
+  // loaded.generateRouteHtml();
   // populate tmp/static folder
-  // loaded.generateRouteHtmlFromTmp();
+  loaded.generateRouteHtmlFromTmp();
 });

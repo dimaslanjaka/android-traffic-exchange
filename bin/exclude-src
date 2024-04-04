@@ -1,0 +1,20 @@
+#!/usr/bin/env node
+/* eslint-disable @typescript-eslint/no-var-requires */
+
+const glob = require('glob');
+const { path, fs } = require('sbg-utility');
+// -f = regex flag
+const argv = require('minimist')(process.argv.slice(2));
+const root = path.join(__dirname, '..');
+
+for (let i = 0; i < argv._.length; i++) {
+  const pattern = new RegExp(argv._[i], argv.f || 'i');
+  const cwd = root + '/src';
+  const paths = glob.sync('**/*.*', { cwd });
+  const filter = paths.filter(str => pattern.test(str));
+  for (let ii = 0; ii < filter.length; ii++) {
+    const file = path.join(cwd, filter[ii]);
+    // rename file with ending .bck
+    fs.moveSync(file, file + '.bck', { dereference: true, overwrite: true });
+  }
+}

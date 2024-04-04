@@ -19,7 +19,6 @@
 *.jpg       binary diff
 *.ico       binary diff
 *.pdf       binary diff
-*.apk       binary diff
 
 # Ignore some meta files when creating an archive of this repository
 /.github            export-ignore
@@ -44,4 +43,4 @@
 *.psd -delta
 *.iso -delta
 *.tgz -delta
-*.apk -delta
+

@@ -1,0 +1,66 @@
+import { useEffect } from 'react';
+
+const src =
+  'https://rawcdn.githack.com/dimaslanjaka/smartform/87404cd0bdb9497691042fdd51b8e44d150aa6a2/dist/release/autosave.js';
+
+export function FormSaverElement() {
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = src;
+    script.async = true;
+    document.body.appendChild(script);
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
+  return <></>;
+}
+
+/**
+ * form saver load in useEffect or componentDidMount
+ */
+export function FormSaverCall() {
+  const script = document.createElement('script');
+  script.src = src;
+  script.async = true;
+  document.body.appendChild(script);
+}
+
+function loadAutoSaveJS(url: string, completeCallback: (...args: any[]) => any) {
+  const script = document.createElement('script');
+  let done = false,
+    head = document.getElementsByTagName('head')[0];
+  // when <head/> not set
+  if (!head) {
+    // append to first <body/> tag
+    head = document.getElementsByTagName('body')[0];
+  }
+  if (!head) {
+    // append to first <script/> tag
+    head = document.getElementsByTagName('script')[0];
+  }
+  script.src = url;
+  if (head) {
+    // script.onload = script.onreadystatechange = function () {
+    //   if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) {
+    //     done = true;
+    //     completeCallback();
+
+    //     // IE memory leak
+    //     script.onload = script.onreadystatechange = null;
+    //     head.removeChild(script);
+    //   }
+    // };
+    script.onload = function () {
+      done = true;
+      if (typeof completeCallback == 'function') completeCallback();
+    };
+    head.appendChild(script);
+  }
+}
+
+loadAutoSaveJS('https://raw.githack.com/dimaslanjaka/smartform/master/dist/release/bundle.min.js', function () {
+  // auto save all inputs, select, radio, textarea without debug (silently)
+  formsaver(false);
+});

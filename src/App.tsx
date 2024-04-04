@@ -1,57 +1,68 @@
 import React from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { FlowbiteCss } from './components/FlowbiteLayout/utils';
 import callGAnalytics from './components/GAnalytics/utils/callGAnalytics';
 import { TAG_ID } from './components/GAnalytics/utils/userData';
 import { initHljs } from './components/Highlight.js/helper';
-import { projectConfig } from './project';
-import createRoute from './utils/createRoute';
 
-const indexRoute: Parameters<typeof createBrowserRouter>[0] = [
-  {
-    path: '*',
-    async lazy() {
-      const { default: Component } = await import(/* webpackChunkName: "404-layout" */ './components/NoMatch');
-      return { Component };
-    }
-  },
-  {
-    index: true,
-    async lazy() {
-      const { default: Component } = await import(/* webpackChunkName: "homepage-layout" */ './routes/Homepage');
-      return { Component };
-    }
-  }
-];
+// const postRoute = project.routeConfig.map(routeMap).flat();
 
 const router = createBrowserRouter([
   {
     lazy: async () => {
       const { default: Component } = await import(
-        /* webpackChunkName: "flowbite-with-sidebar-layout" */ './components/FlowbiteLayout/index'
-      );
-      return { Component };
-    },
-    children: indexRoute
-  },
-  {
-    path: projectConfig.paths.base,
-    lazy: async () => {
-      const { FlowbiteLayoutWithoutSidebar: Component } = await import(
-        /* webpackChunkName: "flowbite-with-sidebar-layout" */ './components/FlowbiteLayout/index'
+        /* webpackChunkName: "app-theme-layout" */ '@components/FlowbiteLayout/index'
       );
       return { Component };
     },
     children: [
-      ...createRoute('backend/anon', import('./routes/backend/Anonymity')),
-      ...createRoute('backend/info', import('./routes/backend/Anonymity')),
-      ...createRoute('backend/anonymity', import('./routes/backend/Anonymity')),
-      ...createRoute('backend/referer', import('./routes/backend/Anonymity')),
-      ...createRoute('backend/home', import('./routes/backend/Home')),
-      ...createRoute('backend', import('./routes/backend/index')),
-      ...createRoute('backend/index', import('./routes/backend/index'))
-    ].concat(indexRoute as any)
+      // index
+      {
+        index: true,
+        async lazy() {
+          const { default: Component } = await import(/* webpackChunkName: "homepage-layout" */ './layout/Home/index');
+          return { Component };
+        }
+      },
+      // 404
+      {
+        path: '*',
+        async lazy() {
+          const { default: Component } = await import(/* webpackChunkName: "404-layout" */ './components/NoMatch');
+          return { Component };
+        }
+      },
+      {
+        path: '/im3',
+        async lazy() {
+          const { default: Component } = await import('./routes/im3');
+          return { Component };
+        }
+      },
+      {
+        path: '/im3/otp',
+        async lazy() {
+          const { default: Component } = await import('./routes/im3/otp');
+          return { Component };
+        }
+      },
+      {
+        path: '/login',
+        async lazy() {
+          const { default: Component } = await import('./routes/user/Login');
+          return { Component };
+        }
+      }
+    ]
   }
+  // {
+  //   lazy: async () => {
+  //     const { FlowbiteLayoutWithoutSidebar: Component } = await import(
+  //       /* webpackChunkName: "flowbite-with-sidebar-layout" */ '@components/FlowbiteLayout/index'
+  //     );
+  //     return { Component };
+  //   },
+  //   children: postRoute
+  // }
 ]);
 
 window.adsense_option = Object.assign(window.adsense_option || {}, {
@@ -63,7 +74,7 @@ window.adsense_option = Object.assign(window.adsense_option || {}, {
 class App extends React.Component {
   componentDidMount(): void {
     // load theme stylesheet
-    FlowbiteCss();
+    // FlowbiteCss();
     // initialize highlight.js
     initHljs();
     // initialize adsense

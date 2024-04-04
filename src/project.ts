@@ -1,7 +1,7 @@
+import Hexo from 'hexo';
 import _config from '../_config.json';
 import pjson from '../package.json';
 import routes from '../routes.json';
-import Hexo from 'hexo';
 
 export type Route = {
   body?: string;
@@ -18,8 +18,12 @@ export type Route = {
   id: string;
   jsxPath: string;
 };
-
-export const routeConfig = routes as Route[];
-export const projectConfig = _config as Hexo['config'] & typeof _config;
+type Y = Hexo['config'];
+export interface X extends Y {
+  [key: string]: any;
+}
+export const routeConfig = routes as unknown as Route[];
+export const projectConfig = _config as X & typeof _config;
 export const pkgjson = pjson;
-export default { routeConfig, projectConfig, pkgjson };
+const project = { routeConfig, projectConfig, pkgjson };
+export default project;

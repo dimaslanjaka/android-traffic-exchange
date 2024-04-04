@@ -1,11 +1,10 @@
+import gulp from 'gulp';
 import { fs, path } from 'sbg-utility';
-import React from 'react';
-import paths from '../config/paths';
+import { obj } from 'through2';
+import paths from '../config/paths.cjs';
+import getDistScripts from './getDistScripts';
 import { rConfig } from './routeConfig';
 import { renderStatic } from './template';
-import getDistScripts from './getDistScripts';
-import gulp from 'gulp';
-import { obj } from 'through2';
 
 /**
  * generate route by populating `/routes.json` with template `/{paths.build}/index.html`

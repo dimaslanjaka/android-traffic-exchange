@@ -8,6 +8,8 @@ const gch = require('git-command-helper');
 const config = yaml.parse(fs.readFileSync(__dirname + '/_config.yml', 'utf-8'));
 const args = require('./config/cli');
 
+// static html builder
+
 const configExcludes = array_unique([
   '.gitignore',
   /** ignore auto generated post (processed by `sbg post copy`) */

@@ -52,7 +52,7 @@ export const fetchWithCache = async (url: string, options: FetchCacheOptions = {
   let expiry = 5 * 60; // 5 min default
   if (typeof options === 'number') {
     expiry = options;
-    options = undefined;
+    options = undefined as any;
   } else if (typeof options === 'object') {
     // I hope you didn't set it to 0 seconds
     expiry = options.seconds || expiry;
@@ -60,7 +60,7 @@ export const fetchWithCache = async (url: string, options: FetchCacheOptions = {
   // Use the URL as the cache key to sessionStorage
   const cacheKey = url;
   const cached = localStorage.getItem(cacheKey);
-  const whenCached = parseInt(localStorage.getItem(cacheKey + ':ts'));
+  const whenCached = parseInt(localStorage.getItem(cacheKey + ':ts') || '0');
   if (cached !== null && whenCached !== null) {
     // it was in sessionStorage! Yay!
     // Even though 'whenCached' is a string, this operation

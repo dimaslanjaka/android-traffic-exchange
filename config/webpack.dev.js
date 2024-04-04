@@ -1,5 +1,5 @@
 const { merge } = require('webpack-merge');
-const paths = require('./paths');
+const paths = require('./paths.cjs');
 const common = require('./webpack.common.js');
 const cli = require('./cli');
 const excludePatterns = require('./webpack.excludes');
@@ -9,7 +9,7 @@ const path = require('path');
 /**
  * @type {import('webpack').Configuration}
  */
-const config = merge(common, {
+module.exports = merge(common, {
   entry: [paths.src + '/index.tsx'],
   output: {
     filename: 'runtime/main.js',
@@ -18,33 +18,7 @@ const config = merge(common, {
   module: {
     rules: [
       {
-        test: /\.css$/i,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: { importLoaders: 1 }
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              postcssOptions: {
-                plugins: [
-                  [
-                    '@csstools/postcss-is-pseudo-class',
-                    {
-                      // Options
-                    }
-                  ]
-                ]
-              }
-            }
-          }
-        ]
-      },
-      {
-        //test: /\.(s[a|c]ss)$/,
-        test: /.(sass|scss)$/,
+        test: /\.(s[a|c]ss)$/,
         use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
         exclude: excludePatterns.css
       }
@@ -98,8 +72,3 @@ const config = merge(common, {
 
 // write to ../config.json
 modifyConfigJson({ mode: 'development' });
-if (require.main === module) {
-  console.log(config);
-}
-
-module.exports = config;

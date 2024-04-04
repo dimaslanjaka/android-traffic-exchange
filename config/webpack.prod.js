@@ -1,5 +1,5 @@
 const { merge } = require('webpack-merge');
-const paths = require('./paths');
+const paths = require('./paths.cjs');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const common = require('./webpack.common.js');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;

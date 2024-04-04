@@ -9,4 +9,3 @@
 **/.yarn/**
 ./bin
 ./dist
-./test/puppeteer/extensions

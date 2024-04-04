@@ -1,3 +1,5 @@
+import { emptyInterface } from '../types/emptyInterface';
+
 /**
  * Create detailed cookie
  * @param name
@@ -78,15 +80,17 @@ export function setCookieMins(
   });
 }
 
-export function getCookie(name: string) {
+export function getCookie<T>(name: string, defaultValue?: T) {
+  if (!defaultValue) defaultValue = null as T;
   const nameEQ = name + '=';
   const ca = document.cookie.split(';');
   for (let i = 0; i < ca.length; i++) {
     let c = ca[i];
+    if (!c) continue;
     while (c.charAt(0) == ' ') c = c.substring(1, c.length);
     if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
   }
-  return null;
+  return defaultValue;
 }
 
 // export const createCookieExpires = ({ mins = 0, hours = 0, week = 0, month = 0 }) => {
@@ -112,9 +116,9 @@ export function getCookies(
 ): Record<string, any> {
   const { sort = false, skipKey = [] } = options;
   const pairs = document.cookie.split(';');
-  const cookies = {};
+  const cookies = {} as emptyInterface;
   for (let i = 0; i < pairs.length; i++) {
-    const pair = pairs[i].split('=');
+    const pair = (pairs[i] || '').split('=');
     cookies[(pair[0] + '').trim()] = unescape(pair.slice(1).join('='));
   }
 
@@ -127,7 +131,7 @@ export function getCookies(
 
   // do sorting
   if (sort) {
-    const sorted = {};
+    const sorted = {} as emptyInterface;
 
     const sortKeys = Object.keys(cookies).sort(function (a, b) {
       return a === b ? 0 : a < b ? -1 : 1;
@@ -165,6 +169,7 @@ export function deleteAllCookies() {
 
   for (let i = 0; i < cookies.length; i++) {
     const cookie = cookies[i];
+    if (!cookie) continue;
     const eqPos = cookie.indexOf('=');
     const name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie;
     document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
@@ -176,16 +181,14 @@ export function deleteAllCookies() {
  * @returns
  */
 export function getCurrentPageId() {
-  if (!getCookie('___current_id')) {
-    setCookie(
-      '___current_id',
-      Math.random()
-        .toString(36)
-        .substring(2, 7 + 2),
-      1
-    );
+  let ___current_id = getCookie<string>('___current_id');
+  if (!___current_id) {
+    ___current_id = Math.random()
+      .toString(36)
+      .substring(2, 7 + 2);
+    setCookie('___current_id', ___current_id, 1);
   }
-  if (!window.pageId) window.pageId = getCookie('___current_id');
+  if (!window.pageId) window.pageId = ___current_id as string;
   return window.pageId;
 }
 

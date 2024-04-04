@@ -42,7 +42,7 @@ class Adsense extends React.Component<AdsenseProperties, AdsenseState> {
   render() {
     const props = {
       'data-ad-slot': this.state.slot,
-      'data-ad-client': 'ca-pub-' + this.state.client.replace('ca-pub-', ''),
+      'data-ad-client': 'ca-pub-' + (this.state.client || '').replace('ca-pub-', ''),
       'data-ad-format': this.state.format,
       style: { display: 'block', ...this.state.style },
       className: utils
@@ -55,7 +55,7 @@ class Adsense extends React.Component<AdsenseProperties, AdsenseState> {
     if (this.state.widthResponsive) {
       props['data-full-width-responsive'] = this.state.widthResponsive;
     }
-    if (/dev/i.test(process.env.NODE_ENV)) {
+    if (/dev/i.test(process.env['NODE_ENV'] || '')) {
       // enable adsense test on development mode
       props['data-adtest'] = 'on';
     }
