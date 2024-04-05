@@ -7,8 +7,8 @@ interface State {
 }
 
 class AdBlockModal extends React.Component<any, State> {
-  _mounted: boolean;
-  _abortController: AbortController | null;
+  _mounted: boolean = false;
+  _abortController: AbortController | null = null;
   constructor(props: any) {
     super(props);
     this.state = {
