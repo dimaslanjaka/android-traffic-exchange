@@ -29,16 +29,20 @@ export const randomStr = (len = 8) =>
  * No Operations
  * @param _
  */
-export const noop = (..._: any[]) => {
-  //
+export const noop = (...args: any[]) => {
+  if (args.length > 0) {
+    args.forEach(item => {
+      console.error(item);
+    });
+  }
 };
 
 export interface LoadJSOpt {
   proxy?: boolean;
   async?: boolean;
   defer?: boolean;
-  onload?: GlobalEventHandlers['onload'];
-  onerror?: GlobalEventHandlers['onerror'];
+  onload?: GlobalEventHandlers['onload'] | null;
+  onerror?: GlobalEventHandlers['onerror'] | null;
   crossOrigin?: string;
 }
 
@@ -65,21 +69,25 @@ export function loadJS(url: string, props?: LoadJSOpt) {
     const script = document.createElement('script');
     // fix dynamic protocol source
     if (url.startsWith('//')) url = window.location.protocol + url;
-    // proxying when enabled
-    if (url.startsWith('http') && props.proxy) url = 'https://crossorigin.me/' + url;
-    // skip duplicate
-    const existingSources = Array.from(document.scripts)
-      .map(el => stripProtocol(el.src))
-      .filter(source => source === stripProtocol(url));
-    if (existingSources.length > 0) return resolve(props.onload?.call(null));
-    if (document.querySelector(`script[src="${url}"]`)) return resolve(props.onload?.call(null));
-    script.src = url.replace(/(^\w+:|^)/, window.location.protocol);
-    script.async = props.async || false;
-    script.defer = props.defer || false;
-    script.crossOrigin = props.crossOrigin || 'anonymous';
-    script.onload = () => resolve(props.onload?.call(null));
-    script.onerror = err => reject(props.onerror?.call(null) || err);
-    document.body.appendChild(script);
+    if (props) {
+      const onload = props.onload || noop;
+      const onerror = props.onerror || noop;
+      // proxying when enabled
+      if (url.startsWith('http') && props.proxy) url = 'https://crossorigin.me/' + url;
+      // skip duplicate
+      const existingSources = Array.from(document.scripts)
+        .map(el => stripProtocol(el.src))
+        .filter(source => source === stripProtocol(url));
+      if (existingSources.length > 0) return resolve(onload.call(null));
+      if (document.querySelector(`script[src="${url}"]`)) return resolve(onload.call(null));
+      script.src = url.replace(/(^\w+:|^)/, window.location.protocol);
+      script.async = props.async || false;
+      script.defer = props.defer || false;
+      script.crossOrigin = props.crossOrigin || 'anonymous';
+      script.onload = () => resolve(onload.call(null));
+      script.onerror = err => reject(onerror.call(null) || err);
+      document.body.appendChild(script);
+    }
   });
 }
 
@@ -95,7 +103,7 @@ export function loadCSS(url: string) {
   link.type = 'text/css';
   link.href = url;
   link.media = 'all';
-  head.appendChild(link);
+  if (head) head.appendChild(link);
 }
 
 export const safelinkInstance = new safelinkify.safelink({
@@ -121,10 +129,14 @@ export function parse_url(href: string) {
   if (!href) {
     href = location.href;
   }
-  const l = document.createElement('a');
+  const l = document.createElement('a') as CustomHyperlinkElement;
   l.href = href;
   l['query'] = parse_query({}, href);
   return l;
+}
+
+export interface CustomHyperlinkElement extends HTMLAnchorElement {
+  query?: Record<string, any> | string;
 }
 
 /**
@@ -214,7 +226,7 @@ export function replaceWith(newElement: InstanceHtml, oldElement: InstanceHtml) 
  */
 export function insertAfter(newNode: InstanceHtml, referenceNode?: InstanceHtml) {
   if (referenceNode) {
-    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+    referenceNode.parentNode?.insertBefore(newNode, referenceNode.nextSibling);
   } else {
     throw new Error('insertAfter: referenced node undefined/null');
   }
@@ -227,7 +239,7 @@ export function insertAfter(newNode: InstanceHtml, referenceNode?: InstanceHtml)
  */
 export function insertBefore(newNode: InstanceHtml, referenceNode?: InstanceHtml) {
   if (referenceNode) {
-    referenceNode.parentNode.insertBefore(newNode, referenceNode);
+    referenceNode.parentNode?.insertBefore(newNode, referenceNode);
   } else {
     throw new Error('insertBefore: referenced node undefined/null');
   }

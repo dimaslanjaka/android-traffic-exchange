@@ -19,7 +19,7 @@ export function scrollToHash() {
 /* remember scroll position start - https://stackoverflow.com/a/65746118 */
 
 export const saveScrollPosition = function () {
-  let scrollPos: number;
+  let scrollPos: number = -1;
   if (typeof window.pageYOffset != 'undefined') {
     scrollPos = window.pageYOffset;
   } else if (typeof document.compatMode != 'undefined' && document.compatMode != 'BackCompat') {
@@ -27,7 +27,7 @@ export const saveScrollPosition = function () {
   } else if (typeof document.body != 'undefined') {
     scrollPos = document.body.scrollTop;
   }
-  document.cookie = 'scrollTop=' + scrollPos + 'URL=' + window.location.href;
+  if (scrollPos > 0) document.cookie = 'scrollTop=' + scrollPos + 'URL=' + window.location.href;
 };
 
 window.onbeforeunload = saveScrollPosition;
@@ -38,8 +38,10 @@ export const restoreScrollPosition = function () {
     if (document.cookie.includes(window.location.href)) {
       if (document.cookie.match(/scrollTop=([^;]+)(;|$)/) != null) {
         const arr = document.cookie.match(/scrollTop=([^;]+)(;|$)/);
-        document.documentElement.scrollTop = parseInt(arr[1]);
-        document.body.scrollTop = parseInt(arr[1]);
+        if (arr && arr[1]) {
+          document.documentElement.scrollTop = parseInt(arr[1]);
+          document.body.scrollTop = parseInt(arr[1]);
+        }
       }
     }
   }
