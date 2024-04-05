@@ -2,7 +2,7 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji';
   // font-size: 16px;
-  // line-height: 1.5;
+  line-height: 1;
   word-wrap: break-word;
 
   // max-width: 1012px;
@@ -11,6 +11,24 @@
 
   * {
     box-sizing: border-box;
+    line-height: 1;
+  }
+
+  blockquote {
+    &:after {
+      content: ' ';
+    }
+    &:before {
+      content: ' ';
+      background-image: none;
+    }
+
+    quotes: none;
+  }
+
+  p {
+    margin-bottom: 0.25em;
+    margin-top: 0.25em;
   }
 
   // table {
