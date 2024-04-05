@@ -4,8 +4,7 @@ import LocalStorageHelper from '@root/src/utils/LocalStoragehelper';
 import isHeadless from '@root/src/utils/isHeadless';
 import urlOf from '@root/src/utils/urlOf';
 import React from 'react';
-import { axiosWithCache } from '../../utils';
-import getIp, { IpResult } from '../../utils/getIp';
+import getIp, { GeoIpResult, IpResult, getGeoIp } from '../../utils/getIp';
 import isSelenium from '../../utils/isSelenium';
 import './anonymity.scss';
 
@@ -253,29 +252,3 @@ function getCookie(key: string) {
 //   const keyValue = getCookie(key);
 //   setCookie(key, keyValue, '-1');
 // }
-
-interface GeoIpResult {
-  status: string;
-  country: string;
-  countryCode: string;
-  region: string;
-  regionName: string;
-  city: string;
-  zip: string;
-  lat: number;
-  lon: number;
-  timezone: string;
-  isp: string;
-  org: string;
-  as: string;
-  query: string;
-}
-
-async function getGeoIp(ip?: string | AbortController, abortController?: AbortController) {
-  const controller = ip instanceof AbortController ? ip : abortController;
-  const response = await axiosWithCache.withoutCredentials('//ip-api.com/json/' + (typeof ip === 'string' ? ip : ''), {
-    signal: controller?.signal
-  });
-  // console.log('geo ip', JSON.stringify(data));
-  return (response?.data || {}) as GeoIpResult;
-}
