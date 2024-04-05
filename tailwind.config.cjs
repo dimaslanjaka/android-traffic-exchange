@@ -1,11 +1,15 @@
 /* eslint-disable no-undef */
+
+const flowbite = require('flowbite-react/tailwind');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     './index.html',
-    'node_modules/flowbite-react/lib/esm/**/*.js',
+    // 'node_modules/flowbite-react/lib/esm/**/*.js',
     // './node_modules/flowbite-react/lib/**/*.{js,ts}',
-    './src/**/*.{ts,tsx,js,jsx}'
+    './src/**/*.{ts,tsx,js,jsx}',
+    flowbite.content()
   ],
   theme: {
     colors: {
@@ -71,7 +75,8 @@ module.exports = {
     extend: {}
   },
   plugins: [
-    require('flowbite/plugin'),
+    // require('flowbite/plugin'),
+    flowbite.plugin(),
     require('flowbite-typography')({
       className: 'prose'
     })
