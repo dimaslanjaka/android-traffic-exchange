@@ -19,7 +19,7 @@ const router = createBrowserRouter([
       {
         index: true,
         async lazy() {
-          const { default: Component } = await import(/* webpackChunkName: "homepage-layout" */ './layout/Home/index');
+          const { default: Component } = await import(/* webpackChunkName: "homepage-layout" */ './routes/Home/index');
           return { Component };
         }
       },

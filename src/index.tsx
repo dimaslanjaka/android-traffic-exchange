@@ -11,7 +11,7 @@ import { SidebarProvider } from './components/FlowbiteLayout/context/SidebarCont
 import NoMatch from './components/NoMatch';
 import theme from './flowbite-theme';
 import './index.css';
-import Home2 from './routes/Home2';
+import Home from './routes/Home';
 import Im3Index from './routes/im3';
 import GiftOtp from './routes/im3/GiftOtp';
 import IndexMarkdown from './routes/markdown';
@@ -37,7 +37,7 @@ root.render(
               <div className="flex flex-col md:flex-row dark:bg-gray-900">
                 <div className="order-2 mx-4 mt-4 mb-24 flex-[1_0_16rem]" id="router-wrapper">
                   <Routes>
-                    <Route path="/" element={<Home2 />} index />
+                    <Route path="/" element={<Home />} index />
                     <Route path="/im3" element={<Im3Index />} />
                     <Route path="/im3/gift-otp/:id" element={<GiftOtp />} />
                     <Route path="/login" element={<Login />} />
