@@ -8,13 +8,11 @@ import './homepage.scss';
 const Homepage = () => {
   return (
     <main id="homepage" className="markdown-body relative overflow-x-auto">
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-        <div className="mx-auto prose lg:prose-lg dark:prose-invert text-gray-500 dark:text-gray-400">
-          <ReactMarkdown children={readmeMd} remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} />
-          <div style={{ height: '2em' }}></div>
-          <h2 className="text-center">CHANGELOG</h2>
-          <ReactMarkdown children={changelogMd} remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} />
-        </div>
+      <div className="mx-auto prose lg:prose-lg dark:prose-invert text-gray-500 dark:text-gray-400">
+        <ReactMarkdown children={readmeMd} remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} />
+        <div style={{ height: '2em' }}></div>
+        <h2 className="text-center">CHANGELOG</h2>
+        <ReactMarkdown children={changelogMd} remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} />
       </div>
     </main>
   );
