@@ -1,0 +1,9 @@
+#anon {
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+
+  pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+}
