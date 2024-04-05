@@ -34,6 +34,7 @@
     "axios": "^1.6.8",
     "axios-cache-interceptor": "^1.5.1",
     "classnames": "^2.5.1",
+    "crypto-js": "^4.2.0",
     "flowbite": "^2.3.0",
     "flowbite-react": "^0.8.0",
     "jquery-form-saver": "https://github.com/dimaslanjaka/jquery-form-saver#master",
@@ -48,6 +49,7 @@
   },
   "devDependencies": {
     "@babel/preset-react": "^7.24.1",
+    "@types/crypto-js": "^4",
     "@types/google.accounts": "^0.0.14",
     "@types/node": "^20.12.4",
     "@types/react": "^18.2.74",
