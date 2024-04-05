@@ -1,11 +1,13 @@
+import FingerprintJS from '@fingerprintjs/fingerprintjs';
 import { projectConfig } from '@root/src/project';
-import { axiosWithCache } from '../../utils';
+import LocalStorageHelper from '@root/src/utils/LocalStoragehelper';
+import isHeadless from '@root/src/utils/isHeadless';
+import urlOf from '@root/src/utils/urlOf';
 import React from 'react';
-import './anonymity.scss';
+import { axiosWithCache } from '../../utils';
 import getIp, { IpResult } from '../../utils/getIp';
 import isSelenium from '../../utils/isSelenium';
-import isHeadless from '@root/src/utils/isHeadless';
-import FingerprintJS from '@fingerprintjs/fingerprintjs';
+import './anonymity.scss';
 
 export default function Anonymity() {
   const [ip, setIp] = React.useState<IpResult>();
@@ -14,7 +16,7 @@ export default function Anonymity() {
   const [headless, setHeadless] = React.useState<boolean>();
   const [fpHash, setFpHash] = React.useState('');
   const [cookieId, setCookieId] = React.useState('');
-  // const [storageId, setStorageId] = React.useState('');
+  const [storageId, setStorageId] = React.useState('');
 
   React.useEffect(() => {
     const ac = new AbortController();
@@ -37,7 +39,7 @@ export default function Anonymity() {
       .catch(() => {
         //
       });
-    isHeadless().then(setHeadless);
+    isHeadless().then(result => setHeadless(result));
 
     const setFp = async () => {
       const fp = await FingerprintJS.load();
@@ -59,7 +61,8 @@ export default function Anonymity() {
       .then(response => response.json())
       .then(data => {
         const str = JSON.stringify(data, null, 2);
-        document.querySelector('#headers').textContent = str;
+        const h = document.querySelector('#headers');
+        if (h) h.textContent = str;
       });
     // cookie fetcher
     const cookieKeyStr = 'cookieKey';
@@ -74,40 +77,56 @@ export default function Anonymity() {
       );
     }
     // set local cookie id
-    setCookieId(getCookie(cookieKeyStr));
-    fetch(
-      urlOf('//httpbin.org/cookies/set?') +
-        new URLSearchParams({
-          cookieKey: getCookie(cookieKeyStr) || 'hello world'
-        }),
-      {
-        method: 'GET',
-        credentials: 'include'
-        // follow: true
-      }
-    )
-      .then(response => {
-        if (response.ok) {
-          document.querySelector('#set').textContent = `${response.url} OK`;
-          return response.json();
-        }
-      })
-      .finally(() => {
-        fetch(urlOf('//httpbin.org/cookies'), {
+    const cValue = getCookie(cookieKeyStr);
+    if (cValue) {
+      setCookieId(cValue);
+      fetch(
+        urlOf('//httpbin.org/cookies/set?') +
+          new URLSearchParams({
+            cookieKey: cValue || 'hello world'
+          }),
+        {
           method: 'GET',
           credentials: 'include'
           // follow: true
+        }
+      )
+        .then(response => {
+          if (response.ok) {
+            const set = document.querySelector('#set');
+            if (set) set.textContent = `${response.url} OK`;
+            return response.json();
+          }
+          return null;
         })
-          .then(res => res.json())
-          .then(data => {
-            const str = JSON.stringify(data, null, 2);
-            if (data && data.cookies && data.cookies.cookieKey) {
-              // set httpbin cookie id result
-              setCookieId(data.cookies.cookieKey);
-            }
-            document.querySelector('#cookiesHttpbin').textContent = str;
-          });
-      });
+        .finally(() => {
+          fetch(urlOf('//httpbin.org/cookies'), {
+            method: 'GET',
+            credentials: 'include'
+            // follow: true
+          })
+            .then(res => res.json())
+            .then(data => {
+              const str = JSON.stringify(data, null, 2);
+              if (data && data.cookies && data.cookies.cookieKey) {
+                // set httpbin cookie id result
+                setCookieId(data.cookies.cookieKey);
+              }
+              const el = document.querySelector('#cookiesHttpbin');
+              if (el) el.textContent = str;
+            });
+        });
+    }
+    if (!LocalStorageHelper.hasKey(cookieKeyStr)) {
+      LocalStorageHelper.setItem(
+        cookieKeyStr,
+        Math.random()
+          .toString(36)
+          .substring(2, 4 + 2)
+      );
+    }
+    const localValue = LocalStorageHelper.getItem<string>(cookieKeyStr);
+    if (localValue) setStorageId(localValue);
     return () => {
       ac.abort();
     };
@@ -151,6 +170,10 @@ export default function Anonymity() {
               <td>{cookieId}</td>
             </tr>
             <tr>
+              <td>LocalStorage ID</td>
+              <td>{storageId}</td>
+            </tr>
+            <tr>
               <td>Fingerprint</td>
               <td>{fpHash}</td>
             </tr>
@@ -173,29 +196,32 @@ export default function Anonymity() {
                       </tr>
                     );
                   }
+                  return undefined;
                 })}
             </tbody>
           </table>
         </div>
+      </div>
 
-        <div className="mb-2">
-          <h2>Geo Location</h2>
-          <table>
-            <tbody key="ip-geolocation">
-              {ipInfo &&
-                Object.keys(ipInfo).map(ipItem => {
-                  if (ipInfo[ipItem]) {
-                    return (
-                      <tr key={'ip-geolocation' + ipItem}>
-                        <td>{ipItem}</td>
-                        <td>{ipInfo[ipItem]}</td>
-                      </tr>
-                    );
-                  }
-                })}
-            </tbody>
-          </table>
-        </div>
+      <div className="mb-2">
+        <h2>Geo Location</h2>
+        <table>
+          <tbody key="ip-geolocation">
+            {ipInfo &&
+              Object.keys(ipInfo).map(ipItem => {
+                const item = (ipInfo as Record<string, any>)[ipItem];
+                if (item) {
+                  return (
+                    <tr key={'ip-geolocation' + ipItem}>
+                      <td>{ipItem}</td>
+                      <td>{item}</td>
+                    </tr>
+                  );
+                }
+                return undefined;
+              })}
+          </tbody>
+        </table>
       </div>
 
       <div className="mb-2">
@@ -227,12 +253,6 @@ function getCookie(key: string) {
 //   const keyValue = getCookie(key);
 //   setCookie(key, keyValue, '-1');
 // }
-
-function urlOf(url: string) {
-  let protocol = window.location.protocol;
-  if (protocol.startsWith('file:')) protocol = 'http:';
-  return protocol + url.replace(/^https?:/, '');
-}
 
 interface GeoIpResult {
   status: string;
