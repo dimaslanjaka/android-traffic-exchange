@@ -3,13 +3,15 @@ import dotenv from 'dotenv';
 import { createRequire } from 'node:module';
 import path from 'upath';
 import { UserConfig, defineConfig } from 'vite';
+import * as mdp from 'vite-plugin-markdown';
 
+const { plugin: mdPlugin, Mode } = mdp;
 dotenv.config({ override: true });
 
 const require = createRequire(import.meta.url);
 
 const config: UserConfig = {
-  plugins: [react()],
+  plugins: [react(), mdPlugin({ mode: [Mode.HTML, Mode.MARKDOWN, Mode.TOC, Mode.REACT] })],
   server: {
     port: 4000
   },
