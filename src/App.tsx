@@ -51,6 +51,13 @@ const router = createBrowserRouter([
           const { default: Component } = await import('./routes/user/Login');
           return { Component };
         }
+      },
+      {
+        path: '/test',
+        async lazy() {
+          const { default: Component } = await import('./routes/markdown/index');
+          return { Component };
+        }
       }
     ]
   }

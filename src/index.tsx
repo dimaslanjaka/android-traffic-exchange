@@ -14,6 +14,7 @@ import './index.css';
 import Home from './layout/Home';
 import Im3Index from './routes/im3';
 import GiftOtp from './routes/im3/GiftOtp';
+import IndexMarkdown from './routes/markdown';
 import Login from './routes/user/Login';
 import Dashboard from './routes/user/dashboard/Dashboard';
 
@@ -41,6 +42,7 @@ root.render(
                     <Route path="/im3/gift-otp/:id" element={<GiftOtp />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/test" element={<IndexMarkdown />} />
                     <Route path="*" element={<NoMatch />} />
                   </Routes>
                 </div>
