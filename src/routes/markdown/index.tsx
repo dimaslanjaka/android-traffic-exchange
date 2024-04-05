@@ -1,5 +1,7 @@
 import { html, markdown, toc } from './content.md';
 
+// https://github.com/hmsk/vite-plugin-markdown/tree/main
+
 export default function IndexMarkdown() {
   return (
     <main>
