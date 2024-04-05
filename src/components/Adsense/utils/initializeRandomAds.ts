@@ -29,7 +29,7 @@ export default function initializeRandomAds() {
   // console.log('total targeted ads places', adsPlaces.length, ...adsPlaces.map(el => el.tagName));
   // console.log('total ads left', currentSlot.ads.length);
 
-  if (adsPlaces.length > 0 && currentSlot.ads.length > 0) {
+  if (currentSlot && adsPlaces.length > 0 && currentSlot.ads.length > 0) {
     array_shuffle(adsPlaces).forEach((el, i) => {
       const prevEl = el.previousElementSibling || ({} as Element);
       const nextEl = el.nextElementSibling || ({} as Element);
@@ -38,19 +38,23 @@ export default function initializeRandomAds() {
         // skip if there are adjacent `ins` elements
         return;
       }
+      // ignore BR and HR
+      if (el.tagName == 'HR' || el.tagName == 'BR') return;
       const bannedElement = [el.classList.contains('fixed-top')].some(Boolean);
       // console.log(el.clientWidth, el.scrollWidth, el.clientHeight, el.scrollHeight);
       const isWidthAvailable = el.clientWidth > 250 && el.scrollWidth > 250;
       if (isWidthAvailable && currentSlot.ads.length > 0 && !bannedElement) {
         const ad = currentSlot.ads.shift();
-        ad['data-ad-client'] = 'ca-pub-' + currentSlot.pub.replace('ca-pub-', '');
-        if (isLocalHostname()) {
-          ad['data-adtest'] = 'on';
-        }
-        const ins = createIns(ad);
-        if (ins) {
-          console.log('apply ads to', el.tagName, el.className, '#' + el.id);
-          insertAfter(ins, el);
+        if (ad) {
+          ad['data-ad-client'] = 'ca-pub-' + currentSlot.pub.replace('ca-pub-', '');
+          if (isLocalHostname()) {
+            ad['data-adtest'] = 'on';
+          }
+          const ins = createIns(ad);
+          if (ins) {
+            console.log('apply ads to', el.tagName, el.className, '#' + el.id);
+            insertAfter(ins, el);
+          }
         }
       } else if (!isWidthAvailable) {
         console.error('width', el.tagName, 'is insufficient');
@@ -93,19 +97,23 @@ export default function initializeRandomAds() {
     // }
   }
 
-  const pageAd = `//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-${currentSlot.pub.replace(
-    'ca-pub-',
-    ''
-  )}`;
-  const existingSources = Array.from(document.scripts).map(el => el.src);
-  //console.info({ existingSources });
-  if (!existingSources.some(str => str.includes('pagead/js/adsbygoogle.js'))) {
-    // create pagead when not existing page ad
-    const onerror = () => console.error('failed load adsense');
-    loadJS(pageAd, { onload: onloadAds, onerror }).catch(onerror);
+  if (currentSlot) {
+    const pageAd = `//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-${currentSlot.pub.replace(
+      'ca-pub-',
+      ''
+    )}`;
+    const existingSources = Array.from(document.scripts).map(el => el.src);
+    //console.info({ existingSources });
+    if (!existingSources.some(str => str.includes('pagead/js/adsbygoogle.js'))) {
+      // create pagead when not existing page ad
+      const onerror = () => console.error('failed load adsense');
+      loadJS(pageAd, { onload: onloadAds, onerror }).catch(onerror);
+    } else {
+      // load callback instead
+      onloadAds();
+    }
   } else {
-    // load callback instead
-    onloadAds();
+    console.error('current slot pub ads undefined');
   }
 
   //loadJS("//imasdk.googleapis.com/js/sdkloader/ima3.js")
@@ -147,8 +155,8 @@ export function onloadAds() {
 
     // log('parent width banner', i + 0, ins.parentElement.offsetWidth);
 
-    const slot = ins.getAttribute('data-ad-slot').trim();
-    const client = ins.getAttribute('data-ad-client').trim();
+    const slot = ins.getAttribute('data-ad-slot')?.trim();
+    const client = ins.getAttribute('data-ad-client')?.trim();
     // if (ins.parentElement.offsetWidth < 250) {
     //   // remove banner when parent width is 0 or display: none
     //   if (window.adsense_option.remove) {
@@ -173,8 +181,12 @@ export function onloadAds() {
     //   });
     // }
 
-    window.adsbygoogle.push({
-      params: paramBuilder({ slot, client })
-    });
+    if (slot && client) {
+      window.adsbygoogle.push({
+        params: paramBuilder({ slot, client })
+      });
+    } else {
+      console.error('slot and client is undefined');
+    }
   }
 }
