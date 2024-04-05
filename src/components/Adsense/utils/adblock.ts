@@ -68,10 +68,10 @@ class adblock {
       const script = document.createElement('script');
       script.type = 'text/javascript';
       script.id = 'adblock-script-test';
-      script.async = !0;
+      script.async = true;
       script.src = '//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
       script.onerror = function () {
-        window['adblock'] = !0;
+        window['adblock'] = true;
         console.log('adblock enabled');
         const sct = document.querySelector('#adblock-script-test');
         if (sct) sct.remove();
