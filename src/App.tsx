@@ -9,7 +9,7 @@ import { initHljs } from './components/Highlight.js/helper';
 const router = createBrowserRouter([
   {
     lazy: async () => {
-      const { default: Component } = await import(
+      const { FL: Component } = await import(
         /* webpackChunkName: "app-theme-layout" */ '@components/FlowbiteLayout/index'
       );
       return { Component };

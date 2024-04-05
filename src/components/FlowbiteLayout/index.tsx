@@ -147,3 +147,69 @@ export function FlowbiteLayoutWithoutSidebar() {
     </FlowbiteLayout>
   );
 }
+
+export interface ToastInfo {
+  title: string;
+  description: string;
+}
+export interface FLState {
+  showToast: boolean;
+  toastInfo: ToastInfo;
+}
+
+export class FL extends React.Component<{ children: React.ReactNode }, FLState> {
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      showToast: false,
+      toastInfo: { title: 'toast title', description: 'toast description' }
+    };
+  }
+  setShowToast = (value: boolean) => {
+    this.setState({ showToast: value });
+  };
+
+  setToastInfo = (info: ToastInfo) => {
+    this.setState({ toastInfo: info });
+  };
+  render(): React.ReactNode {
+    const { showToast, toastInfo } = this.state;
+    return (
+      <div id="FlowbiteLayout">
+        <FlowbiteContext>
+          <SidebarProvider>
+            <FlowbiteHeader />
+            <div id="flowbite-main-content">
+              {this.props && this.props.children ? (
+                this.props.children
+              ) : (
+                <div className="flex flex-col md:flex-row dark:bg-gray-900">
+                  <div className="order-2 mx-4 mt-4 mb-24 flex-[1_0_16rem]" id="router-wrapper">
+                    <Outlet context={{ setShowToast: this.setShowToast, setToastInfo: this.setToastInfo }} />
+                  </div>
+                  {showToast && (
+                    <Toast className="absolute top-5 end-5 z-50 shadow">
+                      <div className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-cyan-100 text-cyan-500 dark:bg-cyan-800 dark:text-cyan-200">
+                        <HiFire className="h-5 w-5" />
+                      </div>
+                      <div className="ml-3 text-sm font-normal">
+                        <span className="mb-1 text-sm font-semibold text-gray-900 dark:text-white">
+                          {toastInfo.title}
+                        </span>
+                        <div className="mb-2 text-sm font-normal">{toastInfo.description}</div>
+                      </div>
+                      <Toast.Toggle onDismiss={() => this.setShowToast(false)} />
+                    </Toast>
+                  )}
+                  <div className="order-1">
+                    <ActualSidebar />
+                  </div>
+                </div>
+              )}
+            </div>
+          </SidebarProvider>
+        </FlowbiteContext>
+      </div>
+    );
+  }
+}
