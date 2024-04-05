@@ -1,4 +1,4 @@
-export default function isHeadless() {
+export default function isHeadless(): Promise<boolean> {
   const log = (...args: any[]) => console.log('isHeadless', ...args);
   return new Promise(resolve => {
     if (/HeadlessChrome/.test(window.navigator.userAgent)) {
