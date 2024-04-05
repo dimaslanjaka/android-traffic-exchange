@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "@fancyapps/ui": "^5.0.35",
+    "@fingerprintjs/fingerprintjs": "^4.2.2",
     "apexcharts": "^3.48.0",
     "axios": "^1.6.8",
     "axios-cache-interceptor": "^1.5.1",
