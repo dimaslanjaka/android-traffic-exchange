@@ -1,7 +1,6 @@
-import { Flowbite } from 'flowbite-react';
+import { CustomFlowbiteTheme, Flowbite } from 'flowbite-react';
+// import { CustomFlowbiteTheme } from 'flowbite-react/lib/esm/components/Flowbite/FlowbiteTheme';
 import { FC, PropsWithChildren } from 'react';
-import { CustomFlowbiteTheme } from 'flowbite-react/lib/esm/components/Flowbite/FlowbiteTheme';
-import React from 'react';
 
 export const flowbiteTheme: CustomFlowbiteTheme = {
   footer: {
@@ -37,7 +36,9 @@ export const flowbiteTheme: CustomFlowbiteTheme = {
     item: {
       base: 'no-underline flex items-center rounded-lg p-2 text-lg font-normal text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700'
     },
-    itemGroup: 'list-none border-t border-gray-200 pt-3 first:mt-0 first:border-t-0 first:pt-0 dark:border-gray-700'
+    itemGroup: {
+      base: 'list-none border-t border-gray-200 pt-3 first:mt-0 first:border-t-0 first:pt-0 dark:border-gray-700'
+    }
   }
 };
 
