@@ -71,18 +71,20 @@ class adblock {
       script.async = !0;
       script.src = '//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
       script.onerror = function () {
-        window.adblock = !0;
+        window['adblock'] = !0;
         console.log('adblock enabled');
-        document.querySelector('#adblock-script-test').remove();
+        const sct = document.querySelector('#adblock-script-test');
+        if (sct) sct.remove();
         reject(new Error('adblock enabled'));
       };
       script.onload = function () {
         console.log('adblock disabled');
-        document.querySelector('#adblock-script-test').remove();
+        const sct = document.querySelector('#adblock-script-test');
+        if (sct) sct.remove();
         resolve(null);
       };
       const firstScript = document.getElementsByTagName('script')[0];
-      firstScript.parentNode.insertBefore(script, firstScript);
+      firstScript?.parentNode?.insertBefore(script, firstScript);
     });
   }
 
