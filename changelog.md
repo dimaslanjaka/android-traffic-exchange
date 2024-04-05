@@ -1,7 +1,3 @@
-<!-- 5 6 ^ % -->
-
-<!-- **Android Traffic Exchange Changelog** -->
-
 > When the updater not work, you can download **manager.apk**
 > at [GitHub Repository](https://github.com/dimaslanjaka/android-traffic-exchange/tree/master/release)
 >
