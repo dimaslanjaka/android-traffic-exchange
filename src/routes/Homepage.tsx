@@ -1,30 +1,22 @@
-import changelog from '@root/changelog.md';
-import readme from '@root/readme.md';
+import { markdown as changelogMd } from '@root/changelog.md';
+import { markdown as readmeMd } from '@root/readme.md';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
 import './homepage.scss';
 
 const Homepage = () => {
-  //   const [text, setText] = useState('');
-
-  //   useEffect(() => {
-  //     fetch(markdownFile)
-  //       .then(response => response.text())
-  //       .then(md => {
-  //         setText(md);
-  //       });
-  //   }, []);
-
   return (
-    <div id="homepage" className="markdown-body relative overflow-x-auto">
-      <div className="mx-auto prose lg:prose-lg dark:prose-invert text-gray-500 dark:text-gray-400">
-        <ReactMarkdown children={readme} remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} />
-        <div style={{ height: '2em' }}></div>
-        <h2 className="text-center">CHANGELOG</h2>
-        <ReactMarkdown children={changelog} remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} />
+    <main id="homepage" className="markdown-body relative overflow-x-auto">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="mx-auto prose lg:prose-lg dark:prose-invert text-gray-500 dark:text-gray-400">
+          <ReactMarkdown children={readmeMd} remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} />
+          <div style={{ height: '2em' }}></div>
+          <h2 className="text-center">CHANGELOG</h2>
+          <ReactMarkdown children={changelogMd} remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} />
+        </div>
       </div>
-    </div>
+    </main>
   );
 };
 

@@ -11,7 +11,7 @@ dotenv.config({ override: true });
 const require = createRequire(import.meta.url);
 
 const config: UserConfig = {
-  plugins: [react(), mdPlugin({ mode: [Mode.HTML, Mode.MARKDOWN, Mode.TOC, Mode.REACT] })],
+  plugins: [react(), mdPlugin({ mode: [Mode.HTML, Mode.MARKDOWN, Mode.TOC] })],
   server: {
     port: 4000
   },

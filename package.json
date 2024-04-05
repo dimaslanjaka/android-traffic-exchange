@@ -37,7 +37,10 @@
     "jquery-form-saver": "https://github.com/dimaslanjaka/jquery-form-saver#master",
     "react-apexcharts": "^1.4.1",
     "react-icons": "^5.0.1",
+    "react-markdown": "^9.0.1",
     "react-simple-keyboard": "^3.7.78",
+    "rehype-raw": "^7.0.0",
+    "remark-gfm": "^4.0.0",
     "simple-keyboard": "^3.7.53",
     "yaml": "^2.4.1"
   },
