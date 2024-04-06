@@ -16,14 +16,21 @@
 
   blockquote {
     &:after {
-      content: ' ';
+      content: none !important;
     }
     &:before {
-      content: ' ';
-      background-image: none;
+      content: none !important;
     }
+    // quotes: none !important;
 
-    quotes: none;
+    border-left: 10px solid #ccc;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+
+    p {
+      display: inline;
+      line-height: 1.25;
+    }
   }
 
   p {
