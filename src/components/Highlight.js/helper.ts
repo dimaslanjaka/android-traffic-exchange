@@ -9,12 +9,11 @@ function startHighlighter(preCode: HTMLElement) {
   if ('highlightAll' in hljs === false) return loadHljs();
   // deterimine <code /> tag
   let code: HTMLPreElement | HTMLElement | null | undefined = preCode;
+  // skip already parsed
+  if (code.hasAttribute('highlighted')) return;
   if (preCode.tagName.toLowerCase() === 'pre' && code) {
     const dh = preCode.getAttribute('data-highlight');
-    // console.log('has data-highlight', preCode.getAttribute('data-highlight'));
-    // if (dh) {
-    //   return;
-    // }
+    // ignore on data-highlight=false
     if (dh && dh == 'false') return;
     // select inner <code /> from <pre /> tag
     code = preCode.querySelector('code');
@@ -40,7 +39,9 @@ function startHighlighter(preCode: HTMLElement) {
     code.classList.remove('language-mysql');
     code.classList.add('language-sql');
   }
-  console.info(`apply syntax highlighter on ${code.className}`);
+  const uniqueId = `id=${code.id} class=${code.className}`;
+  console.info(`apply syntax highlighter on ${uniqueId}`);
+  code.parentElement?.setAttribute('highlighted', 'true');
   // start highlight pre code[data-highlight]
   if (code.hasAttribute('data-highlight')) {
     if (code.getAttribute('data-highlight') != 'false') {
@@ -67,11 +68,16 @@ function highlightElement(code: HTMLElement) {
   }
 }
 
+let loadedHljs = false;
+
 /**
  * load Highlight.js
  * @returns
  */
 function loadHljs() {
+  if (loadedHljs) return;
+  loadedHljs = true;
+  console.log('highlight.js used not in react');
   // validate hljs already imported
   if ('hljs' in window === true) return;
   // otherwise create one

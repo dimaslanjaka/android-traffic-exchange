@@ -33,12 +33,16 @@ interface HighlightProps {
 }
 
 class HighlightElement extends React.Component<HighlightProps, Record<string, any>> {
+  private initialized = false;
   constructor(props: HighlightProps) {
     super(props);
   }
 
   componentDidMount() {
-    helper.initHljs();
+    if (!this.initialized) {
+      helper.initHljs();
+      this.initialized = true;
+    }
     //window.addEventListener('load', helper.initHljs.bind(this));
   }
 

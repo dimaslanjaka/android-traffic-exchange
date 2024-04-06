@@ -1,6 +1,7 @@
 import AdsenseFill from '@components/Adsense/AdsenseFill';
 import HighlightElement from '@components/Highlight.js';
 import Link from '@components/Link';
+import Adsense from '../Adsense';
 
 // const AdsenseFill = React.lazy(() => import('@components/Adsense/AdsenseFill'));
 // const HighlightElement = React.lazy(() => import('@components/Highlight.js'));
@@ -24,6 +25,12 @@ this.name = 'Shape 2D';
 }
 `}
         </HighlightElement>
+        <Adsense
+          data-ad-client="ca-pub-2188063137129806"
+          data-ad-slot="6137665722"
+          data-ad-format="auto"
+          data-full-width-responsive="true"
+        />
         <h4>Disable Highlighting</h4>
         <HighlightElement className="ss" data-highlight={false}>
           {`
@@ -52,6 +59,13 @@ GRANT ALL PRIVILEGES ON \`dimaslanjaka\\_%\`.* TO 'dimaslanjaka'@'%';
             `}
           </code>
         </pre>
+
+        <Adsense
+          data-ad-client="ca-pub-2188063137129806"
+          data-ad-slot="4695444437"
+          data-ad-format="auto"
+          data-full-width-responsive="true"
+        />
 
         <pre>
           <code>
