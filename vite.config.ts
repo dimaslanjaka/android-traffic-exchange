@@ -32,3 +32,9 @@ const config: UserConfig = {
 };
 
 export default defineConfig(config);
+
+// export default defineConfig(({ command: _, mode }) => {
+//   const env = loadEnv(mode, process.cwd());
+//   console.log('mode', { env });
+//   return config;
+// });

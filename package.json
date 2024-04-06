@@ -13,13 +13,13 @@
   },
   "scripts": {
     "build": "yarn typecheck && vite build",
-    "dev": "cross-env-shell NODE_ENV=development vite --host",
-    "start": "cross-env-shell NODE_ENV=development vite --host",
+    "start": "cross-env-shell NODE_ENV=development yarn run config && vite --host",
     "format": "prettier --check --ignore-path .gitignore --write .",
     "lint": "eslint --ignore-path .gitignore .",
     "preview": "vite preview --host",
     "typecheck": "tsc",
-    "postinstall": "node -r dotenv/config --es-module-specifier-resolution=node --no-warnings _config.gen.cjs && husky install",
+    "postinstall": "yarn run config && husky install",
+    "config": "node -r dotenv/config --es-module-specifier-resolution=node --no-warnings _config.gen.cjs",
     "update": "yarn dlx npm-check-updates -u -x jsdom,chalk,hexo,deepmerge-ts,husky --enginesNode"
   },
   "engines": {
