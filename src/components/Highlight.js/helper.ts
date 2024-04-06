@@ -8,8 +8,8 @@ function startHighlighter(preCode: HTMLElement) {
   // validate hljs for react
   if ('highlightAll' in hljs === false) return loadHljs();
   // deterimine <code /> tag
-  let code = preCode;
-  if (preCode.tagName.toLowerCase() === 'pre') {
+  let code: HTMLPreElement | HTMLElement | null | undefined = preCode;
+  if (preCode.tagName.toLowerCase() === 'pre' && code) {
     // select inner <code /> from <pre /> tag
     code = preCode.querySelector('code');
     if (!code) {
@@ -113,18 +113,26 @@ export function initClipBoard() {
     }
 
     button.onclick = function (e) {
-      const el = document.getElementById(codeBlock.getAttribute('id'));
+      const id = codeBlock.getAttribute('id');
+      if (id) {
+        const el = document.getElementById(id);
 
-      copyTextToClipboard(el.textContent.replace(/(Copy|Copied)$/gm, ''), e)
-        .then(() => {
-          (e.target as Element).textContent = 'Copied';
-        })
-        .finally(() => {
-          window.setTimeout(function () {
-            (e.target as Element).textContent = 'Copy';
-          }, 2000);
-        })
-        .catch(console.error);
+        if (el) {
+          const text = el.textContent;
+          if (text) {
+            copyTextToClipboard(text.replace(/(Copy|Copied)$/gm, ''), e)
+              .then(() => {
+                (e.target as Element).textContent = 'Copied';
+              })
+              .finally(() => {
+                window.setTimeout(function () {
+                  (e.target as Element).textContent = 'Copy';
+                }, 2000);
+              })
+              .catch(console.error);
+          }
+        }
+      }
     };
 
     if (append) codeBlock.appendChild(button);
@@ -133,12 +141,14 @@ export function initClipBoard() {
 
 /** main */
 
-if (typeof window !== 'undefined' && typeof document !== 'undefined') {
-  if (document.readyState !== 'loading') {
-    // fix react
-    document.addEventListener('scroll', initHljs);
-    //triggerAdsense(undefined);
-  } else {
-    document.addEventListener('DOMContentLoaded', initHljs);
+export function highlightMain() {
+  console.log('init highlight.js');
+  if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+    if (document.readyState !== 'loading') {
+      // fix react
+      document.addEventListener('scroll', initHljs);
+    } else {
+      document.addEventListener('DOMContentLoaded', initHljs);
+    }
   }
 }

@@ -20,6 +20,7 @@ const localhost = islocalhost();
  * adsense main function
  */
 export function main() {
+  console.log('initialize adsense');
   if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     if (!banned && !localhost) {
       // skip showing ads on non-domain host
@@ -35,3 +36,5 @@ export function main() {
     }
   }
 }
+
+export const adsenseMain = main;

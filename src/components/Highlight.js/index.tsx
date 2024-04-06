@@ -1,5 +1,5 @@
-import React from 'react';
 import { randomStr } from '@utils/index';
+import React from 'react';
 import * as helper from './helper';
 
 // css for browser
@@ -48,19 +48,19 @@ class HighlightElement extends React.Component<HighlightProps, Record<string, an
   render() {
     const buildProps = {} as Record<string, any>;
     if (this.props.lang) {
-      buildProps.className = 'hljs language-' + this.getLang();
+      buildProps['className'] = 'hljs language-' + this.getLang();
     }
     if (this.props['data-highlight']) {
       buildProps['data-highlight'] = String(this.props['data-highlight']);
     }
     return (
       <pre id={this.props.id || 'pre-' + randomStr(3)} className={this.props.className}>
-        <code {...buildProps}>{this.props.children}</code>
+        <code {...buildProps}>{this.props['children']}</code>
         <button
           className="copy-code-button"
           type="button"
           title="Copy code block"
-          data-clipboard-text={this.props.children}
+          data-clipboard-text={this.props['children']}
         >
           <span>Copy</span>
         </button>
@@ -76,8 +76,8 @@ class HighlightElement extends React.Component<HighlightProps, Record<string, an
       ts: 'typescript',
       mysql: 'sql'
     };
-    if (lang in map) {
-      return map[lang];
+    if (lang && lang in map) {
+      return (map as Record<string, any>)[lang];
     } else {
       return lang;
     }
