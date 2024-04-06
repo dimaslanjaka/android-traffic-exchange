@@ -1,3 +1,4 @@
+import { AdsenseOption } from './config';
 import getCurrentSlot from './getCurrentSlot';
 import isLocalHostname from './isLocalHostname';
 
@@ -6,7 +7,7 @@ import isLocalHostname from './isLocalHostname';
  * @param attributes
  * @returns
  */
-export default function createIns(attributes: Record<string, any>) {
+export default function createIns(attributes: Record<string, any>, options: AdsenseOption) {
   let ins: HTMLElement | null = null;
 
   const fallbackDiv = (ins: HTMLElement) => {
@@ -30,7 +31,7 @@ export default function createIns(attributes: Record<string, any>) {
     return ins;
   }
 
-  if (isLocalHostname()) {
+  if (isLocalHostname(options)) {
     ins = document.createElement('div');
     ins.style.backgroundImage = 'url(//picsum.photos/1000/300)';
     fallbackDiv(ins);
@@ -38,7 +39,7 @@ export default function createIns(attributes: Record<string, any>) {
   }
 
   if (!attributes['data-ad-client']) {
-    attributes['data-ad-client'] = 'ca-pub-' + getCurrentSlot().pub;
+    attributes['data-ad-client'] = 'ca-pub-' + getCurrentSlot(options)?.pub;
   }
   ins = document.createElement('ins');
   for (const key in attributes) {
@@ -50,7 +51,7 @@ export default function createIns(attributes: Record<string, any>) {
   if (!ins.classList.contains('bannerAds')) {
     ins.classList.add('bannerAds');
   }
-  if (isLocalHostname()) {
+  if (isLocalHostname(options)) {
     ins.setAttribute('data-adtest', 'on');
   }
 

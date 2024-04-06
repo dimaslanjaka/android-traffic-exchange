@@ -1,5 +1,5 @@
 import { array_shuffle, insertAfter, loadJS } from '@utils/index';
-import { getAdsenseConfig, paramBuilder } from './config';
+import { AdsenseOption, paramBuilder } from './config';
 import createIns from './createIns';
 import findRootPlaces from './findRootPlaces';
 import getCurrentSlot from './getCurrentSlot';
@@ -9,10 +9,10 @@ import isLocalHostname from './isLocalHostname';
  * initialize ads on random places
  * * you can specify places on `window.adsense_option.places`
  */
-export default function initializeRandomAds() {
-  const { places = [] } = getAdsenseConfig();
-  const currentSlot = getCurrentSlot();
-  const roots = findRootPlaces();
+export default function initializeRandomAds(options: AdsenseOption) {
+  const { places = [] } = options;
+  const currentSlot = getCurrentSlot(options);
+  const roots = findRootPlaces(options);
 
   // select random place
   let adsPlaces: (Element | HTMLElement)[] = [];
@@ -47,10 +47,10 @@ export default function initializeRandomAds() {
         const ad = currentSlot.ads.shift();
         if (ad) {
           ad['data-ad-client'] = 'ca-pub-' + currentSlot.pub.replace('ca-pub-', '');
-          if (isLocalHostname()) {
+          if (isLocalHostname(options)) {
             ad['data-adtest'] = 'on';
           }
-          const ins = createIns(ad);
+          const ins = createIns(ad, options);
           if (ins) {
             console.log('apply ads to', el.tagName, el.className, '#' + el.id);
             insertAfter(ins, el);

@@ -1,11 +1,11 @@
-import { getAdsenseConfig } from './config';
+import { AdsenseOption } from './config';
 
 /**
  * find wrapper to iterate random ads
  * @returns
  */
-export default function findRootPlaces() {
-  const { root } = getAdsenseConfig();
+export default function findRootPlaces({ root = 'IAMNOTEXIST' }: AdsenseOption) {
+  console.log('root adsense', root);
   let roots: (Element | HTMLElement)[] = [];
   if (root && root.length > 0) {
     roots = Array.from(document.querySelectorAll(root));

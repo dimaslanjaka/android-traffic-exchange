@@ -21,12 +21,14 @@ export default async function triggerAdsense(ev: TriggerOptions = {}) {
 
   const options = getAdsenseConfig();
 
+  // console.log('trigger adsense', options);
+
   // apply current slot
   const apply = () => {
-    options.currentSlot = getCurrentSlot();
-    fillFixedPosition(options.currentSlot);
-    initializeRandomAds();
-    applyEnviromentAds();
+    const currentSlot = getCurrentSlot(options);
+    fillFixedPosition(currentSlot, options);
+    initializeRandomAds(options);
+    applyEnviromentAds(options);
   };
 
   if (!ev.react) {

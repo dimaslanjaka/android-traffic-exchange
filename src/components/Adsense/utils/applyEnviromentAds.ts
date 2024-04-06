@@ -1,10 +1,11 @@
 import isDev from '@root/src/utils/isDev';
+import { AdsenseOption } from './config';
 import isLocalHostname from './isLocalHostname';
 
 /**
  * initialize background image, height, ad-test to existing `ins` tags
  */
-export default function applyEnviromentAds() {
+export default function applyEnviromentAds(_options: AdsenseOption) {
   // apply ad testing
   const existingIns = Array.from(document.querySelectorAll('ins[class*=adsbygoogle]'));
   console.info('existing ins', existingIns.length);
@@ -36,7 +37,7 @@ export default function applyEnviromentAds() {
 
     // apply ad test to non-localhost ip and process.env.NODE_ENV is dev
 
-    if (isDev() || isLocalHostname()) {
+    if (isDev() || isLocalHostname(_options)) {
       console.info('apply test ad to existing ins', ins.getAttribute('data-ad-slot'));
       ins.setAttribute('data-adtest', 'on');
     }
