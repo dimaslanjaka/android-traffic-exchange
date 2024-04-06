@@ -1,120 +1,11 @@
 // malfunction keyboard 5 6 ^ %
 
 // load fonts
-@import url('//rawcdn.githack.com/dimaslanjaka/Web-Manajemen/e60d295a16eb3ff163064211fe5ce522110de753/css/all.css');
-// $fa-font-path: '~@fontawesome/fontawesome-svg-core/webfonts';
-// @import '@fontawesome/fontawesome-svg-core/scss/all';
+@import url('./font.scss');
 
-@font-face {
-  font-family: 'Cera Pro Black italic';
-  src: url('../fonts/Cera\ Pro\ Black\ italic.otf');
+body {
+  font-family: 'UbuntuRegular', 'Helvetica Neue', Arial, sans-serif;
 }
-@font-face {
-  font-family: 'Cera Pro Black';
-  src: url('../fonts/Cera\ Pro\ Black.otf');
-}
-@font-face {
-  font-family: 'Cera Pro Bold italic';
-  src: url('../fonts/Cera\ Pro\ Bold\ italic.otf');
-}
-@font-face {
-  font-family: 'Cera Pro Bold';
-  src: url('../fonts/Cera\ Pro\ Bold.otf');
-}
-@font-face {
-  font-family: 'Cera Pro Light italic';
-  src: url('../fonts/Cera\ Pro\ Light\ italic.otf');
-}
-@font-face {
-  font-family: 'Cera Pro Light';
-  src: url('../fonts/Cera\ Pro\ Light.otf');
-}
-@font-face {
-  font-family: 'Cera Pro Medium italic';
-  src: url('../fonts/Cera\ Pro\ Medium\ italic.otf');
-}
-@font-face {
-  font-family: 'Cera Pro Medium';
-  src: url('../fonts/Cera\ Pro\ Medium.otf');
-}
-@font-face {
-  font-family: 'Cera Pro Regular Italic';
-  src: url('../fonts/Cera\ Pro\ Regular\ Italic.otf');
-}
-@font-face {
-  font-family: 'Cera Pro Thin Italic';
-  src: url('../fonts/Cera\ Pro\ Thin\ Italic.otf');
-}
-@font-face {
-  font-family: 'Cera Pro Thin';
-  src: url('../fonts/Cera\ Pro\ Thin.otf');
-}
-@font-face {
-  font-family: 'Cera Pro';
-  src: url('../fonts/Cera\ Pro.otf');
-}
-@font-face {
-  font-family: 'Cera_Stencil_PRO';
-  src: url('../fonts/Cera_Stencil_PRO.otf');
-}
-@font-face {
-  font-family: 'Cera_Stencil_PRO_Black';
-  src: url('../fonts/Cera_Stencil_PRO_Black.otf');
-}
-@font-face {
-  font-family: 'Cera_Stencil_PRO_Bold';
-  src: url('../fonts/Cera_Stencil_PRO_Bold.otf');
-}
-@font-face {
-  font-family: 'Cera_Stencil_PRO_Light';
-  src: url('../fonts/Cera_Stencil_PRO_Light.otf');
-}
-@font-face {
-  font-family: 'Cera_Stencil_PRO_Medium';
-  src: url('../fonts/Cera_Stencil_PRO_Medium.otf');
-}
-@font-face {
-  font-family: 'Cera_Stencil_PRO_Thin';
-  src: url('../fonts/Cera_Stencil_PRO_Thin.otf');
-}
-
-@font-face {
-  font-family: 'consolas';
-  src: url('https://db.onlinewebfonts.com/t/1db29588408eadbd4406aae9238555eb.eot');
-  src:
-    url('https://db.onlinewebfonts.com/t/1db29588408eadbd4406aae9238555eb.eot?#iefix') format('embedded-opentype'),
-    url('https://db.onlinewebfonts.com/t/1db29588408eadbd4406aae9238555eb.woff2') format('woff2'),
-    url('https://db.onlinewebfonts.com/t/1db29588408eadbd4406aae9238555eb.woff') format('woff'),
-    url('https://db.onlinewebfonts.com/t/1db29588408eadbd4406aae9238555eb.ttf') format('truetype'),
-    url('https://db.onlinewebfonts.com/t/1db29588408eadbd4406aae9238555eb.svg#Consolas') format('svg');
-}
-
-@font-face {
-  font-family: 'monaco';
-  src: url('https://db.onlinewebfonts.com/t/440785c689da19fbbdb1346932c8c029.eot');
-  src:
-    url('https://db.onlinewebfonts.com/t/440785c689da19fbbdb1346932c8c029.eot?#iefix') format('embedded-opentype'),
-    url('https://db.onlinewebfonts.com/t/440785c689da19fbbdb1346932c8c029.woff2') format('woff2'),
-    url('https://db.onlinewebfonts.com/t/440785c689da19fbbdb1346932c8c029.woff') format('woff'),
-    url('https://db.onlinewebfonts.com/t/440785c689da19fbbdb1346932c8c029.ttf') format('truetype'),
-    url('https://db.onlinewebfonts.com/t/440785c689da19fbbdb1346932c8c029.svg#Monaco') format('svg');
-}
-
-@font-face {
-  font-family: 'monospace';
-  src: url('https://db.onlinewebfonts.com/t/b118fb07592ef4854d1fb0ea1e6bafc2.eot');
-  src:
-    url('https://db.onlinewebfonts.com/t/b118fb07592ef4854d1fb0ea1e6bafc2.eot?#iefix') format('embedded-opentype'),
-    url('https://db.onlinewebfonts.com/t/b118fb07592ef4854d1fb0ea1e6bafc2.woff2') format('woff2'),
-    url('https://db.onlinewebfonts.com/t/b118fb07592ef4854d1fb0ea1e6bafc2.woff') format('woff'),
-    url('https://db.onlinewebfonts.com/t/b118fb07592ef4854d1fb0ea1e6bafc2.ttf') format('truetype'),
-    url('https://db.onlinewebfonts.com/t/b118fb07592ef4854d1fb0ea1e6bafc2.svg#Monospaced') format('svg');
-}
-
-// body,
-// html {
-//   height: 100%;
-// }
 
 label,
 h1,
@@ -122,28 +13,42 @@ h2,
 h3,
 h4,
 h5,
-h6,
-tr th,
-b {
-  font-family: 'Cera Pro Bold', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+h6 {
+  // font-family: 'Cera Pro Bold', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-family: 'JetBrainsMono_Bold';
 }
 
 b {
   font-weight: 599 !important;
+  font-family: 'Cera Pro Bold', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 }
 
 pre,
-code {
+code,
+pre code {
   white-space: pre-wrap; /* css-3 */
   white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
   white-space: -pre-wrap; /* Opera 4-6 */
   white-space: -o-pre-wrap; /* Opera 7 */
   word-wrap: break-word; /* Internet Explorer 5.5+ */
-  font-family: 'consolas', 'monaco', 'monospace';
+  // font-family: 'consolas', 'monaco', 'monospace' !important;
+  font-family: 'UbuntuRegular', 'Helvetica Neue', Arial, sans-serif !important;
 
   * {
-    font-family: 'consolas', 'monaco', 'monospace';
+    // font-family: 'consolas', 'monaco', 'monospace' !important;
+    font-family: 'UbuntuRegular', 'Helvetica Neue', Arial, sans-serif !important;
   }
+}
+
+blockquote {
+  font-family: 'JetBrainsMono_Light';
+  * {
+    font-family: 'JetBrainsMono_Light';
+  }
+}
+
+th {
+  font-family: 'JetBrainsMono_Light';
 }
 
 i:not([class^='fa-']) {
@@ -151,7 +56,7 @@ i:not([class^='fa-']) {
 }
 
 * {
-  // word-wrap: break-word;
+  word-wrap: break-word;
   // max-width: 100%;
   font-family: 'Cera Pro', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 }
