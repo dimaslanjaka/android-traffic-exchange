@@ -75,10 +75,11 @@ const FlowbiteHeader: FC<Record<string, never>> = function () {
         {projectConfig['nav_top'] && (
           <Navbar.Collapse>
             {Object.keys(projectConfig['nav_top']).map((name, index) => {
+              const navTop = projectConfig['nav_top'] as Record<string, string>;
               const props = {} as Record<string, any>;
               if (index === 0) props['active'] = true;
               return (
-                <Navbar.Link href={projectConfig['nav_top'][name]} key={name + index} {...props}>
+                <Navbar.Link href={navTop[name]} key={name + index} {...props}>
                   {name}
                 </Navbar.Link>
               );
