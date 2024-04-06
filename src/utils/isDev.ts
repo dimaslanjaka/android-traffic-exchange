@@ -1,3 +1,5 @@
+import envJson from '@root/_env.json';
+
 /**
  * is current environment is development ?
  * @returns
@@ -10,5 +12,10 @@ export default function isDev() {
     // vite
     env = import.meta.env;
   }
-  return /dev/i.test(env['NODE_ENV'] || '');
+  const merge = Object.assign(envJson, env);
+  // console.log(env);
+  const NODE_ENV = merge['NODE_ENV'];
+  if ((!NODE_ENV || NODE_ENV == '') && merge['DEV']) return true;
+  if (NODE_ENV) return /dev/i.test(NODE_ENV);
+  return false;
 }
