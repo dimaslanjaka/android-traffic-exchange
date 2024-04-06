@@ -1,6 +1,7 @@
 import { randomStr } from '@utils/index';
 import React from 'react';
 import * as helper from './helper';
+import './styles.scss';
 
 // css for browser
 // '//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.16.2/build/styles/default.min.css'
@@ -18,7 +19,7 @@ interface HighlightProps {
    * enable highlighting?
    * * applied to `<code />` tag
    */
-  'data-highlight'?: boolean;
+  'data-highlight'?: boolean | string;
   /**
    * custom id
    * * applied for `<pre />` tag
@@ -50,8 +51,10 @@ class HighlightElement extends React.Component<HighlightProps, Record<string, an
     if (this.props.lang) {
       buildProps['className'] = 'hljs language-' + this.getLang();
     }
-    if (this.props['data-highlight']) {
+    if (typeof this.props['data-highlight'] == 'boolean' && this.props['data-highlight']) {
       buildProps['data-highlight'] = String(this.props['data-highlight']);
+    } else {
+      buildProps['data-highlight'] = this.props['data-highlight'];
     }
     return (
       <pre id={this.props.id || 'pre-' + randomStr(3)} className={this.props.className}>

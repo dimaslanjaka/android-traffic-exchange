@@ -10,6 +10,12 @@ function startHighlighter(preCode: HTMLElement) {
   // deterimine <code /> tag
   let code: HTMLPreElement | HTMLElement | null | undefined = preCode;
   if (preCode.tagName.toLowerCase() === 'pre' && code) {
+    const dh = preCode.getAttribute('data-highlight');
+    // console.log('has data-highlight', preCode.getAttribute('data-highlight'));
+    // if (dh) {
+    //   return;
+    // }
+    if (dh && dh == 'false') return;
     // select inner <code /> from <pre /> tag
     code = preCode.querySelector('code');
     if (!code) {
@@ -34,6 +40,7 @@ function startHighlighter(preCode: HTMLElement) {
     code.classList.remove('language-mysql');
     code.classList.add('language-sql');
   }
+  console.info(`apply syntax highlighter on ${code.className}`);
   // start highlight pre code[data-highlight]
   if (code.hasAttribute('data-highlight')) {
     if (code.getAttribute('data-highlight') != 'false') {

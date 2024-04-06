@@ -1,7 +1,6 @@
 import AdsenseFill from '@components/Adsense/AdsenseFill';
 import HighlightElement from '@components/Highlight.js';
 import Link from '@components/Link';
-import React from 'react';
 
 // const AdsenseFill = React.lazy(() => import('@components/Adsense/AdsenseFill'));
 // const HighlightElement = React.lazy(() => import('@components/Highlight.js'));
@@ -9,7 +8,7 @@ import React from 'react';
 
 function HighlightLayout() {
   return (
-    <React.Fragment>
+    <main>
       <div className="text-center">
         <h1>Auto highlight.js</h1>
         <p>
@@ -152,7 +151,7 @@ function loadHljs() {
           </Link>
         </p>
       </div>
-    </React.Fragment>
+    </main>
   );
 }
 
