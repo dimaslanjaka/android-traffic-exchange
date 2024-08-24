@@ -22,9 +22,9 @@ on:
      secrets:
        ACCESS_TOKEN:
          required: true
-  schedule:
-  # https://crontab.guru/#0_0_*/5_*_*
-    - cron: '0 0 */5 * *'
+#  schedule:
+#  # https://crontab.guru/#0_0_*/5_*_*
+#    - cron: '0 0 */5 * *'
 jobs:
   build:
     name: build apk
