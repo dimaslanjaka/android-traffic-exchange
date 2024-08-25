@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   build:
-    if: contains(github.repository, 'proxy')
+    if: contains(github.repository, 'proxy') || contains(github.repository, 'android')
     runs-on: windows-latest
 
     steps:
