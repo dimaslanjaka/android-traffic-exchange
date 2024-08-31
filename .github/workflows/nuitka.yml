@@ -134,7 +134,15 @@ jobs:
           name: built
           path: |
             dist/*.exe
-            dist/src
+            dist/src/*.sqlite*
+            dist/src/*.mmdb
             dist/*.json
             dist/*.txt
             dist/*.yml
+
+      - name: Clean github actions cache
+        env:
+          GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        shell: cmd
+        run: |
+          call "${{ github.workspace }}/bin/clear-github-actions-cache.cmd"
