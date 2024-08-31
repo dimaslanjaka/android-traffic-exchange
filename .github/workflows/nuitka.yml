@@ -3,10 +3,22 @@ name: Nuitka CI
 on:
   push:
   workflow_dispatch:
+    inputs:
+      disableCache:
+        description: "Disable cache"
+        required: false
+        default: "false"
+        type: boolean
   workflow_call:
-     secrets:
-       ACCESS_TOKEN:
-         required: true
+    inputs:
+      disableCache:
+        description: "Disable cache"
+        required: false
+        default: "false"
+        type: boolean
+    secrets:
+      ACCESS_TOKEN:
+        required: true
   schedule:
     - cron: "0 */8 * * *"
 
@@ -16,84 +28,113 @@ concurrency:
 
 jobs:
   build:
-    if: contains(github.repository, 'proxy') || contains(github.repository, 'android')
+    if: contains(github.repository, 'php-proxy-hunter') || contains(github.repository, 'android-traffic-exchange')
     runs-on: windows-latest
 
     steps:
+      - name: Setup Environment Variables
+        if: ${{ github.event.inputs.disableCache || 'false' }}
+        shell: bash
+        run: |
+          echo "NUITKA_CACHE_DIR=${{ github.workspace }}/tmp/nuitka-cache" >> $GITHUB_ENV
 
-      # Check-out repository
       - uses: actions/checkout@v4
         with:
           repository: dimaslanjaka/traffic-generator
           ref: python
           token: ${{ secrets.ACCESS_TOKEN }}
-          lfs: 'true'
-          submodules: 'true'
+          lfs: "true"
+          submodules: "true"
 
       # Setup Python
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
-          architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
-          cache: 'pip'
-          cache-dependency-path: |
-            **/requirements*.txt
+          python-version: "3.11"
+          architecture: "x64"
 
       - uses: actions/setup-node@v4
         with:
           node-version: 18.x
 
+      - name: Get pip cache dir
+        id: pip-cache
+        run: echo "pip_cache_dir=$(pip cache dir)" >> $GITHUB_ENV
+
       - name: Setup Cache
         uses: actions/cache@v4
         with:
           path: |
-            dist
-            tmp
+            dist/
+            tmp/
             src/*.sqlite*
             src/*.mmdb
-            node_modules/**
-            .yarn/caches/**/*
-            venv/**/*
-          key: build-cache-${{ hashFiles('**/*.py') }}
+            node_modules/
+            .yarn/caches/
+            .yarn/*.gz
+            venv/
+            ${{ env.pip_cache_dir }}
+            ${{ env.NUITKA_CACHE_DIR }}
+            *.lock
+            *.txt
+            package-lock.json
+            assets/proxies/
+            vendor/
+            ${{ env.USERPROFILE }}\AppData\Local\Nuitka\Nuitka\Cache
+            $HOME/AppData/Local/Nuitka/Nuitka/Cache
+            ~/.cache/pip
+            config/
+            .cache/
+            proxies.txt
+            dead.txt
+            proxyChecker.txt
+            working.txt
+            working.json
+            composer.lock
+            yarn.lock
+          key: ${{ runner.os }}-nuitka-${{ github.run_id }}
           restore-keys: |
-            build-cache-${{ github.sha }}
-            build-cache-${{ hashFiles('**/*.py') }}
-            build-cache-
+            ${{ runner.os }}-nuitka-
+            ${{ runner.os }}-php-
+            ${{ runner.os }}-python-
+            ${{ runner.os }}-
 
-      # Install dependencies
-      - name: Install Dependencies
+      - name: Restore Non-cached Files
         run: |
-          cmd /c bin\py-install.cmd
-          touch yarn.lock
+          git restore *.txt
+
+      - name: Install NodeJS Dependencies
+        run: |
           corepack enable
           yarn install
 
-      - name: Re-install Python Dependencies
+      - name: Install Python Dependencies
         run: |
-          pip install -r requirements.txt
-          python -m venv venv
-          venv\Scripts\activate.bat
-          pip install -r requirements.txt
+          python3 -m ensurepip --upgrade
+          python3 -m pip install --upgrade pip setuptools wheel
+          python3 -m distutils.core --help
+          python3 requirements_install.py
 
       - name: Download required files
         run: |
-          venv\Scripts\activate.bat
-          venv\Scripts\python.exe src/geoPlugin.py
+          python3 src/geoPlugin.py
 
-      - name: copy
+      - name: Copy Assets
         run: gulp copy
 
-      - name: build simple gui
-        run: gulp sgui
+      - name: Build Simple GUI
+        run: |
+          gulp sgui
 
       # Uploads artifact
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
+          overwrite: "true"
+          include-hidden-files: "true"
           name: built
           path: |
             dist/*.exe
             dist/src
-            dist/*.xml
             dist/*.json
             dist/*.txt
+            dist/*.yml
