@@ -125,7 +125,7 @@ export { initializeRandomAds };
  * get all ads places
  * @param from
  */
-function getAllPlaces(from: Element | Document) {
+export function getAllPlaces(from: Element | Document) {
   return Array.from(from.querySelectorAll('h1,h2,h3,h4,h5,pre,header,hr,br,table,blockquote'))
     .sort(function () {
       return 0.5 - Math.random();

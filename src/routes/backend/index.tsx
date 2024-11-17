@@ -1,5 +1,4 @@
 import { projectConfig } from '@root/src/project';
-import React from 'react';
 
 export default function BackendIndex() {
   return (
